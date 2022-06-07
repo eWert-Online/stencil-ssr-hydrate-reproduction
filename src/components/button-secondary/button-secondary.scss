@@ -1,0 +1,69 @@
+:host(.ButtonSecondary) {
+  display: inline-block;
+  outline: none;
+  font-size: 16px;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .ButtonSecondary-button {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    padding: 9px 30px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 50px;
+    width: 100%;
+    height: 100%;
+
+    border-radius: 5px;
+    background-color: $white;
+    color: $app-red;
+    text-decoration: none;
+    border: 1px solid $app-red;
+    cursor: pointer;
+
+    transition: color 300ms ease-in-out;
+    outline: none;
+
+    & > div {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .text {
+    text-align: center;
+  }
+}
+
+:host(.ButtonSecondary) .ButtonSecondary-button:hover,
+:host(.ButtonSecondary.is-hovered) .ButtonSecondary-button {
+  color: $app-red-hover-02;
+  border-color: $app-red-hover-02;
+}
+
+:host(.ButtonSecondary--disabled) {
+  .ButtonSecondary-button {
+    cursor: not-allowed;
+    border-color: $app-grey-07;
+    background-color: $white;
+    color: $app-grey-07;
+  }
+}
+
+:host(.ButtonSecondary--disabled) .ButtonSecondary-button:hover,
+:host(.ButtonSecondary--disabled.is-hovered) .ButtonSecondary-button {
+  background-color: $white;
+  color: $app-grey-07;
+  border-color: $app-grey-07;
+}

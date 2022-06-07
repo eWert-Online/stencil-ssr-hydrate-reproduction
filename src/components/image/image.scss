@@ -1,0 +1,24 @@
+:host {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+
+  picture,
+  img {
+    display: block;
+    width: inherit;
+    height: inherit;
+    max-width: inherit;
+    max-height: inherit;
+
+    object-fit: inherit;
+    object-position: inherit;
+
+    aspect-ratio: attr(width) / attr(height);
+  }
+}
+
+:host(.Image--lazy) {
+  background-image: none !important;
+  background-color: $app-grey-06;
+}

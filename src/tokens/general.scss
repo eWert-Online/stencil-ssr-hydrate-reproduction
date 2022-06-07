@@ -1,0 +1,21 @@
+@import "./colors.scss";
+
+a {
+  color: $app-red;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+a.light {
+  color: $app-grey-09;
+  text-decoration: underline;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}

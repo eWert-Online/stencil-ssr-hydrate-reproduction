@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+
+    <link rel="icon" type="image/x-icon" href="/assets/icon/favicon.ico" />
+
+    <link rel="stylesheet" href="/public/dist/ssr-repro-app/ssr-repro-app.css" media="all" />
+    <script type="module" src="/public/dist/ssr-repro-app/ssr-repro-app.esm.js"></script>
+  </head>
+  <body>
+    <app-section>
+      <app-banner
+        image-alignment="left"
+        headline-tag="h3"
+        headline-text="When rendering inside app-section, it doesn't re-hydrate correctly"
+        link-text="Habitasse congue"
+        link-href="#0"
+      >
+        <app-image
+          slot="image"
+          background="true"
+          alt="lorem ipsum dolor sit amet"
+          img-src="/assets/images/dummy-images/banner-xlarge.png"
+        ></app-image>
+      </app-banner>
+    </app-section>
+
+    <app-banner
+      image-alignment="left"
+      headline-tag="h3"
+      headline-text="When the banner is used on its own, everything works as expected"
+      link-text="Some link!"
+      link-href="#0"
+    >
+      <app-image
+        slot="image"
+        background="true"
+        alt="lorem ipsum dolor sit amet"
+        img-src="/assets/images/dummy-images/banner-xlarge.png"
+      ></app-image>
+    </app-banner>
+  </body>
+</html>

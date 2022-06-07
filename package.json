@@ -1,0 +1,23 @@
+{
+  "name": "ssr-repro-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./public/dist/index.cjs.js",
+  "module": "./public/dist/index.js",
+  "collection": "./public/dist/collection/collection-manifest.json",
+  "types": "./public/dist/types/components.d.ts",
+  "scripts": {
+    "postinstall": "stencil build",
+    "build": "stencil build",
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@stencil/core": "2.16.1",
+    "@stencil/sass": "1.5.2",
+    "express": "^4.18.1",
+    "sass": "~1.26.10"
+  }
+}

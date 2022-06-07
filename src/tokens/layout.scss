@@ -1,0 +1,35 @@
+@mixin layout-definitions {
+    --layout-content-maxWidth: 1339px;
+    --layout-content-padding: 15px;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+        --layout-content-padding: 24px;
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+        --layout-content-padding: 22px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+        --layout-content-padding: 52px;
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+        --layout-content-padding: 103px;
+    }
+}
+
+@mixin content-holder() {
+    @include layout-definitions;
+
+    box-sizing: border-box;
+
+    width: 100%;
+    max-width: calc(var(--layout-content-maxWidth) + (2 * var(--layout-content-padding)));
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: var(--layout-content-padding);
+    padding-right: var(--layout-content-padding);
+}

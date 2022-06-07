@@ -1,0 +1,53 @@
+$columns: 12;
+
+@mixin grid-container($column-gap: true, $row-gap: true) {
+    @extend %spacing-definitions;
+
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: repeat($columns, 1fr);
+
+    @if ($column-gap) {
+        column-gap: var(--spacing-grid);
+    }
+
+    @if ($row-gap) {
+        row-gap: var(--spacing-grid);
+    }
+}
+
+@mixin grid-item($span: null, $start: null, $end: null, $rowSpan: null, $rowStart: null, $rowEnd: null) {
+    @if (($span == null) and ($start == null)) {
+        grid-column-end: span $columns;
+    } @else {
+        @if ($span != null) {
+            grid-column-end: span $span;
+        }
+
+        @if ($start != null) {
+            grid-column-start: $start + 1;
+        } @else {
+            grid-column-start: auto;
+        }
+
+        @if (($end != null) and ($span == null)) {
+            grid-column-end: $end + 1;
+        }
+    }
+
+    @if (($rowSpan != null) or ($rowStart != null)) {
+        @if ($rowSpan != null) {
+            grid-row-end: span $rowSpan;
+        }
+
+        @if ($rowStart != null) {
+            grid-row-start: $rowStart + 1;
+        } @else {
+            grid-row-start: auto;
+        }
+
+        @if (($rowEnd != null) and ($rowSpan == null)) {
+            grid-row-end: $rowEnd + 1;
+        }
+    }
+}

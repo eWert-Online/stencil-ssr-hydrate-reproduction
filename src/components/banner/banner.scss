@@ -1,0 +1,122 @@
+:host(.Banner) {
+  @extend %spacing-definitions;
+
+  display: block;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .Banner-intro {
+    @include content-holder();
+  }
+
+  .Banner-wrapper {
+    @include content-holder();
+  }
+
+  .Banner-container {
+    @include grid-container($column-gap: false, $row-gap: false);
+
+    overflow: hidden;
+    border: 1px solid $app-grey-07;
+    border-radius: 5px;
+
+    text-decoration: none;
+
+    &:hover {
+      .Banner-image::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  .Banner-headline {
+    font-size: 32px;
+    font-weight: normal;
+    color: $black;
+    margin: 0;
+    margin-bottom: var(--spacing-xs);
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      font-size: 22px;
+    }
+  }
+
+  .Banner-headlineHighlight {
+    display: block;
+    color: $app-red;
+  }
+
+  .Banner-image {
+    @include grid-item(12);
+    position: relative;
+    height: 250px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      opacity: 0;
+
+      background-color: rgba($black, 0.6);
+      pointer-events: none;
+      transition: opacity 200ms ease-in-out;
+    }
+
+    ::slotted(app-image) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      background-size: cover;
+      background-position: center;
+    }
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include grid-item(6);
+      height: auto;
+    }
+  }
+
+  .Banner-content {
+    @include grid-item(12);
+
+    padding: var(--spacing-xs) var(--spacing-sm);
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include grid-item(6);
+    }
+  }
+}
+
+:host(.Banner--left) {
+  @media screen and (min-width: $breakpoint-websiteSmall) {
+    .Banner-image {
+      order: 0;
+    }
+
+    .Banner-content {
+      order: 1;
+    }
+  }
+}
+
+:host(.Banner--right) {
+  @media screen and (min-width: $breakpoint-websiteSmall) {
+    .Banner-image {
+      order: 1;
+    }
+
+    .Banner-content {
+      order: 0;
+    }
+  }
+}

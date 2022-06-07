@@ -1,0 +1,132 @@
+@mixin app-red {
+  filter: brightness(0) invert(19%) sepia(90%) saturate(5476%) hue-rotate(345deg) brightness(79%) contrast(116%);
+}
+
+@mixin app-red-2 {
+  filter: invert(21%) sepia(97%) saturate(4390%) hue-rotate(341deg) brightness(69%) contrast(122%);
+}
+
+@mixin app-red-hover-01 {
+  filter: invert(11%) sepia(47%) saturate(5372%) hue-rotate(335deg) brightness(121%) contrast(133%);
+}
+
+@mixin app-red-hover-02 {
+  filter: invert(22%) sepia(64%) saturate(7499%) hue-rotate(337deg) brightness(50%) contrast(124%);
+}
+
+@mixin app-grey-01 {
+  filter: brightness(0) invert(0%) sepia(1%) saturate(3629%) hue-rotate(315deg) brightness(96%) contrast(76%);
+}
+@mixin app-grey-02 {
+  filter: brightness(0) invert(22%) sepia(0%) saturate(0%) hue-rotate(132deg) brightness(91%) contrast(81%);
+}
+@mixin app-grey-03 {
+  filter: brightness(0) invert(35%) sepia(0%) saturate(1584%) hue-rotate(143deg) brightness(95%) contrast(82%);
+}
+@mixin app-grey-04 {
+  filter: brightness(0) invert(57%) sepia(0%) saturate(1451%) hue-rotate(170deg) brightness(94%) contrast(87%);
+}
+@mixin app-grey-05 {
+  filter: brightness(0) invert(64%) sepia(0%) saturate(0%) hue-rotate(151deg) brightness(99%) contrast(108%);
+}
+@mixin app-grey-06 {
+  filter: brightness(0) invert(100%) sepia(0%) saturate(3795%) hue-rotate(181deg) brightness(76%) contrast(102%);
+}
+@mixin app-grey-07 {
+  filter: brightness(0) invert(99%) sepia(1%) saturate(2512%) hue-rotate(196deg) brightness(119%) contrast(69%);
+}
+@mixin app-grey-08 {
+  filter: brightness(0) invert(100%) sepia(79%) saturate(27%) hue-rotate(150deg) brightness(121%) contrast(84%);
+}
+@mixin app-grey-09 {
+  filter: brightness(0) invert(98%) sepia(93%) saturate(5%) hue-rotate(186deg) brightness(118%) contrast(92%);
+}
+@mixin app-grey-10 {
+  filter: brightness(0) invert(97%) sepia(7%) saturate(294%) hue-rotate(255deg) brightness(116%) contrast(96%);
+}
+
+@mixin white {
+  filter: brightness(0) invert(100%) sepia(100%) saturate(12%) hue-rotate(177deg) brightness(103%) contrast(103%);
+}
+@mixin black {
+  filter: brightness(0) invert(0%) sepia(0%) saturate(0%) hue-rotate(324deg) brightness(96%) contrast(104%);
+}
+
+@mixin prime-platin {
+  filter: brightness(0) invert(60%) sepia(11%) saturate(56%) hue-rotate(155deg) brightness(92%) contrast(81%);
+}
+@mixin prime-platin-light {
+  filter: brightness(0) invert(80%) sepia(7%) saturate(46%) hue-rotate(169deg) brightness(89%) contrast(83%);
+}
+@mixin prime-gold {
+  filter: brightness(0) invert(51%) sepia(69%) saturate(348%) hue-rotate(10deg) brightness(91%) contrast(80%);
+}
+@mixin prime-gold-light {
+  filter: brightness(0) invert(73%) sepia(17%) saturate(633%) hue-rotate(10deg) brightness(91%) contrast(87%);
+}
+
+@mixin app-blue-01 {
+  filter: brightness(0) invert(62%) sepia(44%) saturate(5436%) hue-rotate(182deg) brightness(87%) contrast(81%);
+}
+@mixin app-dark-blue-01 {
+  filter: brightness(0) invert(27%) sepia(12%) saturate(5785%) hue-rotate(225deg) brightness(93%) contrast(90%);
+}
+
+@mixin app-blue-02 {
+  filter: brightness(0) invert(69%) sepia(78%) saturate(164%) hue-rotate(169deg) brightness(102%) contrast(86%);
+}
+@mixin app-dark-blue-02 {
+  filter: brightness(0) invert(70%) sepia(13%) saturate(1083%) hue-rotate(201deg) brightness(96%) contrast(91%);
+}
+
+@mixin app-purple-01 {
+  filter: brightness(0) invert(28%) sepia(16%) saturate(5754%) hue-rotate(251deg) brightness(94%) contrast(92%);
+}
+@mixin app-purple-02 {
+  filter: brightness(0) invert(77%) sepia(24%) saturate(812%) hue-rotate(217deg) brightness(91%) contrast(88%);
+}
+
+@mixin app-green-01 {
+  filter: brightness(0) invert(24%) sepia(100%) saturate(2649%) hue-rotate(144deg) brightness(99%) contrast(95%);
+}
+@mixin app-dark-green-01 {
+  filter: brightness(0) invert(24%) sepia(27%) saturate(3049%) hue-rotate(142deg) brightness(94%) contrast(98%);
+}
+
+@mixin app-green-02 {
+  filter: brightness(0) invert(91%) sepia(17%) saturate(797%) hue-rotate(74deg) brightness(91%) contrast(82%);
+}
+@mixin app-dark-green-02 {
+  filter: brightness(0) invert(63%) sepia(45%) saturate(245%) hue-rotate(118deg) brightness(94%) contrast(90%);
+}
+
+@mixin app-yellow-01 {
+  filter: brightness(0) invert(69%) sepia(98%) saturate(316%) hue-rotate(357deg) brightness(101%) contrast(93%);
+}
+@mixin app-yellow-02 {
+  filter: brightness(0) invert(92%) sepia(10%) saturate(1246%) hue-rotate(353deg) brightness(102%) contrast(96%);
+}
+
+@mixin app-orange-01 {
+  filter: brightness(0) invert(76%) sepia(32%) saturate(5805%) hue-rotate(342deg) brightness(100%) contrast(96%);
+}
+@mixin app-orange-02 {
+  filter: brightness(0) invert(66%) sepia(88%) saturate(206%) hue-rotate(345deg) brightness(104%) contrast(103%);
+}
+@mixin app-orange-03 {
+  filter: brightness(0) invert(90%) sepia(14%) saturate(651%) hue-rotate(319deg) brightness(106%) contrast(103%);
+}
+
+@mixin app-turquoise-01 {
+  filter: brightness(0) invert(62%) sepia(81%) saturate(2609%) hue-rotate(130deg) brightness(99%) contrast(65%);
+}
+@mixin app-turquoise-02 {
+  filter: brightness(0) invert(98%) sepia(89%) saturate(457%) hue-rotate(92deg) brightness(91%) contrast(93%);
+}
+
+@mixin app-brown-01 {
+  filter: brightness(0) invert(19%) sepia(94%) saturate(2112%) hue-rotate(4deg) brightness(92%) contrast(87%);
+}
+@mixin app-brown-02 {
+  filter: brightness(0) invert(64%) sepia(61%) saturate(308%) hue-rotate(329deg) brightness(99%) contrast(77%);
+}

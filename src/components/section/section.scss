@@ -1,0 +1,7 @@
+:host(.Section) {
+    @extend %spacing-definitions;
+
+    display: block;
+    padding-top: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+}

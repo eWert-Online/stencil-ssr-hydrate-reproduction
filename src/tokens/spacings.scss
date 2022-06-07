@@ -1,0 +1,44 @@
+%spacing-definitions {
+    --spacing-grid: 10px;
+    --spacing-xxs: 15px;
+    --spacing-xs: 20px;
+    --spacing-sm: 20px;
+    --spacing-md: 40px;
+    --spacing-l: 50px;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+        --spacing-grid: 20px;
+        --spacing-xxs: 15px;
+        --spacing-xs: 20px;
+        --spacing-sm: 20px;
+        --spacing-md: 40px;
+        --spacing-l: 50px;
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+        --spacing-grid: 20px;
+        --spacing-xxs: 20px;
+        --spacing-xs: 30px;
+        --spacing-sm: 30px;
+        --spacing-md: 50px;
+        --spacing-l: 60px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+        --spacing-grid: 40px;
+        --spacing-xxs: 20px;
+        --spacing-xs: 30px;
+        --spacing-sm: 30px;
+        --spacing-md: 50px;
+        --spacing-l: 60px;
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+        --spacing-grid: 40px;
+        --spacing-xxs: 20px;
+        --spacing-xs: 30px;
+        --spacing-sm: 40px;
+        --spacing-md: 50px;
+        --spacing-l: 60px;
+    }
+}
