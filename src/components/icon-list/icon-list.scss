@@ -1,0 +1,33 @@
+:host(.IconList) {
+    @extend %spacing-definitions;
+    @include content-holder();
+
+    display: block;
+
+    .IconList-items {
+        display: grid;
+        grid-auto-flow: row;
+        grid-template-columns: 1fr;
+        column-gap: var(--spacing-grid);
+    }
+}
+
+:host(.IconList--2) {
+    .IconList-items {
+        @media screen and (min-width: $breakpoint-websiteSmall) {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+:host(.IconList--3) {
+    .IconList-items {
+        @media screen and (min-width: $breakpoint-websiteSmall) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media screen and (min-width: $breakpoint-xlarge) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+}

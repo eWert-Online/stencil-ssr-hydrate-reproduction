@@ -1,0 +1,571 @@
+@import "../buttons/buttons.scss";
+
+.Form,
+:host(.Form) {
+  @extend %spacing-definitions;
+  $local-spacing-size: 10px;
+
+  display: block;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .Form-intro {
+    @include content-holder();
+  }
+
+  .mwf-form:not([data-mwf-id]) {
+    @include content-holder();
+
+    .mwf-input > .mwf-button[type="button"],
+    .mwf-upload-dropzone,
+    .mwf-button {
+      display: inline-block;
+      outline: none;
+      @include fontsize-m;
+
+      + .mwf-button {
+        margin-left: 20px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .mwf-upload-button,
+      input[type="button"],
+      input[type="submit"] {
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        letter-spacing: inherit;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+
+        padding: $button-vertical-padding $button-side-padding;
+        text-decoration: none;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: $button-min-height;
+        width: 100%;
+        height: 100%;
+
+        border-radius: 5px;
+        background-color: $app-red;
+        color: $white;
+        border: 1px solid $app-red;
+        cursor: pointer;
+
+        transition: background-color 300ms ease-in-out;
+        outline: none;
+        @include button-focus($app-red, $app-red-hover-02);
+
+        &:hover {
+          text-decoration: none !important;
+          background-color: $app-red-hover-01;
+          border-color: $app-red-hover-01;
+        }
+
+        &:focus:not(:active) {
+          box-shadow: $button-shadow $app-red;
+          border-color: $app-red-hover-02;
+        }
+
+        & > div {
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      .mwf-upload-button {
+        position: relative;
+
+        & > span {
+          pointer-events: none;
+        }
+
+        & > input[type="file"] {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        }
+      }
+
+      &.mwf-cancel {
+        input[type="button"],
+        input[type="submit"] {
+          font-family: inherit;
+          font-size: inherit;
+          line-height: inherit;
+          letter-spacing: inherit;
+          position: relative;
+          overflow: hidden;
+          z-index: 1;
+
+          padding: $button-vertical-padding $button-side-padding;
+
+          display: inline-flex;
+          align-items: center;
+          justify-content: space-between;
+          min-height: $button-min-height;
+          width: 100%;
+          height: 100%;
+
+          border-radius: 5px;
+          background-color: $white;
+          color: $app-red;
+          text-decoration: none;
+          border: 1px solid $app-red;
+          cursor: pointer;
+
+          transition: color 300ms ease-in-out;
+          outline: none;
+          @include button-focus(rgba($app-red, 0.8), $app-red);
+
+          & > div {
+            display: flex;
+            justify-content: center;
+          }
+
+          &:focus:not(:active) {
+            box-shadow: $button-shadow $app-red;
+            border-color: $app-red-hover-02;
+          }
+
+          &:hover {
+            color: $app-red-hover-02;
+            border-color: $app-red-hover-02;
+          }
+        }
+      }
+    }
+
+    input[type="button"].mwf-button {
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      letter-spacing: inherit;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+
+      padding: $button-vertical-padding $button-side-padding;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: $button-min-height;
+      width: 100%;
+      height: 100%;
+
+      border-radius: 5px;
+      background-color: $white;
+      color: $app-red;
+      text-decoration: none;
+      border: 1px solid $app-red;
+      cursor: pointer;
+
+      transition: color 300ms ease-in-out;
+      outline: none;
+      @include button-focus(rgba($app-red, 0.8), $app-red);
+
+      & > div {
+        display: flex;
+        justify-content: center;
+      }
+
+      &:focus:not(:active) {
+        box-shadow: $button-shadow $app-red;
+        border-color: $app-red-hover-02;
+      }
+
+      &:hover {
+        color: $app-red-hover-02;
+        border-color: $app-red-hover-02;
+      }
+    }
+
+    .mwf-upload-progressbar > span {
+      background-color: $app-red;
+    }
+
+    $local-spacing-size: 10px;
+    $input-height-large: 45px;
+    $input-height-small: 30px;
+    $has-message-label-top-correction: -2px;
+    $label-bottom-border-width: 2px;
+    $error-icon-height: 17px;
+    $input-with-hint-padding-right: 33px;
+    $input-small-with-hint-padding-right: 32px;
+
+    .mwf-field {
+      .mwf-label {
+        @include largeInputSizingPolicy();
+        font-style: italic;
+        color: $app-grey-05;
+        pointer-events: none;
+        text-overflow: ellipsis;
+        box-sizing: border-box;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .mwf-input {
+        display: inline-block;
+        outline: none;
+        background-color: inherit;
+
+        width: 100%;
+
+        select {
+          width: 100%;
+        }
+
+        .mwf-label,
+        > input[type="text"],
+        .mwf-text,
+        .InputSingleline-errorIcon,
+        .InputSingleline-infoIcon,
+        .InputSingleline-password-eye {
+          @include largeInputSizingPolicy();
+        }
+
+        > input[type="text"],
+        .mwf-text {
+          height: $input-height-large;
+        }
+
+        > input[type="text"],
+        .mwf-text {
+          @include font-nimbus-sans();
+
+          box-sizing: border-box;
+          display: block;
+          width: 100%;
+          border-style: solid;
+          border-color: $app-grey-05;
+          border-width: 1px;
+          color: $black;
+          border-radius: 5px;
+          background-color: $white;
+          outline: none;
+          padding: 0 $local-spacing-size;
+        }
+
+        textarea {
+          @include font-nimbus-sans();
+          @include largeInputSizingPolicy();
+
+          box-sizing: border-box;
+          display: block;
+          width: 100%;
+          height: 100%;
+          padding: $local-spacing-size;
+          border: 1px solid $app-grey-05;
+          color: $black;
+          border-radius: 5px;
+          background-color: $white;
+          outline: none;
+          resize: none;
+          min-height: 70px;
+        }
+
+        .mwf-hint {
+          display: flex;
+          padding: 0;
+          margin-top: 7px;
+          color: $app-grey-05;
+          @include smallInputSizingPolicy();
+          width: 100%;
+
+          & > span {
+            flex-grow: 1;
+          }
+        }
+
+        fieldset {
+          border: 0 none;
+        }
+      }
+
+      .mwf-select {
+        font-size: 15px;
+        line-height: 22px;
+        letter-spacing: 0.05px;
+
+        height: 45px;
+        padding: 0 34px 0 10px;
+        display: block;
+        border: 1px solid $app-grey-05;
+
+        color: $black;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        border-radius: 5px;
+        background-color: $white;
+      }
+    }
+
+    form > ul,
+    > ul {
+      margin: 0 !important;
+      padding: 0 !important;
+      list-style: none !important;
+      font-size: 0;
+
+      > li {
+        margin-bottom: calc(var(--spacing-grid) / 2);
+      }
+    }
+
+    form > ul,
+    > ul {
+      @include grid-container($column-gap: true, $row-gap: false);
+
+      .mwf-field {
+        @include grid-item(12);
+
+        padding: 0 0 var(--spacing-xxs);
+
+        width: 100% !important;
+        margin: 0;
+      }
+
+      .mwf-field.mwf-s {
+        @media screen and (min-width: $breakpoint-websiteSmall) {
+          @include grid-item(4);
+        }
+      }
+
+      .mwf-field.mwf-m {
+        @media screen and (min-width: $breakpoint-websiteSmall) {
+          @include grid-item(6);
+        }
+      }
+
+      .mwf-field.mwf-l {
+        @media screen and (min-width: $breakpoint-websiteSmall) {
+          @include grid-item(12);
+        }
+      }
+    }
+
+    .mwf-field {
+      .mwf-label {
+        color: $app-grey-03;
+      }
+
+      .mwf-input {
+        &:hover,
+        &:focus {
+          > textarea,
+          > input {
+            border-color: $app-grey-03;
+          }
+        }
+
+        > textarea::placeholder,
+        > input::placeholder {
+          font-style: italic;
+          color: $app-grey-05;
+        }
+
+        > textarea.mwf-text {
+          box-sizing: border-box;
+          width: 100%;
+          height: 100%;
+          padding: $local-spacing-size;
+          border: 1px solid $app-grey-05;
+          color: $black;
+          border-radius: 5px;
+          background-color: $white;
+          outline: none;
+          resize: none;
+          min-height: 70px;
+        }
+
+        .mwf-option {
+          display: block;
+
+          label {
+            @include font-nimbus-sans();
+            @include fontsize-m;
+            @media (min-width: $breakpoint-medium) {
+              @include fontsize-s;
+            }
+
+            .mwf-checkbox {
+              float: left;
+              width: 15px;
+              height: 15px;
+              margin-top: 4px;
+            }
+          }
+        }
+      }
+
+      .mwf-hint {
+        > p {
+          margin: 0;
+        }
+      }
+
+      form > p,
+      > p {
+        @include fontsize-m();
+        color: $black;
+        text-align: left;
+      }
+
+      .mwf-button > input[type="button"],
+      input[type="button"] {
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      input[type="button"].mwf-button {
+        width: auto;
+      }
+
+      .mwf-upload {
+        .mwf-upload-dropzone {
+          display: flex;
+          position: relative;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+
+          > h3 {
+            width: 100%;
+            @include fontsize-m();
+            color: $black;
+          }
+
+          > .mwf-upload-button {
+            width: auto;
+          }
+        }
+
+        .mwf-upload-filecontainer,
+        .mwf-upload-footer {
+          @include fontsize-m;
+
+          .mwf-upload-actions,
+          .mwf-upload-footer-actions {
+            display: block;
+            clear: both;
+
+            @media screen and (min-width: $breakpoint-websiteSmall) {
+              display: flex;
+            }
+
+            .mwf-upload-delete {
+              font-family: inherit;
+              font-size: inherit;
+              font-weight: inherit;
+              line-height: inherit;
+              letter-spacing: inherit;
+              position: relative;
+              overflow: hidden;
+              z-index: 1;
+
+              padding: $button-vertical-padding $button-side-padding;
+
+              display: inline-flex;
+              align-items: center;
+              justify-content: space-between;
+              min-height: $button-min-height;
+
+              border-radius: 5px;
+              background-color: $white;
+              color: $app-red;
+              text-decoration: none;
+              border: 1px solid $app-red;
+              cursor: pointer;
+
+              transition: color 300ms ease-in-out;
+              outline: none;
+              @include button-focus(rgba($app-red, 0.8), $app-red);
+
+              & > div {
+                display: flex;
+                justify-content: center;
+              }
+
+              &:focus:not(:active) {
+                box-shadow: $button-shadow $app-red;
+                border-color: $app-red-hover-02;
+              }
+
+              &:hover {
+                color: $app-red-hover-02;
+                border-color: $app-red-hover-02;
+              }
+            }
+
+            .mwf-upload-upload {
+              font-family: inherit;
+              font-size: inherit;
+              font-weight: inherit;
+              line-height: inherit;
+              letter-spacing: inherit;
+              position: relative;
+              overflow: hidden;
+              z-index: 1;
+
+              padding: $button-vertical-padding $button-side-padding;
+              margin: 15px 0 0 0;
+              text-decoration: none;
+
+              display: block;
+              align-items: center;
+              justify-content: space-between;
+              min-height: $button-min-height;
+
+              border-radius: 5px;
+              background-color: $app-red;
+              color: $white;
+              border: 1px solid $app-red;
+              cursor: pointer;
+
+              transition: background-color 300ms ease-in-out;
+              outline: none;
+              @include button-focus($app-red, $app-red-hover-02);
+
+              &:hover {
+                text-decoration: none !important;
+                background-color: $app-red-hover-01;
+                border-color: $app-red-hover-01;
+              }
+
+              &:focus:not(:active) {
+                box-shadow: $button-shadow $app-red;
+                border-color: $app-red-hover-02;
+              }
+
+              @media screen and (min-width: $breakpoint-websiteSmall) {
+                display: inline-flex;
+                margin: 0 0 0 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .mwf-pager {
+      display: none;
+    }
+  }
+}

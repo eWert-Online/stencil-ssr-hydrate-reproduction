@@ -1,0 +1,199 @@
+:host {
+  cursor: pointer;
+  display: block;
+
+  .option-wrapper {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: inherit;
+
+    &.size-medium {
+      padding-right: 30px;
+      @media screen and (min-width: $breakpoint-websiteSmall) {
+        padding-right: 10px;
+      }
+    }
+    &.size-small {
+      padding-right: 20px;
+      @media screen and (min-width: $breakpoint-websiteSmall) {
+        padding-right: 10px;
+      }
+    }
+  }
+  .icon {
+    font-size: 14px;
+    height: 14px;
+  }
+  .icon-img {
+    @include app-grey-03;
+  }
+
+  .Checkbox-box {
+    box-sizing: border-box;
+    position: relative;
+    z-index: -1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3px;
+    width: 16px;
+    min-width: 16px;
+    height: 16px;
+    min-height: 16px;
+    border: 1px solid $app-grey-04;
+    border-radius: 2px;
+
+    background-color: $white;
+  }
+
+  .Checkbox-icon {
+    @include app-icon("checkmark");
+    font-size: 10px;
+    color: $white;
+  }
+
+  .Dropdown-checkbox {
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    min-width: 12px;
+    height: 12px;
+    min-height: 12px;
+    margin-right: 10px;
+    border: 1px solid $app-grey-04;
+    border-radius: 2px;
+
+    background-color: $white;
+    pointer-events: none;
+  }
+
+  .label {
+    word-break: break-word;
+  }
+}
+:host(.is-selected) {
+  &:host(:not(.is-multiselect)) {
+    background-color: $app-red;
+    color: $white;
+  }
+  .Dropdown-checkbox {
+    @include app-icon("checkmark");
+    border-color: $app-red;
+    background-color: $app-red;
+    font-size: 9px;
+    color: $white;
+  }
+}
+:host(.is-multiselect) {
+  .option-wrapper {
+    justify-content: space-between;
+    & > div {
+      display: flex;
+      align-items: center;
+    }
+    &.size-medium {
+      .Dropdown-checkbox {
+        margin-left: 30px;
+        @media screen and (min-width: $breakpoint-websiteSmall) {
+          margin-left: 10px;
+        }
+      }
+    }
+    &.size-small {
+      .Dropdown-checkbox {
+        margin-left: 20px;
+        @media screen and (min-width: $breakpoint-websiteSmall) {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+:host(:not(.is-multiselect)) {
+  .icon-img,
+  .icon {
+    margin-right: 10px;
+  }
+
+  .option-wrapper {
+    &.size-medium {
+      & > :first-child {
+        margin-left: 30px;
+        @media screen and (min-width: $breakpoint-websiteSmall) {
+          margin-left: 10px;
+        }
+      }
+    }
+    &.size-small {
+      & > :first-child {
+        margin-left: 20px;
+        @media screen and (min-width: $breakpoint-websiteSmall) {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+
+:host(.is-active) {
+  background-color: $app-grey-09;
+  &:host(.is-selected) {
+    &:host(:not(.is-multiselect)) {
+      background-color: $app-red-hover-01;
+    }
+  }
+}
+
+:host(.is-disabled) {
+  color: $app-grey-07;
+  cursor: default;
+  display: none;
+  @media screen and (min-width: $breakpoint-medium) {
+    display: block;
+  }
+}
+
+:host(.is-clustered) {
+  .option-wrapper {
+    padding-left: 10px;
+  }
+}
+
+:host(.size-small) {
+  .option-wrapper {
+    min-height: 30px;
+    @include fontsize-s;
+    @media (min-width: $breakpoint-medium) {
+      @include fontsize-xs;
+    }
+  }
+  .label {
+    @include smallInputSizingPolicy();
+  }
+}
+
+:host(.size-medium) {
+  .option-wrapper {
+    min-height: 45px;
+    @include fontsize-m;
+    @media (min-width: $breakpoint-medium) {
+      @include fontsize-s;
+    }
+  }
+  .label {
+    @include largeInputSizingPolicy();
+  }
+}
+
+:host(.no-results) {
+  .option-wrapper {
+    & > span {
+      color: $app-grey-05;
+    }
+  }
+}

@@ -5,58 +5,58 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { DropdownOptionModel } from "./dropdown/dropdown-option/dropdown-option-model";
+import { DropdownGroupHeadingModel } from "./dropdown/dropdown-group-heading/dropdown-group-heading-model";
+export { DropdownOptionModel } from "./dropdown/dropdown-option/dropdown-option-model";
+export { DropdownGroupHeadingModel } from "./dropdown/dropdown-group-heading/dropdown-group-heading-model";
 export namespace Components {
-    interface AppBanner {
-        /**
-          * The level to use for the headline. Defaults to "h2"
-         */
-        "headlineTag": "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-        /**
-          * The default (black) text for the headline
-         */
-        "headlineText"?: string;
-        /**
-          * The alignment of the image
-         */
-        "imageAlignment"?: "left" | "right";
-        /**
-          * `true` if the button should be disabled
-         */
-        "linkDisabled"?: boolean;
-        /**
-          * The url where the button-link should direct to
-         */
-        "linkHref"?: string;
-        /**
-          * The name of the icon on the left side of the text.
-         */
-        "linkIconLeft"?: string;
-        /**
-          * The name of the icon on the right side of the text.
-         */
-        "linkIconRight"?: string;
-        /**
-          * The target of the button-link. If this is '_blank', rel="noopener noreferrer" is added automatically.
-         */
-        "linkTarget"?: "_top" | "_parent" | "_blank" | "_self";
-        /**
-          * The text displayed inside the button
-         */
-        "linkText": string;
+    interface AppButtonList {
     }
-    interface AppButtonSecondary {
+    interface AppButtonPrimary {
         /**
           * `true` if the button should be disabled
          */
         "disabled"?: boolean;
         /**
+          * `true` if the button should be grey
+         */
+        "grey"?: boolean;
+        /**
           * The url where the button-link should direct to
          */
         "href"?: string;
         /**
+          * The name of the icon on the left side of the text.
+         */
+        "iconLeft": string;
+        /**
+          * Path to the svg-icon on the left side of the text.
+         */
+        "iconLeftSrc"?: string;
+        /**
+          * The name of the icon on the right side of the text.
+         */
+        "iconRight": string;
+        /**
+          * Path to the svg-icon on the right side of the text.
+         */
+        "iconRightSrc"?: string;
+        /**
           * true, when the button should be rendered without an <a> or <button> tag
          */
         "imitateButton"?: boolean;
+        /**
+          * `true` if the button should be inverted (white instead of red)
+         */
+        "inverted"?: boolean;
+        /**
+          * `true` if the button should be mixed, should only be used together with `inverted = true`
+         */
+        "mixed"?: boolean;
+        /**
+          * `small` or `large` (default: `large`)
+         */
+        "size": "large" | "small";
         /**
           * The target of the button-link. If this is '_blank', rel="noopener noreferrer" is added automatically.
          */
@@ -69,6 +69,814 @@ export namespace Components {
           * The type of the button
          */
         "type": "button" | "submit" | "reset";
+    }
+    interface AppButtonSecondary {
+        /**
+          * `true` if the button should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * `true` if the button should be grey
+         */
+        "grey"?: boolean;
+        /**
+          * The url where the button-link should direct to
+         */
+        "href"?: string;
+        /**
+          * The name of the icon on the left side of the text.
+         */
+        "iconLeft": string;
+        /**
+          * Path to the svg-icon on the left side of the text.
+         */
+        "iconLeftSrc"?: string;
+        /**
+          * The name of the icon on the right side of the text.
+         */
+        "iconRight": string;
+        /**
+          * Path to the svg-icon on the right side of the text.
+         */
+        "iconRightSrc"?: string;
+        /**
+          * true, when the button should be rendered without an <a> or <button> tag
+         */
+        "imitateButton"?: boolean;
+        /**
+          * `true` if the button should be mixed
+         */
+        "mixed"?: boolean;
+        /**
+          * `small` or `large` (default: `large`)
+         */
+        "size": "large" | "small";
+        /**
+          * The target of the button-link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+        /**
+          * The text displayed inside the button
+         */
+        "text": string;
+        /**
+          * The type of the button
+         */
+        "type": "button" | "submit" | "reset";
+    }
+    /**
+     * Renders a checkbox form control.
+     * The default text font-styles (font-family, font-style, font-size, line-height) can be overriden using SCSS.
+     * The size of the checkbox adapts to the general fontsize.
+     * It is recommended to use the canonical App `fontsize-*` mixins from `fonts.scss`
+     * module whenever overriding the font policies is needed.
+     * The default form-control max-width can be overriden using CSS.
+     * Both the checkbox text and the optional validation | hint texts rendered below the checkbox will wrap according to the max-width policy.
+     */
+    interface AppCheckbox {
+        /**
+          * The if the checkbox should be checked or not
+         */
+        "checked": boolean;
+        /**
+          * `true` if the checkbox should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The error text shown below the checkbox field.
+         */
+        "errorText"?: string;
+        /**
+          * `true` if the checkbox field has information validation state. This should always be used in combination with an error-text When both `hasInfo` and `warning` are true, the `warning` state takes precedence.
+         */
+        "hasInformation"?: boolean;
+        /**
+          * The hint text shown below the checkbox field. Optional occurrence of `${link}` will be replaced by the value of `hintLinkText` upon rendering.
+         */
+        "hint"?: string;
+        /**
+          * Href for optional hyperlink rendered within the hint text.  Works together with `hintLinkText`.
+         */
+        "hintLinkHref"?: string;
+        /**
+          * Hyperlink text for optional link rendered within the hint text. Works together with `hintLinkHref`.
+         */
+        "hintLinkText": string;
+        /**
+          * While the indeterminate property of the checkbox is true, it will render as indeterminate regardless of the checked value. Any interaction with the checkbox by a user (i.e., clicking) will remove the indeterminate state.
+         */
+        "indeterminate"?: boolean;
+        /**
+          * `true` if the checkbox field has error validation state. This should always be used in combination with an error-text
+         */
+        "invalid"?: boolean;
+        /**
+          * The name of the input
+         */
+        "name": string;
+        /**
+          * `true` if the input field is required
+         */
+        "required"?: boolean;
+        /**
+          * `true` if the checkbox field has warning validation state. This should always be used in combination with an error-text When multiple validation states are set to true (`invalid`, `warning`, `hasInfo`), the `invalid` state takes precedence.
+         */
+        "warning"?: boolean;
+    }
+    interface AppCollapsible {
+    }
+    interface AppCollapsibleItem {
+        /**
+          * The headline of the item
+         */
+        "headline": string;
+        /**
+          * The bold text-part of the item. This always appears before the regular text
+         */
+        "headlineBold"?: string;
+        /**
+          * If this item should be open initially
+         */
+        "initialOpen": boolean;
+    }
+    interface AppConstructionLimitBanner {
+    }
+    interface AppConstructionLimitBannerItem {
+        /**
+          * The headline of this item (optional)
+         */
+        "headline"?: string;
+        /**
+          * The path to the icon of this item
+         */
+        "iconSrc"?: string;
+    }
+    interface AppContactList {
+    }
+    interface AppContactListItem {
+        /**
+          * The email of the contact encoded as base64
+         */
+        "email"?: string;
+        /**
+          * The href of the contacts email. Format: `mailto:_base64-encoded-email_`
+         */
+        "emailHref"?: string;
+        /**
+          * The alt text of the image
+         */
+        "imageAlt": string;
+        /**
+          * Large source of the image
+         */
+        "imageLarge"?: string;
+        /**
+          * Medium source of the image
+         */
+        "imageMedium"?: string;
+        /**
+          * Small source of the image
+         */
+        "imageSmall"?: string;
+        /**
+          * XLarge source of the image
+         */
+        "imageXlarge"?: string;
+        /**
+          * XSmall source of the image
+         */
+        "imageXsmall"?: string;
+        /**
+          * The name of the contact
+         */
+        "name": string;
+        /**
+          * The phone number of the contact
+         */
+        "phone"?: string;
+        /**
+          * The subject to display above the name of the contact
+         */
+        "subject"?: string;
+    }
+    interface AppCopytext {
+        /**
+          * If the copytext should be displayed highlighted (grey instead of black)
+         */
+        "highlighted"?: boolean;
+        /**
+          * If the copytext should be displayed inverted (white instead of black)
+         */
+        "inverted"?: boolean;
+        /**
+          * The font-size of the copytext.
+         */
+        "size"?: "S" | "M" | "L" | "XL";
+    }
+    interface AppDownloadList {
+        /**
+          * The table headline for the actions column
+         */
+        "actionLabel": string;
+        /**
+          * The table headline for the name column
+         */
+        "nameLabel": string;
+    }
+    interface AppDownloadListHead {
+        /**
+          * The action label of this list item
+         */
+        "actionLabel"?: string;
+        /**
+          * The name label of this list item
+         */
+        "nameLabel"?: string;
+    }
+    interface AppDownloadListItem {
+        /**
+          * The download link of this list item
+         */
+        "downloadLink"?: string;
+        /**
+          * The download link text of this list item
+         */
+        "downloadLinkText"?: string;
+        /**
+          * The link of this list item
+         */
+        "link"?: string;
+        /**
+          * The subject of the mailto link (optional)
+         */
+        "mailSubject"?: string;
+        /**
+          * The body of the mailto link
+         */
+        "mailText": string;
+        /**
+          * The name of this list item
+         */
+        "name"?: string;
+        "noHead"?: boolean;
+        /**
+          * The send link text of this list item
+         */
+        "sendLinkText"?: string;
+    }
+    interface AppDownloadListItemAttribute {
+        /**
+          * The label of the attribute
+         */
+        "label": string;
+        /**
+          * The text of the attribute
+         */
+        "value": string;
+    }
+    /**
+     * Renders a form control dropdown element. The dropdown option list is initially collapsed.
+     * Upon expanding the dropdown an overlay renders the dropdown option list which is positioned relative to the dropdown toggle element.
+     */
+    interface AppDropdown {
+        /**
+          * `true` if the the dropdown options are grouped under subheadings
+         */
+        "clustered": boolean;
+        /**
+          * `true` if the dropdown should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The error text shown below the dropdown.
+         */
+        "errorText"?: string;
+        /**
+          * `true` if the dropdown field has information validation state. This should always be used in combination with an error-text When both `hasInfo` and `warning` are true, the `warning` state takes precedence.
+         */
+        "hasInformation"?: boolean;
+        /**
+          * The hint text shown below the dropdown. Optional occurrence of `${link}` will be replaced by the value of `hintLinkText` upon rendering.
+         */
+        "hint"?: string;
+        /**
+          * Href for optional hyperlink rendered within the hint text.  Works together with `hintLinkText`.
+         */
+        "hintLinkHref"?: string;
+        /**
+          * Hyperlink text for optional link rendered within the hint text. Works together with `hintLinkHref`.
+         */
+        "hintLinkText": string;
+        /**
+          * `true` if the dropdown field has error validation state. This should always be used in combination with an error-text
+         */
+        "invalid"?: boolean;
+        /**
+          * The label of the dropdown
+         */
+        "label": string;
+        /**
+          * `true` if multiple options may be selected in the dropdown. It's not meant to be used together with search dropdown.
+         */
+        "multiple"?: boolean;
+        /**
+          * The text to display inside the dropdown if multiple selections were made. `{num}` will be replaced by the number of options selected.
+         */
+        "multipleSelectionsLabel"?: string;
+        /**
+          * The name of the dropdown
+         */
+        "name": string;
+        /**
+          * Renders an input that run in-memory dropdown option filtering. It's meant to be used with single-selection dropdown only.
+         */
+        "search": boolean;
+        /**
+          * Placeholder for the search input
+         */
+        "searchInputPlaceholder": string;
+        /**
+          * Placeholder text for search dropdown result list
+         */
+        "searchResultPlaceholder": string;
+        /**
+          * `small` or `medium` (default: `medium`)
+         */
+        "size": "medium" | "small";
+        /**
+          * The value (default selected option value) of the dropdown. If multiple is true, you may provide a comma separated list of values ("1, 2, 3").
+         */
+        "value": string | Array<string>;
+        /**
+          * `true` if the dropdown field has warning validation state. This should always be used in combination with an error-text When multiple validation states are set to true (`invalid`, `warning`, `hasInfo`), the `invalid` state takes precedence.
+         */
+        "warning"?: boolean;
+    }
+    /**
+     * Renders a dropdown group heading which is meant to be used as slotted content for the clustered flavour of <app-dropdown> element.
+     */
+    interface AppDropdownGroupHeading {
+        /**
+          * The text dropdown group heading
+         */
+        "text": string;
+    }
+    /**
+     * Renders a dropdown option list which is not meant to be used as a standalone custom element.
+     * It is used internally by <app-dropdown> and publicly exposed in the collection only for Patternlab showcasing purposes.
+     */
+    interface AppDropdownList {
+        /**
+          * Whether the first dropdown item is active(highlighted) when the list opens
+         */
+        "activateFirstItem": boolean;
+        /**
+          * Whether the dropdown list host is mounted in the document body or not
+         */
+        "attachToBody": boolean;
+        /**
+          * `true` if the the dropdown options are grouped under subheadings
+         */
+        "clustered": boolean;
+        /**
+          * Dropdown child items to be rendered by the dropdown list
+         */
+        "dropdownItems": (DropdownOptionModel | DropdownGroupHeadingModel)[];
+        /**
+          * Filter value
+         */
+        "filterValue": string;
+        /**
+          * hides away the dropdown list
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Hightlights given option
+         */
+        "highlightDropdownOption": (option: HTMLAppDropdownOptionElement, autoScroll?: boolean) => Promise<any>;
+        /**
+          * Highlights first dropdown option (if any)
+         */
+        "highlightFirstItem": () => Promise<void>;
+        /**
+          * Highlights last dropdown option (if any)
+         */
+        "highlightLastItem": () => Promise<void>;
+        /**
+          * `true` if multiple options may be selected in the dropdown
+         */
+        "multiple"?: boolean;
+        /**
+          * shows the dropdown list
+         */
+        "reveal": () => Promise<void>;
+        /**
+          * Renders an input that run in-memory dropdown option filtering on mobile screens
+         */
+        "search": boolean;
+        /**
+          * Search input placeholder
+         */
+        "searchInputPlaceholder": string;
+        /**
+          * Search input value (for mobile viewports only)
+         */
+        "searchInputValue": string;
+        /**
+          * Search label placeholder
+         */
+        "searchResultPlaceholder": string;
+        /**
+          * `small` or `medium` (default: `medium`)
+         */
+        "size": "medium" | "small";
+        /**
+          * Unhighlightes active option (if any)
+         */
+        "unhighlightDropdownOption": (scrollTop?: boolean) => Promise<void>;
+        /**
+          * Use slotted contented as an alternative to setting 'dropdownItems' prop.
+         */
+        "useSlot": boolean;
+        /**
+          * Amount of visible options at one time
+         */
+        "visibleOptionsCount": number;
+    }
+    /**
+     * Renders a dropdown option which is meant to be used as slotted content for <app-dropdown> element.
+     */
+    interface AppDropdownOption {
+        /**
+          * `true` if the option is active
+         */
+        "active": boolean;
+        /**
+          * `true` if the the dropdown options are grouped under subheadings
+         */
+        "clustered": boolean;
+        /**
+          * `true` if the option should be disabled
+         */
+        "disabled": boolean;
+        /**
+          * The name of the icon (optional)
+         */
+        "icon"?: string;
+        /**
+          * The path to the custom icon (optional)
+         */
+        "iconSrc"?: string;
+        /**
+          * The label of the option
+         */
+        "label": string;
+        /**
+          * Renders and optional checkbox when set to true
+         */
+        "multiselect": boolean;
+        /**
+          * `true` if the option should be selected.
+         */
+        "selected": boolean;
+        /**
+          * `small` or `medium` (default: `medium`)
+         */
+        "size": "medium" | "small";
+        /**
+          * The value of the option
+         */
+        "value": string;
+    }
+    interface AppEventList {
+    }
+    interface AppEventListItem {
+        /**
+          * The day to display inside of the calendar
+         */
+        "calendarDay": string;
+        /**
+          * The month (abbreveated) to display inside of the calendar
+         */
+        "calendarMonth": string;
+        /**
+          * The date label to display above the headline
+         */
+        "date": string;
+        /**
+          * The headline of the event
+         */
+        "headline": string;
+        /**
+          * The url, the event should link to
+         */
+        "href"?: string;
+        /**
+          * The location of the event
+         */
+        "location": string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target": "_top" | "_parent" | "_blank" | "_self";
+        /**
+          * The time label to display above the headline
+         */
+        "time"?: string;
+    }
+    interface AppEyeCatcher {
+        /**
+          * The background-color to use for the eye catcher
+         */
+        "color": "red" | "grey";
+        /**
+          * The position of the tip
+         */
+        "tipPosition": "top" | "bottom";
+    }
+    interface AppFilterContainer {
+        /**
+          * The base api url to request the news from.
+         */
+        "apiUrl": string;
+        /**
+          * The label of the basic-1 dropdown
+         */
+        "basic1Label": string;
+        /**
+          * The value of the basic-1 dropdown
+         */
+        "basic1Value"?: string;
+        /**
+          * An optional url prefix which is prepended to the href of the news item coming from caas
+         */
+        "caasItemUrlPrefix": string;
+        /**
+          * The number of results to display on a page
+         */
+        "itemsPerPage": number;
+        /**
+          * The language to fetch the news in.
+         */
+        "language": "en" | "fr" | "de" | "ch" | "at";
+        /**
+          * The label of the refinement-1 dropdown
+         */
+        "refinement1Label": string;
+        /**
+          * The selections label of the refinement-1 dropdown
+         */
+        "refinement1SelectionsLabel": string;
+        /**
+          * The value of the refinement-1 dropdown
+         */
+        "refinement1Value"?: string;
+        /**
+          * The label of the refinement-2 dropdown
+         */
+        "refinement2Label": string;
+        /**
+          * The selections label of the refinement-2 dropdown
+         */
+        "refinement2SelectionsLabel": string;
+        /**
+          * The value of the refinement-2 dropdown
+         */
+        "refinement2Value"?: string;
+        /**
+          * The label of the refinement-3 dropdown
+         */
+        "refinement3Label": string;
+        /**
+          * The selections label of the refinement-3 dropdown
+         */
+        "refinement3SelectionsLabel": string;
+        /**
+          * The value of the refinement-3 dropdown
+         */
+        "refinement3Value"?: string;
+        /**
+          * The headline to show above the refinement section
+         */
+        "refinementHeadline": string;
+        /**
+          * The text of the search-results headline. `{{numResults}}` will be replaced by the number of results.
+         */
+        "searchResultsText": string;
+        /**
+          * The text of the submit button. `{{numResults}}` will be replaced by the number of results.
+         */
+        "submitText": string;
+        /**
+          * The label of the year dropdown
+         */
+        "yearLabel": string;
+        /**
+          * The value of the year dropdown
+         */
+        "yearValue"?: string;
+    }
+    interface AppFilterContainerOption {
+        /**
+          * In which caregory the option should be placed.
+         */
+        "category": "basic-1" | "year" | "refinement-1" | "refinement-2" | "refinement-3";
+        /**
+          * `true` if the option should be disabled
+         */
+        "disabled": boolean;
+        /**
+          * The label of the option
+         */
+        "label": string;
+        /**
+          * The value of the option
+         */
+        "value": string;
+    }
+    interface AppForm {
+        /**
+          * The alignment of the image
+         */
+        "imageAlignment"?: "left" | "right";
+    }
+    interface AppGroupSiteFooter {
+        /**
+          * The text to display as the copyright
+         */
+        "copyright": string;
+        /**
+          * The title to display above the social icons
+         */
+        "socialTitle": string;
+    }
+    interface AppGroupSiteFooterContact {
+        /**
+          * An optional link on the label
+         */
+        "href"?: string;
+        /**
+          * The label of the group
+         */
+        "label": string;
+        /**
+          * The target of the link on the label. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target": "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppGroupSiteFooterNavLink {
+        /**
+          * The url of the link
+         */
+        "href": string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target": "_top" | "_parent" | "_blank" | "_self";
+        /**
+          * The text inside the link
+         */
+        "text": string;
+    }
+    interface AppGroupSiteFooterNavLinkGroup {
+        /**
+          * An optional link on the label
+         */
+        "href"?: string;
+        /**
+          * The label of the group
+         */
+        "label": string;
+        /**
+          * The target of the link on the label. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target": "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppHeadlineSecondary {
+        /**
+          * The level to use for this headline. Defaults to "h2"
+         */
+        "tag": "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+        /**
+          * The default (black) text for the headline
+         */
+        "text"?: string;
+        /**
+          * The highlighted (red) text for the headline. This appears above the black text
+         */
+        "textRed"?: string;
+    }
+    interface AppHeadlineTertiary {
+        /**
+          * If the headline should be highlighted (displayed in red)
+         */
+        "highlight"?: boolean;
+        /**
+          * The level to use for this headline. Defaults to "h2"
+         */
+        "tag": "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+        /**
+          * The text for the headline
+         */
+        "text"?: string;
+    }
+    interface AppHeroMediaText {
+        /**
+          * The background color of the media text module
+         */
+        "backgroundColor"?: "light" | "dark";
+        /**
+          * Large source of the background image
+         */
+        "backgroundImageLarge"?: string;
+        /**
+          * Medium source of the background image
+         */
+        "backgroundImageMedium"?: string;
+        /**
+          * Small source of the background image
+         */
+        "backgroundImageSmall"?: string;
+        /**
+          * XLarge source of the background image
+         */
+        "backgroundImageXlarge"?: string;
+        /**
+          * XSmall source of the background image
+         */
+        "backgroundImageXsmall"?: string;
+        /**
+          * The alignment of the image inside of the hero-media-text module
+         */
+        "imageAlignment"?: "left" | "right";
+        /**
+          * The alt text of the image
+         */
+        "imageAlt": string;
+        /**
+          * Large source of the image
+         */
+        "imageLarge"?: string;
+        /**
+          * Medium source of the image
+         */
+        "imageMedium"?: string;
+        /**
+          * Small source of the image
+         */
+        "imageSmall"?: string;
+        /**
+          * XLarge source of the image
+         */
+        "imageXlarge"?: string;
+        /**
+          * XSmall source of the image
+         */
+        "imageXsmall"?: string;
+    }
+    interface AppHeroMediaTextParallax {
+        /**
+          * The side on which the content should be displayed
+         */
+        "alignContent"?: "left" | "right";
+        /**
+          * The background color of the media text module
+         */
+        "backgroundColor"?: "light" | "dark";
+    }
+    interface AppIconList {
+        /**
+          * The number of columns the items should be distributed upon
+         */
+        "columns": 1 | 2 | 3;
+    }
+    interface AppIconListItem {
+        /**
+          * The link of the press excerpt
+         */
+        "href"?: string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target": "_top" | "_parent" | "_blank" | "_self";
+        /**
+          * The text of list item
+         */
+        "text": string;
+    }
+    interface AppIframe {
+        /**
+          * If the iframe should be the full width of the viewport
+         */
+        "breakout": boolean;
+        /**
+          * The height of the iframe in the XL breakpoint
+         */
+        "height": number;
+        /**
+          * The src url to display inside the iframe
+         */
+        "src": string;
     }
     interface AppImage {
         /**
@@ -88,23 +896,944 @@ export namespace Components {
          */
         "imgSrc": string;
         /**
+          * Large source of the image
+         */
+        "large"?: string;
+        /**
           * loading `auto` or `eager` (default: `lazy`)
          */
         "loading"?: "auto" | "eager" | "lazy";
         /**
+          * Medium source of the image
+         */
+        "medium"?: string;
+        /**
+          * Small source of the image
+         */
+        "small"?: string;
+        /**
+          * The subtitle text of the image
+         */
+        "subtitle": string;
+        /**
           * The default width of the image
          */
         "width": number;
+        /**
+          * XLarge source of the image
+         */
+        "xlarge"?: string;
+        /**
+          * XSmall source of the image
+         */
+        "xsmall"?: string;
+    }
+    interface AppImageGrid {
+    }
+    interface AppImageGridItem {
+        /**
+          * The headline of the item
+         */
+        "headline": string;
+        /**
+          * true of the element is hovered on touch devices
+         */
+        "hovered": boolean;
+        /**
+          * The link of the item (on image, headline and optional textlink)
+         */
+        "href"?: string;
+        /**
+          * The text of the standalone link
+         */
+        "linkText"?: string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target": "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppImageList {
+    }
+    interface AppImageListItem {
+        /**
+          * The caption (optional) to display below the image
+         */
+        "caption"?: string;
+        /**
+          * The height of the highest image in a row. This does not need to be set manually. It gets set by <app-image-list>
+         */
+        "highestImage": number;
+        /**
+          * The link of the slide (on image and headline)
+         */
+        "href"?: string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target": "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppInputMultiline {
+        /**
+          * `true` if the button should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The error text shown below the input field.
+         */
+        "errorText"?: string;
+        /**
+          * `true` if the input field has information validation state. This should always be used in combination with an error-text When both `hasInfo` and `warning` are true, the `warning` state takes precedence.
+         */
+        "hasInformation"?: boolean;
+        /**
+          * The hint text shown below the input field. * Optional occurrence of `${link}` will be replaced by the value of `hintLinkText` upon rendering.
+         */
+        "hint": string;
+        /**
+          * Href for optional hyperlink rendered within the hint text.  Works together with `hintLinkText`.
+         */
+        "hintLinkHref"?: string;
+        /**
+          * Hyperlink text for optional link rendered within the hint text. Works together with `hintLinkHref`.
+         */
+        "hintLinkText": string;
+        /**
+          * `true` if the input field has error validation state. This should always be used in combination with an error-text
+         */
+        "invalid"?: boolean;
+        /**
+          * The label of the input
+         */
+        "label": string;
+        /**
+          * The maximum number of characters the user is allowed to type into this input.
+         */
+        "maxLength"?: number;
+        /**
+          * The minimum number of characters the user is allowed to type into this input.
+         */
+        "minLength"?: number;
+        /**
+          * The name of the input
+         */
+        "name": string;
+        /**
+          * `true` if the input field is required
+         */
+        "required"?: boolean;
+        /**
+          * `true` if the inner text area should have a resize handle
+         */
+        "resizable"?: boolean;
+        /**
+          * Sets the start and end positions of the current text selection for the inner input element.
+         */
+        "setSelectionRange": (selectionStart: number, selectionEnd: number, selectionDirection?: "forward" | "backward" | "none") => Promise<void>;
+        /**
+          * The value of the input
+         */
+        "value": string;
+        /**
+          * `true` if the input field has warning validation state. This should always be used in combination with an error-text When multiple validation states are set to true (`invalid`, `warning`, `hasInfo`), the `invalid` state takes precedence.
+         */
+        "warning"?: boolean;
+    }
+    interface AppInputSingleline {
+        /**
+          * The auto-complete property of the input field. This tells the browser, what he should suggest for this input.
+         */
+        "autoComplete"?: string;
+        /**
+          * `true` if the button should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The error text shown below the input field.
+         */
+        "errorText"?: string;
+        /**
+          * `true` if the input field has information validation state. This should always be used in combination with an error-text When both `hasInfo` and `warning` are true, the `warning` state takes precedence.
+         */
+        "hasInformation"?: boolean;
+        /**
+          * 'true' will hide the up/down arrows rendered by browsers on numeric inputs
+         */
+        "hideArrows"?: boolean;
+        /**
+          * The hint text shown below the input field. Optional occurrence of `${link}` will be replaced by the value of `hintLinkText` upon rendering.
+         */
+        "hint": string;
+        /**
+          * Href for optional hyperlink rendered within the hint text.  Works together with `hintLinkText`.
+         */
+        "hintLinkHref"?: string;
+        /**
+          * Hyperlink text for optional link rendered within the hint text. Works together with `hintLinkHref`.
+         */
+        "hintLinkText": string;
+        /**
+          * `true` if the input field has error validation state. This should always be used in combination with an error-text
+         */
+        "invalid"?: boolean;
+        /**
+          * The label of the input
+         */
+        "label": string;
+        /**
+          * The maximum value the user is allowed to type into the input, used with input[type=number]
+         */
+        "max"?: any;
+        /**
+          * The maximum number of characters the user is allowed to type into this input.
+         */
+        "maxLength"?: number;
+        /**
+          * The minimum value the user is allowed to type into the input, used with input[type=number]
+         */
+        "min"?: any;
+        /**
+          * The minimum number of characters the user is allowed to type into this input.
+         */
+        "minLength"?: number;
+        /**
+          * The name of the input
+         */
+        "name": string;
+        /**
+          * The pattern attribute allows validation of an input field based on a given regular expression pattern.
+         */
+        "pattern"?: any;
+        /**
+          * `true` if the input field is required
+         */
+        "required"?: boolean;
+        /**
+          * Sets the start and end positions of the current text selection for the inner input element.
+         */
+        "setSelectionRange": (selectionStart: number, selectionEnd: number, selectionDirection?: "forward" | "backward" | "none") => Promise<void>;
+        /**
+          * Whether an show | hide password toggle is rendered. The property is ignored for input types other than 'password'.
+         */
+        "showPasswordEyeToggle": boolean;
+        /**
+          * `small` or `large` (default: `large`)
+         */
+        "size": "large" | "small";
+        /**
+          * The step attribute specifies the interval between legal numbers in an input, used with input[type=number]
+         */
+        "step"?: number;
+        /**
+          * The type of the input. If you don't find your desired type, there may be another component for that. Defaults to "text"
+         */
+        "type"?: "text" | "password" | "tel" | "url" | "email" | "number";
+        /**
+          * The value of the input
+         */
+        "value": string;
+        /**
+          * `true` if the input field has warning validation state. This should always be used in combination with an error-text When multiple validation states are set to true (`invalid`, `warning`, `hasInfo`), the `invalid` state takes precedence.
+         */
+        "warning"?: boolean;
+    }
+    interface AppLinkPrimary {
+        /**
+          * `true` if the link should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The download attribute of the link
+         */
+        "download"?: string;
+        /**
+          * `true` if the link should be grey
+         */
+        "grey"?: boolean;
+        /**
+          * The url where the link should direct to
+         */
+        "href": string;
+        /**
+          * The name of the icon on the left side of the text. If not provided, no icon is displayed.
+         */
+        "iconLeft": string;
+        /**
+          * The name of the icon on the right side of the text. If not provided, no icon is displayed.
+         */
+        "iconRight": string;
+        /**
+          * The size of the icon. S = 12px; M = 18px
+         */
+        "iconSize"?: "S" | "M";
+        /**
+          * true, when the link should be rendered without an <a> tag
+         */
+        "imitateLink"?: boolean;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target": "_top" | "_parent" | "_blank" | "_self";
+        /**
+          * The text displayed inside the link
+         */
+        "text": string;
+    }
+    interface AppMediaContainer {
+    }
+    interface AppMediaText {
+        /**
+          * The alignment of the image or video
+         */
+        "mediaAlignment"?: "left" | "right";
+        /**
+          * The size of the image or video
+         */
+        "mediaSize"?: "S" | "M" | "L";
+    }
+    interface AppMediaTextThumbnail {
+        /**
+          * The alignment of the image or video
+         */
+        "mediaAlignment"?: "left" | "right";
+        /**
+          * The size of the image or video
+         */
+        "mediaSize"?: "S" | "M" | "L";
+        /**
+          * The default (grey) text for the thumbnails headline
+         */
+        "thumbnailsHeadline"?: string;
+    }
+    interface AppModuleContainer {
+    }
+    interface AppModuleIntro {
+        /**
+          * The level to use for the headline. Defaults to "h3"
+         */
+        "headlineTag"?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+        /**
+          * The text for the headline
+         */
+        "headlineText": string;
+        /**
+          * If the headline should be highlighted (displayed in red)
+         */
+        "highlight"?: boolean;
+        /**
+          * The font-size of the copytext.
+         */
+        "textSize"?: "M" | "L";
+    }
+    interface AppNewsTeaser {
+        /**
+          * The date to display above the headline
+         */
+        "date": string;
+        /**
+          * The headline of the teaser
+         */
+        "headline": string;
+        /**
+          * The link of the teaser (on image and headline)
+         */
+        "href"?: string;
+        /**
+          * The text of the standalone link
+         */
+        "linkText"?: string;
+        /**
+          * Convert the slotted rich text to plain text (remove all html tags)
+         */
+        "plainText": boolean;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target": "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppNewsTeaserList {
+        /**
+          * The base api url to request the news from. `/{language}/news` will be appended.
+         */
+        "apiUrl": string;
+        /**
+          * An optional url prefix which is prepended to the href of the news item coming from caas
+         */
+        "caasItemUrlPrefix": string;
+        /**
+          * A comma separated list of uuids of the categories, which should be shown in this list
+         */
+        "categories": string;
+        /**
+          * The language to fetch the news in.
+         */
+        "language": "en" | "fr" | "de" | "ch" | "at";
+        /**
+          * If the teasers' text content should be converted to plain text
+         */
+        "plainText": boolean;
+        /**
+          * The total number of items in this list
+         */
+        "total": number;
+    }
+    interface AppOrderedList {
+        /**
+          * The font-size of the list.
+         */
+        "size"?: "S" | "M" | "L" | "XL";
+    }
+    interface AppOrderedListItem {
+        /**
+          * The label of this list item (optional)
+         */
+        "label"?: string;
+    }
+    interface AppPagination {
+        /**
+          * The limit of items to display on one page (page size).
+         */
+        "limit": number;
+        /**
+          * The current offset of the paginated list.
+         */
+        "offset"?: number;
+        /**
+          * The total number of items.
+         */
+        "total": number;
+    }
+    /**
+     * Renders a password input form control element typically used for password-reset | registration flows.
+     * The components wraps an inner <app-input-singleline type="password"> element and renders a warn text
+     * under the input while CAPSLOCK is active.
+     * It also has the posibility to list the password rules under the password input.
+     */
+    interface AppPasswordInput {
+        /**
+          * The auto-complete property of the input field. This tells the browser, what he should suggest for this input.
+         */
+        "autoComplete"?: string;
+        /**
+          * Text to be rendered as a hint when the keyboard CAPSLOCK is active
+         */
+        "capsLockHint": string;
+        /**
+          * `true` if the password input should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The error text shown below the input field.
+         */
+        "errorText"?: string;
+        /**
+          * `true` if the input field has information validation state. This should always be used in combination with an error-text When both `hasInfo` and `warning` are true, the `warning` state takes precedence.
+         */
+        "hasInformation"?: boolean;
+        /**
+          * The hint text shown below the input field.
+         */
+        "hint": string;
+        /**
+          * `true` if the input field has error validation state. This should always be used in combination with an error-text
+         */
+        "invalid"?: boolean;
+        /**
+          * The label of the password input
+         */
+        "label": string;
+        /**
+          * The name of the password input
+         */
+        "name": string;
+        /**
+          * `true` if the input field is required
+         */
+        "required"?: boolean;
+        /**
+          * `small` or `large` (default: `large`)
+         */
+        "size": "large" | "small";
+        /**
+          * The value of the input
+         */
+        "value": string;
+        /**
+          * `true` if the input field has warning validation state. This should always be used in combination with an error-text When multiple validation states are set to true (`invalid`, `warning`, `hasInfo`), the `invalid` state takes precedence.
+         */
+        "warning"?: boolean;
+    }
+    /**
+     * Renders a single password policy rule which consists of a status icon on the left and the rule text on the right.
+     * Both the icon and the text is styled to diffentiate between the valid and invalid state of the rule.
+     */
+    interface AppPasswordPolicyRule {
+        /**
+          * Whether the given password rule has been met or not
+         */
+        "isRuleValid": boolean;
+        /**
+          * Password policy text
+         */
+        "ruleText": string;
+    }
+    interface AppPressExcerptList {
+        /**
+          * The base api url to request the news from. `/{language}/news` will be appended.
+         */
+        "apiUrl": string;
+        /**
+          * An optional url prefix which is prepended to the href of the news item coming from caas
+         */
+        "caasItemUrlPrefix": string;
+        /**
+          * A comma separated list of uuids of the categories, which should be shown in this list
+         */
+        "categories": string;
+        /**
+          * The filter to be sent to the api. This overwrites the categories and tags prop.
+         */
+        "filter": string;
+        /**
+          * The number of items to display on a page
+         */
+        "itemsPerPage": number;
+        /**
+          * The language to fetch the news in.
+         */
+        "language": "en" | "fr" | "de" | "ch" | "at";
+        /**
+          * If this module should imediately query the api for new press excerpts
+         */
+        "searchOnLoad"?: boolean;
+        /**
+          * A comma separated list of uuids of the tags, which should be shown in this list
+         */
+        "tags": string;
+        /**
+          * The total number of items in this list
+         */
+        "total": number;
+    }
+    interface AppPressExcerptListItem {
+        /**
+          * The date of the press excerpt
+         */
+        "date": string;
+        /**
+          * The headline of the press excerpt
+         */
+        "headline": string;
+        /**
+          * The link of the press excerpt
+         */
+        "href"?: string;
+        /**
+          * The text of the standalone link
+         */
+        "linkText"?: string;
+        /**
+          * The (optional) subheadline of the press excerpt
+         */
+        "subheadline": string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target": "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppProductTeaser {
+        /**
+          * The headline of the teaser
+         */
+        "headline": string;
+        /**
+          * The link of the teaser (on image and headline)
+         */
+        "href"?: string;
+        /**
+          * The text of the button
+         */
+        "linkText"?: string;
+        /**
+          * The subheadline of the teaser
+         */
+        "subheadline": string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target": "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppProductTeaserList {
+        /**
+          * show 4 teasers in one row on large
+         */
+        "fourColumnsOnLarge": boolean;
+        /**
+          * show teasers as slider
+         */
+        "showAsSlider": boolean;
+    }
+    interface AppQuote {
+        /**
+          * The Quotes text content
+         */
+        "quote": string;
+    }
+    /**
+     * Renders a radiobutton form control.
+     * The default text font-styles (font-family, font-style, font-size, line-height) can be overriden using SCSS.
+     * It is recommended to use the canonical App `fontsize-*` mixins from `fonts.scss`
+     * module whenever overriding the font policies is needed.
+     * The default form-control max-width can be overriden using CSS.
+     * Both the radiobutton text and the optional validation | hint texts rendered below
+     * the radiobutton will wrap according to the max-width policy
+     */
+    interface AppRadiobutton {
+        /**
+          * The if the radiobutton should be checked or not
+         */
+        "checked": boolean;
+        /**
+          * `true` if the radiobutton should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The error text shown below the radiobutton field.
+         */
+        "errorText"?: string;
+        /**
+          * `true` if the radiobutton field has information validation state. This should always be used in combination with an error-text When both `hasInfo` and `warning` are true, the `warning` state takes precedence.
+         */
+        "hasInformation"?: boolean;
+        /**
+          * The hint text shown below the checkbox field. Optional occurrence of `${link}` will be replaced by the value of `hintLinkText` upon rendering.
+         */
+        "hint"?: string;
+        /**
+          * Href for optional hyperlink rendered within the hint text.  Works together with `hintLinkText`.
+         */
+        "hintLinkHref"?: string;
+        /**
+          * Hyperlink text for optional link rendered within the hint text. Works together with `hintLinkHref`.
+         */
+        "hintLinkText": string;
+        /**
+          * `true` if the radiobutton field has error validation state. This should always be used in combination with an error-text
+         */
+        "invalid"?: boolean;
+        /**
+          * The name of the input
+         */
+        "name": string;
+        /**
+          * `true` if the input field is required
+         */
+        "required"?: boolean;
+        /**
+          * `true` if the radiobutton field has warning validation state. This should always be used in combination with an error-text When multiple validation states are set to true (`invalid`, `warning`, `hasInfo`), the `invalid` state takes precedence.
+         */
+        "warning"?: boolean;
     }
     interface AppSection {
     }
+    interface AppSectionIntro {
+        /**
+          * Set this to true, if the Section headline should be the full container width
+         */
+        "fullWidth": boolean;
+    }
+    interface AppSelect {
+        /**
+          * active
+         */
+        "active": boolean;
+        /**
+          * close select
+         */
+        "close": () => Promise<void>;
+        /**
+          * multiple
+         */
+        "multiple": boolean;
+        /**
+          * open select
+         */
+        "open": () => Promise<void>;
+        /**
+          * toggle select to open / close
+         */
+        "toggle": () => Promise<void>;
+        /**
+          * value
+         */
+        "value": any;
+    }
+    interface AppSelectOption {
+        /**
+          * activate
+         */
+        "activate": () => Promise<void>;
+        /**
+          * deactivate
+         */
+        "deactivate": () => Promise<void>;
+        /**
+          * deselect
+         */
+        "deselect": () => Promise<void>;
+        /**
+          * label
+         */
+        "label": string;
+        /**
+          * multiple
+         */
+        "multiple": boolean;
+        /**
+          * select
+         */
+        "select": () => Promise<void>;
+        /**
+          * value
+         */
+        "value": any;
+    }
+    interface AppSelectOptionGroup {
+        /**
+          * label
+         */
+        "label": string;
+    }
+    interface AppSimpleFilter {
+        /**
+          * The text to display inside the dropdown if multiple selections were made. `{num}` will be replaced by the number of filters selected.
+         */
+        "dropdownMultipleSelectionsLabel"?: string;
+        /**
+          * The label of the option to select all elements
+         */
+        "selectAllLabel": string;
+    }
+    interface AppSimpleFilterItem {
+        /**
+          * If the item is currently hidden or visible
+         */
+        "hidden": boolean;
+        /**
+          * The tag of this item
+         */
+        "tag": string;
+    }
+    interface AppTab {
+        /**
+          * The text of the tab
+         */
+        "headline": string;
+        /**
+          * The bold text-part of the tab. This always appears before the regular text
+         */
+        "headlineBold"?: string;
+        /**
+          * If this item is currently open
+         */
+        "open": boolean;
+    }
+    interface AppTabContainer {
+    }
+    interface AppTag {
+        /**
+          * The label of the tag
+         */
+        "label": string;
+    }
+    interface AppTagList {
+        /**
+          * The text of the remove all tags button. If left empty, the button is not displayed.
+         */
+        "removeAllText": string;
+    }
+    interface AppTeaserList {
+        /**
+          * show teasers as slider
+         */
+        "showAsSlider": boolean;
+    }
+    interface AppTeaserListItem {
+        /**
+          * The text of the standalone button
+         */
+        "buttonText"?: string;
+        /**
+          * The headline of the teaser
+         */
+        "headline": string;
+        /**
+          * The link of the teaser (on image and headline)
+         */
+        "href"?: string;
+        /**
+          * The text of the standalone link
+         */
+        "linkText"?: string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target": "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppTeaserSlider {
+        /**
+          * How fast the slides should slide automatically
+         */
+        "autoplaySpeed"?: "Fast" | "Medium" | "Slow" | "Off";
+        /**
+          * Good to enable if you use bullets pagination with a lot of slides. So it will keep only few bullets visible at the same time.
+         */
+        "dynamicBullets"?: boolean;
+        /**
+          * How fast the slides should slide automatically
+         */
+        "slidesPerGroup"?: "normal" | "two" | "Off";
+    }
+    interface AppTeaserSliderSlide {
+        /**
+          * The headline of the slide
+         */
+        "headline": string;
+        /**
+          * The link of the slide (on image and headline)
+         */
+        "href"?: string;
+        /**
+          * The text of the standalone link
+         */
+        "linkText"?: string;
+        /**
+          * The (optional) subheadline of the slide
+         */
+        "subheadline": string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target": "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppText {
+    }
+    interface AppTextContent {
+    }
+    interface AppTextWithBackground {
+        /**
+          * The side on which the content should be displayed
+         */
+        "alignContent"?: "left" | "right";
+        /**
+          * Large source of the background image
+         */
+        "backgroundImageLarge"?: string;
+        /**
+          * Medium source of the background image
+         */
+        "backgroundImageMedium"?: string;
+        /**
+          * Small source of the background image
+         */
+        "backgroundImageSmall"?: string;
+        /**
+          * XLarge source of the background image
+         */
+        "backgroundImageXlarge"?: string;
+        /**
+          * XSmall source of the background image
+         */
+        "backgroundImageXsmall"?: string;
+    }
+    interface AppUnorderedList {
+        /**
+          * If the unordered list should be displayed inverted (white instead of black)
+         */
+        "inverted"?: boolean;
+        /**
+          * The font-size of the list.
+         */
+        "size"?: "S" | "M" | "L" | "XL";
+    }
+    interface AppUnorderedListItem {
+        /**
+          * The path to the custom icon of this list item (optional)
+         */
+        "iconSrc"?: string;
+        /**
+          * The label of this list item (optional)
+         */
+        "label"?: string;
+        /**
+          * The level of this list item
+         */
+        "level": number;
+    }
+}
+export interface AppCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppCheckboxElement;
+}
+export interface AppDropdownCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppDropdownElement;
+}
+export interface AppDropdownListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppDropdownListElement;
+}
+export interface AppImageCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppImageElement;
+}
+export interface AppInputMultilineCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppInputMultilineElement;
+}
+export interface AppInputSinglelineCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppInputSinglelineElement;
+}
+export interface AppPaginationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppPaginationElement;
+}
+export interface AppPasswordInputCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppPasswordInputElement;
+}
+export interface AppRadiobuttonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppRadiobuttonElement;
+}
+export interface AppSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppSelectElement;
+}
+export interface AppTabCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppTabElement;
+}
+export interface AppTagCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppTagElement;
+}
+export interface AppTagListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAppTagListElement;
 }
 declare global {
-    interface HTMLAppBannerElement extends Components.AppBanner, HTMLStencilElement {
+    interface HTMLAppButtonListElement extends Components.AppButtonList, HTMLStencilElement {
     }
-    var HTMLAppBannerElement: {
-        prototype: HTMLAppBannerElement;
-        new (): HTMLAppBannerElement;
+    var HTMLAppButtonListElement: {
+        prototype: HTMLAppButtonListElement;
+        new (): HTMLAppButtonListElement;
+    };
+    interface HTMLAppButtonPrimaryElement extends Components.AppButtonPrimary, HTMLStencilElement {
+    }
+    var HTMLAppButtonPrimaryElement: {
+        prototype: HTMLAppButtonPrimaryElement;
+        new (): HTMLAppButtonPrimaryElement;
     };
     interface HTMLAppButtonSecondaryElement extends Components.AppButtonSecondary, HTMLStencilElement {
     }
@@ -112,11 +1841,401 @@ declare global {
         prototype: HTMLAppButtonSecondaryElement;
         new (): HTMLAppButtonSecondaryElement;
     };
+    /**
+     * Renders a checkbox form control.
+     * The default text font-styles (font-family, font-style, font-size, line-height) can be overriden using SCSS.
+     * The size of the checkbox adapts to the general fontsize.
+     * It is recommended to use the canonical App `fontsize-*` mixins from `fonts.scss`
+     * module whenever overriding the font policies is needed.
+     * The default form-control max-width can be overriden using CSS.
+     * Both the checkbox text and the optional validation | hint texts rendered below the checkbox will wrap according to the max-width policy.
+     */
+    interface HTMLAppCheckboxElement extends Components.AppCheckbox, HTMLStencilElement {
+    }
+    var HTMLAppCheckboxElement: {
+        prototype: HTMLAppCheckboxElement;
+        new (): HTMLAppCheckboxElement;
+    };
+    interface HTMLAppCollapsibleElement extends Components.AppCollapsible, HTMLStencilElement {
+    }
+    var HTMLAppCollapsibleElement: {
+        prototype: HTMLAppCollapsibleElement;
+        new (): HTMLAppCollapsibleElement;
+    };
+    interface HTMLAppCollapsibleItemElement extends Components.AppCollapsibleItem, HTMLStencilElement {
+    }
+    var HTMLAppCollapsibleItemElement: {
+        prototype: HTMLAppCollapsibleItemElement;
+        new (): HTMLAppCollapsibleItemElement;
+    };
+    interface HTMLAppConstructionLimitBannerElement extends Components.AppConstructionLimitBanner, HTMLStencilElement {
+    }
+    var HTMLAppConstructionLimitBannerElement: {
+        prototype: HTMLAppConstructionLimitBannerElement;
+        new (): HTMLAppConstructionLimitBannerElement;
+    };
+    interface HTMLAppConstructionLimitBannerItemElement extends Components.AppConstructionLimitBannerItem, HTMLStencilElement {
+    }
+    var HTMLAppConstructionLimitBannerItemElement: {
+        prototype: HTMLAppConstructionLimitBannerItemElement;
+        new (): HTMLAppConstructionLimitBannerItemElement;
+    };
+    interface HTMLAppContactListElement extends Components.AppContactList, HTMLStencilElement {
+    }
+    var HTMLAppContactListElement: {
+        prototype: HTMLAppContactListElement;
+        new (): HTMLAppContactListElement;
+    };
+    interface HTMLAppContactListItemElement extends Components.AppContactListItem, HTMLStencilElement {
+    }
+    var HTMLAppContactListItemElement: {
+        prototype: HTMLAppContactListItemElement;
+        new (): HTMLAppContactListItemElement;
+    };
+    interface HTMLAppCopytextElement extends Components.AppCopytext, HTMLStencilElement {
+    }
+    var HTMLAppCopytextElement: {
+        prototype: HTMLAppCopytextElement;
+        new (): HTMLAppCopytextElement;
+    };
+    interface HTMLAppDownloadListElement extends Components.AppDownloadList, HTMLStencilElement {
+    }
+    var HTMLAppDownloadListElement: {
+        prototype: HTMLAppDownloadListElement;
+        new (): HTMLAppDownloadListElement;
+    };
+    interface HTMLAppDownloadListHeadElement extends Components.AppDownloadListHead, HTMLStencilElement {
+    }
+    var HTMLAppDownloadListHeadElement: {
+        prototype: HTMLAppDownloadListHeadElement;
+        new (): HTMLAppDownloadListHeadElement;
+    };
+    interface HTMLAppDownloadListItemElement extends Components.AppDownloadListItem, HTMLStencilElement {
+    }
+    var HTMLAppDownloadListItemElement: {
+        prototype: HTMLAppDownloadListItemElement;
+        new (): HTMLAppDownloadListItemElement;
+    };
+    interface HTMLAppDownloadListItemAttributeElement extends Components.AppDownloadListItemAttribute, HTMLStencilElement {
+    }
+    var HTMLAppDownloadListItemAttributeElement: {
+        prototype: HTMLAppDownloadListItemAttributeElement;
+        new (): HTMLAppDownloadListItemAttributeElement;
+    };
+    /**
+     * Renders a form control dropdown element. The dropdown option list is initially collapsed.
+     * Upon expanding the dropdown an overlay renders the dropdown option list which is positioned relative to the dropdown toggle element.
+     */
+    interface HTMLAppDropdownElement extends Components.AppDropdown, HTMLStencilElement {
+    }
+    var HTMLAppDropdownElement: {
+        prototype: HTMLAppDropdownElement;
+        new (): HTMLAppDropdownElement;
+    };
+    /**
+     * Renders a dropdown group heading which is meant to be used as slotted content for the clustered flavour of <app-dropdown> element.
+     */
+    interface HTMLAppDropdownGroupHeadingElement extends Components.AppDropdownGroupHeading, HTMLStencilElement {
+    }
+    var HTMLAppDropdownGroupHeadingElement: {
+        prototype: HTMLAppDropdownGroupHeadingElement;
+        new (): HTMLAppDropdownGroupHeadingElement;
+    };
+    /**
+     * Renders a dropdown option list which is not meant to be used as a standalone custom element.
+     * It is used internally by <app-dropdown> and publicly exposed in the collection only for Patternlab showcasing purposes.
+     */
+    interface HTMLAppDropdownListElement extends Components.AppDropdownList, HTMLStencilElement {
+    }
+    var HTMLAppDropdownListElement: {
+        prototype: HTMLAppDropdownListElement;
+        new (): HTMLAppDropdownListElement;
+    };
+    /**
+     * Renders a dropdown option which is meant to be used as slotted content for <app-dropdown> element.
+     */
+    interface HTMLAppDropdownOptionElement extends Components.AppDropdownOption, HTMLStencilElement {
+    }
+    var HTMLAppDropdownOptionElement: {
+        prototype: HTMLAppDropdownOptionElement;
+        new (): HTMLAppDropdownOptionElement;
+    };
+    interface HTMLAppEventListElement extends Components.AppEventList, HTMLStencilElement {
+    }
+    var HTMLAppEventListElement: {
+        prototype: HTMLAppEventListElement;
+        new (): HTMLAppEventListElement;
+    };
+    interface HTMLAppEventListItemElement extends Components.AppEventListItem, HTMLStencilElement {
+    }
+    var HTMLAppEventListItemElement: {
+        prototype: HTMLAppEventListItemElement;
+        new (): HTMLAppEventListItemElement;
+    };
+    interface HTMLAppEyeCatcherElement extends Components.AppEyeCatcher, HTMLStencilElement {
+    }
+    var HTMLAppEyeCatcherElement: {
+        prototype: HTMLAppEyeCatcherElement;
+        new (): HTMLAppEyeCatcherElement;
+    };
+    interface HTMLAppFilterContainerElement extends Components.AppFilterContainer, HTMLStencilElement {
+    }
+    var HTMLAppFilterContainerElement: {
+        prototype: HTMLAppFilterContainerElement;
+        new (): HTMLAppFilterContainerElement;
+    };
+    interface HTMLAppFilterContainerOptionElement extends Components.AppFilterContainerOption, HTMLStencilElement {
+    }
+    var HTMLAppFilterContainerOptionElement: {
+        prototype: HTMLAppFilterContainerOptionElement;
+        new (): HTMLAppFilterContainerOptionElement;
+    };
+    interface HTMLAppFormElement extends Components.AppForm, HTMLStencilElement {
+    }
+    var HTMLAppFormElement: {
+        prototype: HTMLAppFormElement;
+        new (): HTMLAppFormElement;
+    };
+    interface HTMLAppGroupSiteFooterElement extends Components.AppGroupSiteFooter, HTMLStencilElement {
+    }
+    var HTMLAppGroupSiteFooterElement: {
+        prototype: HTMLAppGroupSiteFooterElement;
+        new (): HTMLAppGroupSiteFooterElement;
+    };
+    interface HTMLAppGroupSiteFooterContactElement extends Components.AppGroupSiteFooterContact, HTMLStencilElement {
+    }
+    var HTMLAppGroupSiteFooterContactElement: {
+        prototype: HTMLAppGroupSiteFooterContactElement;
+        new (): HTMLAppGroupSiteFooterContactElement;
+    };
+    interface HTMLAppGroupSiteFooterNavLinkElement extends Components.AppGroupSiteFooterNavLink, HTMLStencilElement {
+    }
+    var HTMLAppGroupSiteFooterNavLinkElement: {
+        prototype: HTMLAppGroupSiteFooterNavLinkElement;
+        new (): HTMLAppGroupSiteFooterNavLinkElement;
+    };
+    interface HTMLAppGroupSiteFooterNavLinkGroupElement extends Components.AppGroupSiteFooterNavLinkGroup, HTMLStencilElement {
+    }
+    var HTMLAppGroupSiteFooterNavLinkGroupElement: {
+        prototype: HTMLAppGroupSiteFooterNavLinkGroupElement;
+        new (): HTMLAppGroupSiteFooterNavLinkGroupElement;
+    };
+    interface HTMLAppHeadlineSecondaryElement extends Components.AppHeadlineSecondary, HTMLStencilElement {
+    }
+    var HTMLAppHeadlineSecondaryElement: {
+        prototype: HTMLAppHeadlineSecondaryElement;
+        new (): HTMLAppHeadlineSecondaryElement;
+    };
+    interface HTMLAppHeadlineTertiaryElement extends Components.AppHeadlineTertiary, HTMLStencilElement {
+    }
+    var HTMLAppHeadlineTertiaryElement: {
+        prototype: HTMLAppHeadlineTertiaryElement;
+        new (): HTMLAppHeadlineTertiaryElement;
+    };
+    interface HTMLAppHeroMediaTextElement extends Components.AppHeroMediaText, HTMLStencilElement {
+    }
+    var HTMLAppHeroMediaTextElement: {
+        prototype: HTMLAppHeroMediaTextElement;
+        new (): HTMLAppHeroMediaTextElement;
+    };
+    interface HTMLAppHeroMediaTextParallaxElement extends Components.AppHeroMediaTextParallax, HTMLStencilElement {
+    }
+    var HTMLAppHeroMediaTextParallaxElement: {
+        prototype: HTMLAppHeroMediaTextParallaxElement;
+        new (): HTMLAppHeroMediaTextParallaxElement;
+    };
+    interface HTMLAppIconListElement extends Components.AppIconList, HTMLStencilElement {
+    }
+    var HTMLAppIconListElement: {
+        prototype: HTMLAppIconListElement;
+        new (): HTMLAppIconListElement;
+    };
+    interface HTMLAppIconListItemElement extends Components.AppIconListItem, HTMLStencilElement {
+    }
+    var HTMLAppIconListItemElement: {
+        prototype: HTMLAppIconListItemElement;
+        new (): HTMLAppIconListItemElement;
+    };
+    interface HTMLAppIframeElement extends Components.AppIframe, HTMLStencilElement {
+    }
+    var HTMLAppIframeElement: {
+        prototype: HTMLAppIframeElement;
+        new (): HTMLAppIframeElement;
+    };
     interface HTMLAppImageElement extends Components.AppImage, HTMLStencilElement {
     }
     var HTMLAppImageElement: {
         prototype: HTMLAppImageElement;
         new (): HTMLAppImageElement;
+    };
+    interface HTMLAppImageGridElement extends Components.AppImageGrid, HTMLStencilElement {
+    }
+    var HTMLAppImageGridElement: {
+        prototype: HTMLAppImageGridElement;
+        new (): HTMLAppImageGridElement;
+    };
+    interface HTMLAppImageGridItemElement extends Components.AppImageGridItem, HTMLStencilElement {
+    }
+    var HTMLAppImageGridItemElement: {
+        prototype: HTMLAppImageGridItemElement;
+        new (): HTMLAppImageGridItemElement;
+    };
+    interface HTMLAppImageListElement extends Components.AppImageList, HTMLStencilElement {
+    }
+    var HTMLAppImageListElement: {
+        prototype: HTMLAppImageListElement;
+        new (): HTMLAppImageListElement;
+    };
+    interface HTMLAppImageListItemElement extends Components.AppImageListItem, HTMLStencilElement {
+    }
+    var HTMLAppImageListItemElement: {
+        prototype: HTMLAppImageListItemElement;
+        new (): HTMLAppImageListItemElement;
+    };
+    interface HTMLAppInputMultilineElement extends Components.AppInputMultiline, HTMLStencilElement {
+    }
+    var HTMLAppInputMultilineElement: {
+        prototype: HTMLAppInputMultilineElement;
+        new (): HTMLAppInputMultilineElement;
+    };
+    interface HTMLAppInputSinglelineElement extends Components.AppInputSingleline, HTMLStencilElement {
+    }
+    var HTMLAppInputSinglelineElement: {
+        prototype: HTMLAppInputSinglelineElement;
+        new (): HTMLAppInputSinglelineElement;
+    };
+    interface HTMLAppLinkPrimaryElement extends Components.AppLinkPrimary, HTMLStencilElement {
+    }
+    var HTMLAppLinkPrimaryElement: {
+        prototype: HTMLAppLinkPrimaryElement;
+        new (): HTMLAppLinkPrimaryElement;
+    };
+    interface HTMLAppMediaContainerElement extends Components.AppMediaContainer, HTMLStencilElement {
+    }
+    var HTMLAppMediaContainerElement: {
+        prototype: HTMLAppMediaContainerElement;
+        new (): HTMLAppMediaContainerElement;
+    };
+    interface HTMLAppMediaTextElement extends Components.AppMediaText, HTMLStencilElement {
+    }
+    var HTMLAppMediaTextElement: {
+        prototype: HTMLAppMediaTextElement;
+        new (): HTMLAppMediaTextElement;
+    };
+    interface HTMLAppMediaTextThumbnailElement extends Components.AppMediaTextThumbnail, HTMLStencilElement {
+    }
+    var HTMLAppMediaTextThumbnailElement: {
+        prototype: HTMLAppMediaTextThumbnailElement;
+        new (): HTMLAppMediaTextThumbnailElement;
+    };
+    interface HTMLAppModuleContainerElement extends Components.AppModuleContainer, HTMLStencilElement {
+    }
+    var HTMLAppModuleContainerElement: {
+        prototype: HTMLAppModuleContainerElement;
+        new (): HTMLAppModuleContainerElement;
+    };
+    interface HTMLAppModuleIntroElement extends Components.AppModuleIntro, HTMLStencilElement {
+    }
+    var HTMLAppModuleIntroElement: {
+        prototype: HTMLAppModuleIntroElement;
+        new (): HTMLAppModuleIntroElement;
+    };
+    interface HTMLAppNewsTeaserElement extends Components.AppNewsTeaser, HTMLStencilElement {
+    }
+    var HTMLAppNewsTeaserElement: {
+        prototype: HTMLAppNewsTeaserElement;
+        new (): HTMLAppNewsTeaserElement;
+    };
+    interface HTMLAppNewsTeaserListElement extends Components.AppNewsTeaserList, HTMLStencilElement {
+    }
+    var HTMLAppNewsTeaserListElement: {
+        prototype: HTMLAppNewsTeaserListElement;
+        new (): HTMLAppNewsTeaserListElement;
+    };
+    interface HTMLAppOrderedListElement extends Components.AppOrderedList, HTMLStencilElement {
+    }
+    var HTMLAppOrderedListElement: {
+        prototype: HTMLAppOrderedListElement;
+        new (): HTMLAppOrderedListElement;
+    };
+    interface HTMLAppOrderedListItemElement extends Components.AppOrderedListItem, HTMLStencilElement {
+    }
+    var HTMLAppOrderedListItemElement: {
+        prototype: HTMLAppOrderedListItemElement;
+        new (): HTMLAppOrderedListItemElement;
+    };
+    interface HTMLAppPaginationElement extends Components.AppPagination, HTMLStencilElement {
+    }
+    var HTMLAppPaginationElement: {
+        prototype: HTMLAppPaginationElement;
+        new (): HTMLAppPaginationElement;
+    };
+    /**
+     * Renders a password input form control element typically used for password-reset | registration flows.
+     * The components wraps an inner <app-input-singleline type="password"> element and renders a warn text
+     * under the input while CAPSLOCK is active.
+     * It also has the posibility to list the password rules under the password input.
+     */
+    interface HTMLAppPasswordInputElement extends Components.AppPasswordInput, HTMLStencilElement {
+    }
+    var HTMLAppPasswordInputElement: {
+        prototype: HTMLAppPasswordInputElement;
+        new (): HTMLAppPasswordInputElement;
+    };
+    /**
+     * Renders a single password policy rule which consists of a status icon on the left and the rule text on the right.
+     * Both the icon and the text is styled to diffentiate between the valid and invalid state of the rule.
+     */
+    interface HTMLAppPasswordPolicyRuleElement extends Components.AppPasswordPolicyRule, HTMLStencilElement {
+    }
+    var HTMLAppPasswordPolicyRuleElement: {
+        prototype: HTMLAppPasswordPolicyRuleElement;
+        new (): HTMLAppPasswordPolicyRuleElement;
+    };
+    interface HTMLAppPressExcerptListElement extends Components.AppPressExcerptList, HTMLStencilElement {
+    }
+    var HTMLAppPressExcerptListElement: {
+        prototype: HTMLAppPressExcerptListElement;
+        new (): HTMLAppPressExcerptListElement;
+    };
+    interface HTMLAppPressExcerptListItemElement extends Components.AppPressExcerptListItem, HTMLStencilElement {
+    }
+    var HTMLAppPressExcerptListItemElement: {
+        prototype: HTMLAppPressExcerptListItemElement;
+        new (): HTMLAppPressExcerptListItemElement;
+    };
+    interface HTMLAppProductTeaserElement extends Components.AppProductTeaser, HTMLStencilElement {
+    }
+    var HTMLAppProductTeaserElement: {
+        prototype: HTMLAppProductTeaserElement;
+        new (): HTMLAppProductTeaserElement;
+    };
+    interface HTMLAppProductTeaserListElement extends Components.AppProductTeaserList, HTMLStencilElement {
+    }
+    var HTMLAppProductTeaserListElement: {
+        prototype: HTMLAppProductTeaserListElement;
+        new (): HTMLAppProductTeaserListElement;
+    };
+    interface HTMLAppQuoteElement extends Components.AppQuote, HTMLStencilElement {
+    }
+    var HTMLAppQuoteElement: {
+        prototype: HTMLAppQuoteElement;
+        new (): HTMLAppQuoteElement;
+    };
+    /**
+     * Renders a radiobutton form control.
+     * The default text font-styles (font-family, font-style, font-size, line-height) can be overriden using SCSS.
+     * It is recommended to use the canonical App `fontsize-*` mixins from `fonts.scss`
+     * module whenever overriding the font policies is needed.
+     * The default form-control max-width can be overriden using CSS.
+     * Both the radiobutton text and the optional validation | hint texts rendered below
+     * the radiobutton will wrap according to the max-width policy
+     */
+    interface HTMLAppRadiobuttonElement extends Components.AppRadiobutton, HTMLStencilElement {
+    }
+    var HTMLAppRadiobuttonElement: {
+        prototype: HTMLAppRadiobuttonElement;
+        new (): HTMLAppRadiobuttonElement;
     };
     interface HTMLAppSectionElement extends Components.AppSection, HTMLStencilElement {
     }
@@ -124,65 +2243,253 @@ declare global {
         prototype: HTMLAppSectionElement;
         new (): HTMLAppSectionElement;
     };
+    interface HTMLAppSectionIntroElement extends Components.AppSectionIntro, HTMLStencilElement {
+    }
+    var HTMLAppSectionIntroElement: {
+        prototype: HTMLAppSectionIntroElement;
+        new (): HTMLAppSectionIntroElement;
+    };
+    interface HTMLAppSelectElement extends Components.AppSelect, HTMLStencilElement {
+    }
+    var HTMLAppSelectElement: {
+        prototype: HTMLAppSelectElement;
+        new (): HTMLAppSelectElement;
+    };
+    interface HTMLAppSelectOptionElement extends Components.AppSelectOption, HTMLStencilElement {
+    }
+    var HTMLAppSelectOptionElement: {
+        prototype: HTMLAppSelectOptionElement;
+        new (): HTMLAppSelectOptionElement;
+    };
+    interface HTMLAppSelectOptionGroupElement extends Components.AppSelectOptionGroup, HTMLStencilElement {
+    }
+    var HTMLAppSelectOptionGroupElement: {
+        prototype: HTMLAppSelectOptionGroupElement;
+        new (): HTMLAppSelectOptionGroupElement;
+    };
+    interface HTMLAppSimpleFilterElement extends Components.AppSimpleFilter, HTMLStencilElement {
+    }
+    var HTMLAppSimpleFilterElement: {
+        prototype: HTMLAppSimpleFilterElement;
+        new (): HTMLAppSimpleFilterElement;
+    };
+    interface HTMLAppSimpleFilterItemElement extends Components.AppSimpleFilterItem, HTMLStencilElement {
+    }
+    var HTMLAppSimpleFilterItemElement: {
+        prototype: HTMLAppSimpleFilterItemElement;
+        new (): HTMLAppSimpleFilterItemElement;
+    };
+    interface HTMLAppTabElement extends Components.AppTab, HTMLStencilElement {
+    }
+    var HTMLAppTabElement: {
+        prototype: HTMLAppTabElement;
+        new (): HTMLAppTabElement;
+    };
+    interface HTMLAppTabContainerElement extends Components.AppTabContainer, HTMLStencilElement {
+    }
+    var HTMLAppTabContainerElement: {
+        prototype: HTMLAppTabContainerElement;
+        new (): HTMLAppTabContainerElement;
+    };
+    interface HTMLAppTagElement extends Components.AppTag, HTMLStencilElement {
+    }
+    var HTMLAppTagElement: {
+        prototype: HTMLAppTagElement;
+        new (): HTMLAppTagElement;
+    };
+    interface HTMLAppTagListElement extends Components.AppTagList, HTMLStencilElement {
+    }
+    var HTMLAppTagListElement: {
+        prototype: HTMLAppTagListElement;
+        new (): HTMLAppTagListElement;
+    };
+    interface HTMLAppTeaserListElement extends Components.AppTeaserList, HTMLStencilElement {
+    }
+    var HTMLAppTeaserListElement: {
+        prototype: HTMLAppTeaserListElement;
+        new (): HTMLAppTeaserListElement;
+    };
+    interface HTMLAppTeaserListItemElement extends Components.AppTeaserListItem, HTMLStencilElement {
+    }
+    var HTMLAppTeaserListItemElement: {
+        prototype: HTMLAppTeaserListItemElement;
+        new (): HTMLAppTeaserListItemElement;
+    };
+    interface HTMLAppTeaserSliderElement extends Components.AppTeaserSlider, HTMLStencilElement {
+    }
+    var HTMLAppTeaserSliderElement: {
+        prototype: HTMLAppTeaserSliderElement;
+        new (): HTMLAppTeaserSliderElement;
+    };
+    interface HTMLAppTeaserSliderSlideElement extends Components.AppTeaserSliderSlide, HTMLStencilElement {
+    }
+    var HTMLAppTeaserSliderSlideElement: {
+        prototype: HTMLAppTeaserSliderSlideElement;
+        new (): HTMLAppTeaserSliderSlideElement;
+    };
+    interface HTMLAppTextElement extends Components.AppText, HTMLStencilElement {
+    }
+    var HTMLAppTextElement: {
+        prototype: HTMLAppTextElement;
+        new (): HTMLAppTextElement;
+    };
+    interface HTMLAppTextContentElement extends Components.AppTextContent, HTMLStencilElement {
+    }
+    var HTMLAppTextContentElement: {
+        prototype: HTMLAppTextContentElement;
+        new (): HTMLAppTextContentElement;
+    };
+    interface HTMLAppTextWithBackgroundElement extends Components.AppTextWithBackground, HTMLStencilElement {
+    }
+    var HTMLAppTextWithBackgroundElement: {
+        prototype: HTMLAppTextWithBackgroundElement;
+        new (): HTMLAppTextWithBackgroundElement;
+    };
+    interface HTMLAppUnorderedListElement extends Components.AppUnorderedList, HTMLStencilElement {
+    }
+    var HTMLAppUnorderedListElement: {
+        prototype: HTMLAppUnorderedListElement;
+        new (): HTMLAppUnorderedListElement;
+    };
+    interface HTMLAppUnorderedListItemElement extends Components.AppUnorderedListItem, HTMLStencilElement {
+    }
+    var HTMLAppUnorderedListItemElement: {
+        prototype: HTMLAppUnorderedListItemElement;
+        new (): HTMLAppUnorderedListItemElement;
+    };
     interface HTMLElementTagNameMap {
-        "app-banner": HTMLAppBannerElement;
+        "app-button-list": HTMLAppButtonListElement;
+        "app-button-primary": HTMLAppButtonPrimaryElement;
         "app-button-secondary": HTMLAppButtonSecondaryElement;
+        "app-checkbox": HTMLAppCheckboxElement;
+        "app-collapsible": HTMLAppCollapsibleElement;
+        "app-collapsible-item": HTMLAppCollapsibleItemElement;
+        "app-construction-limit-banner": HTMLAppConstructionLimitBannerElement;
+        "app-construction-limit-banner-item": HTMLAppConstructionLimitBannerItemElement;
+        "app-contact-list": HTMLAppContactListElement;
+        "app-contact-list-item": HTMLAppContactListItemElement;
+        "app-copytext": HTMLAppCopytextElement;
+        "app-download-list": HTMLAppDownloadListElement;
+        "app-download-list-head": HTMLAppDownloadListHeadElement;
+        "app-download-list-item": HTMLAppDownloadListItemElement;
+        "app-download-list-item-attribute": HTMLAppDownloadListItemAttributeElement;
+        "app-dropdown": HTMLAppDropdownElement;
+        "app-dropdown-group-heading": HTMLAppDropdownGroupHeadingElement;
+        "app-dropdown-list": HTMLAppDropdownListElement;
+        "app-dropdown-option": HTMLAppDropdownOptionElement;
+        "app-event-list": HTMLAppEventListElement;
+        "app-event-list-item": HTMLAppEventListItemElement;
+        "app-eye-catcher": HTMLAppEyeCatcherElement;
+        "app-filter-container": HTMLAppFilterContainerElement;
+        "app-filter-container-option": HTMLAppFilterContainerOptionElement;
+        "app-form": HTMLAppFormElement;
+        "app-group-site-footer": HTMLAppGroupSiteFooterElement;
+        "app-group-site-footer-contact": HTMLAppGroupSiteFooterContactElement;
+        "app-group-site-footer-nav-link": HTMLAppGroupSiteFooterNavLinkElement;
+        "app-group-site-footer-nav-link-group": HTMLAppGroupSiteFooterNavLinkGroupElement;
+        "app-headline-secondary": HTMLAppHeadlineSecondaryElement;
+        "app-headline-tertiary": HTMLAppHeadlineTertiaryElement;
+        "app-hero-media-text": HTMLAppHeroMediaTextElement;
+        "app-hero-media-text-parallax": HTMLAppHeroMediaTextParallaxElement;
+        "app-icon-list": HTMLAppIconListElement;
+        "app-icon-list-item": HTMLAppIconListItemElement;
+        "app-iframe": HTMLAppIframeElement;
         "app-image": HTMLAppImageElement;
+        "app-image-grid": HTMLAppImageGridElement;
+        "app-image-grid-item": HTMLAppImageGridItemElement;
+        "app-image-list": HTMLAppImageListElement;
+        "app-image-list-item": HTMLAppImageListItemElement;
+        "app-input-multiline": HTMLAppInputMultilineElement;
+        "app-input-singleline": HTMLAppInputSinglelineElement;
+        "app-link-primary": HTMLAppLinkPrimaryElement;
+        "app-media-container": HTMLAppMediaContainerElement;
+        "app-media-text": HTMLAppMediaTextElement;
+        "app-media-text-thumbnail": HTMLAppMediaTextThumbnailElement;
+        "app-module-container": HTMLAppModuleContainerElement;
+        "app-module-intro": HTMLAppModuleIntroElement;
+        "app-news-teaser": HTMLAppNewsTeaserElement;
+        "app-news-teaser-list": HTMLAppNewsTeaserListElement;
+        "app-ordered-list": HTMLAppOrderedListElement;
+        "app-ordered-list-item": HTMLAppOrderedListItemElement;
+        "app-pagination": HTMLAppPaginationElement;
+        "app-password-input": HTMLAppPasswordInputElement;
+        "app-password-policy-rule": HTMLAppPasswordPolicyRuleElement;
+        "app-press-excerpt-list": HTMLAppPressExcerptListElement;
+        "app-press-excerpt-list-item": HTMLAppPressExcerptListItemElement;
+        "app-product-teaser": HTMLAppProductTeaserElement;
+        "app-product-teaser-list": HTMLAppProductTeaserListElement;
+        "app-quote": HTMLAppQuoteElement;
+        "app-radiobutton": HTMLAppRadiobuttonElement;
         "app-section": HTMLAppSectionElement;
+        "app-section-intro": HTMLAppSectionIntroElement;
+        "app-select": HTMLAppSelectElement;
+        "app-select-option": HTMLAppSelectOptionElement;
+        "app-select-option-group": HTMLAppSelectOptionGroupElement;
+        "app-simple-filter": HTMLAppSimpleFilterElement;
+        "app-simple-filter-item": HTMLAppSimpleFilterItemElement;
+        "app-tab": HTMLAppTabElement;
+        "app-tab-container": HTMLAppTabContainerElement;
+        "app-tag": HTMLAppTagElement;
+        "app-tag-list": HTMLAppTagListElement;
+        "app-teaser-list": HTMLAppTeaserListElement;
+        "app-teaser-list-item": HTMLAppTeaserListItemElement;
+        "app-teaser-slider": HTMLAppTeaserSliderElement;
+        "app-teaser-slider-slide": HTMLAppTeaserSliderSlideElement;
+        "app-text": HTMLAppTextElement;
+        "app-text-content": HTMLAppTextContentElement;
+        "app-text-with-background": HTMLAppTextWithBackgroundElement;
+        "app-unordered-list": HTMLAppUnorderedListElement;
+        "app-unordered-list-item": HTMLAppUnorderedListItemElement;
     }
 }
 declare namespace LocalJSX {
-    interface AppBanner {
-        /**
-          * The level to use for the headline. Defaults to "h2"
-         */
-        "headlineTag"?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-        /**
-          * The default (black) text for the headline
-         */
-        "headlineText"?: string;
-        /**
-          * The alignment of the image
-         */
-        "imageAlignment"?: "left" | "right";
-        /**
-          * `true` if the button should be disabled
-         */
-        "linkDisabled"?: boolean;
-        /**
-          * The url where the button-link should direct to
-         */
-        "linkHref"?: string;
-        /**
-          * The name of the icon on the left side of the text.
-         */
-        "linkIconLeft"?: string;
-        /**
-          * The name of the icon on the right side of the text.
-         */
-        "linkIconRight"?: string;
-        /**
-          * The target of the button-link. If this is '_blank', rel="noopener noreferrer" is added automatically.
-         */
-        "linkTarget"?: "_top" | "_parent" | "_blank" | "_self";
-        /**
-          * The text displayed inside the button
-         */
-        "linkText"?: string;
+    interface AppButtonList {
     }
-    interface AppButtonSecondary {
+    interface AppButtonPrimary {
         /**
           * `true` if the button should be disabled
          */
         "disabled"?: boolean;
         /**
+          * `true` if the button should be grey
+         */
+        "grey"?: boolean;
+        /**
           * The url where the button-link should direct to
          */
         "href"?: string;
         /**
+          * The name of the icon on the left side of the text.
+         */
+        "iconLeft"?: string;
+        /**
+          * Path to the svg-icon on the left side of the text.
+         */
+        "iconLeftSrc"?: string;
+        /**
+          * The name of the icon on the right side of the text.
+         */
+        "iconRight"?: string;
+        /**
+          * Path to the svg-icon on the right side of the text.
+         */
+        "iconRightSrc"?: string;
+        /**
           * true, when the button should be rendered without an <a> or <button> tag
          */
         "imitateButton"?: boolean;
+        /**
+          * `true` if the button should be inverted (white instead of red)
+         */
+        "inverted"?: boolean;
+        /**
+          * `true` if the button should be mixed, should only be used together with `inverted = true`
+         */
+        "mixed"?: boolean;
+        /**
+          * `small` or `large` (default: `large`)
+         */
+        "size"?: "large" | "small";
         /**
           * The target of the button-link. If this is '_blank', rel="noopener noreferrer" is added automatically.
          */
@@ -195,6 +2502,815 @@ declare namespace LocalJSX {
           * The type of the button
          */
         "type"?: "button" | "submit" | "reset";
+    }
+    interface AppButtonSecondary {
+        /**
+          * `true` if the button should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * `true` if the button should be grey
+         */
+        "grey"?: boolean;
+        /**
+          * The url where the button-link should direct to
+         */
+        "href"?: string;
+        /**
+          * The name of the icon on the left side of the text.
+         */
+        "iconLeft"?: string;
+        /**
+          * Path to the svg-icon on the left side of the text.
+         */
+        "iconLeftSrc"?: string;
+        /**
+          * The name of the icon on the right side of the text.
+         */
+        "iconRight"?: string;
+        /**
+          * Path to the svg-icon on the right side of the text.
+         */
+        "iconRightSrc"?: string;
+        /**
+          * true, when the button should be rendered without an <a> or <button> tag
+         */
+        "imitateButton"?: boolean;
+        /**
+          * `true` if the button should be mixed
+         */
+        "mixed"?: boolean;
+        /**
+          * `small` or `large` (default: `large`)
+         */
+        "size"?: "large" | "small";
+        /**
+          * The target of the button-link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+        /**
+          * The text displayed inside the button
+         */
+        "text"?: string;
+        /**
+          * The type of the button
+         */
+        "type"?: "button" | "submit" | "reset";
+    }
+    /**
+     * Renders a checkbox form control.
+     * The default text font-styles (font-family, font-style, font-size, line-height) can be overriden using SCSS.
+     * The size of the checkbox adapts to the general fontsize.
+     * It is recommended to use the canonical App `fontsize-*` mixins from `fonts.scss`
+     * module whenever overriding the font policies is needed.
+     * The default form-control max-width can be overriden using CSS.
+     * Both the checkbox text and the optional validation | hint texts rendered below the checkbox will wrap according to the max-width policy.
+     */
+    interface AppCheckbox {
+        /**
+          * The if the checkbox should be checked or not
+         */
+        "checked"?: boolean;
+        /**
+          * `true` if the checkbox should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The error text shown below the checkbox field.
+         */
+        "errorText"?: string;
+        /**
+          * `true` if the checkbox field has information validation state. This should always be used in combination with an error-text When both `hasInfo` and `warning` are true, the `warning` state takes precedence.
+         */
+        "hasInformation"?: boolean;
+        /**
+          * The hint text shown below the checkbox field. Optional occurrence of `${link}` will be replaced by the value of `hintLinkText` upon rendering.
+         */
+        "hint"?: string;
+        /**
+          * Href for optional hyperlink rendered within the hint text.  Works together with `hintLinkText`.
+         */
+        "hintLinkHref"?: string;
+        /**
+          * Hyperlink text for optional link rendered within the hint text. Works together with `hintLinkHref`.
+         */
+        "hintLinkText"?: string;
+        /**
+          * While the indeterminate property of the checkbox is true, it will render as indeterminate regardless of the checked value. Any interaction with the checkbox by a user (i.e., clicking) will remove the indeterminate state.
+         */
+        "indeterminate"?: boolean;
+        /**
+          * `true` if the checkbox field has error validation state. This should always be used in combination with an error-text
+         */
+        "invalid"?: boolean;
+        /**
+          * The name of the input
+         */
+        "name": string;
+        /**
+          * Emitted with the event, as soon as the checkbox checked value changes.
+         */
+        "onChange"?: (event: AppCheckboxCustomEvent<boolean>) => void;
+        /**
+          * Emitted with the event, as soon as the checkbox checked value changes.
+          * @deprecated Use `change` instead of `stChange`
+         */
+        "onStChange"?: (event: AppCheckboxCustomEvent<boolean>) => void;
+        /**
+          * `true` if the input field is required
+         */
+        "required"?: boolean;
+        /**
+          * `true` if the checkbox field has warning validation state. This should always be used in combination with an error-text When multiple validation states are set to true (`invalid`, `warning`, `hasInfo`), the `invalid` state takes precedence.
+         */
+        "warning"?: boolean;
+    }
+    interface AppCollapsible {
+    }
+    interface AppCollapsibleItem {
+        /**
+          * The headline of the item
+         */
+        "headline"?: string;
+        /**
+          * The bold text-part of the item. This always appears before the regular text
+         */
+        "headlineBold"?: string;
+        /**
+          * If this item should be open initially
+         */
+        "initialOpen"?: boolean;
+    }
+    interface AppConstructionLimitBanner {
+    }
+    interface AppConstructionLimitBannerItem {
+        /**
+          * The headline of this item (optional)
+         */
+        "headline"?: string;
+        /**
+          * The path to the icon of this item
+         */
+        "iconSrc"?: string;
+    }
+    interface AppContactList {
+    }
+    interface AppContactListItem {
+        /**
+          * The email of the contact encoded as base64
+         */
+        "email"?: string;
+        /**
+          * The href of the contacts email. Format: `mailto:_base64-encoded-email_`
+         */
+        "emailHref"?: string;
+        /**
+          * The alt text of the image
+         */
+        "imageAlt"?: string;
+        /**
+          * Large source of the image
+         */
+        "imageLarge"?: string;
+        /**
+          * Medium source of the image
+         */
+        "imageMedium"?: string;
+        /**
+          * Small source of the image
+         */
+        "imageSmall"?: string;
+        /**
+          * XLarge source of the image
+         */
+        "imageXlarge"?: string;
+        /**
+          * XSmall source of the image
+         */
+        "imageXsmall"?: string;
+        /**
+          * The name of the contact
+         */
+        "name"?: string;
+        /**
+          * The phone number of the contact
+         */
+        "phone"?: string;
+        /**
+          * The subject to display above the name of the contact
+         */
+        "subject"?: string;
+    }
+    interface AppCopytext {
+        /**
+          * If the copytext should be displayed highlighted (grey instead of black)
+         */
+        "highlighted"?: boolean;
+        /**
+          * If the copytext should be displayed inverted (white instead of black)
+         */
+        "inverted"?: boolean;
+        /**
+          * The font-size of the copytext.
+         */
+        "size"?: "S" | "M" | "L" | "XL";
+    }
+    interface AppDownloadList {
+        /**
+          * The table headline for the actions column
+         */
+        "actionLabel"?: string;
+        /**
+          * The table headline for the name column
+         */
+        "nameLabel"?: string;
+    }
+    interface AppDownloadListHead {
+        /**
+          * The action label of this list item
+         */
+        "actionLabel"?: string;
+        /**
+          * The name label of this list item
+         */
+        "nameLabel"?: string;
+    }
+    interface AppDownloadListItem {
+        /**
+          * The download link of this list item
+         */
+        "downloadLink"?: string;
+        /**
+          * The download link text of this list item
+         */
+        "downloadLinkText"?: string;
+        /**
+          * The link of this list item
+         */
+        "link"?: string;
+        /**
+          * The subject of the mailto link (optional)
+         */
+        "mailSubject"?: string;
+        /**
+          * The body of the mailto link
+         */
+        "mailText"?: string;
+        /**
+          * The name of this list item
+         */
+        "name"?: string;
+        "noHead"?: boolean;
+        /**
+          * The send link text of this list item
+         */
+        "sendLinkText"?: string;
+    }
+    interface AppDownloadListItemAttribute {
+        /**
+          * The label of the attribute
+         */
+        "label": string;
+        /**
+          * The text of the attribute
+         */
+        "value": string;
+    }
+    /**
+     * Renders a form control dropdown element. The dropdown option list is initially collapsed.
+     * Upon expanding the dropdown an overlay renders the dropdown option list which is positioned relative to the dropdown toggle element.
+     */
+    interface AppDropdown {
+        /**
+          * `true` if the the dropdown options are grouped under subheadings
+         */
+        "clustered"?: boolean;
+        /**
+          * `true` if the dropdown should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The error text shown below the dropdown.
+         */
+        "errorText"?: string;
+        /**
+          * `true` if the dropdown field has information validation state. This should always be used in combination with an error-text When both `hasInfo` and `warning` are true, the `warning` state takes precedence.
+         */
+        "hasInformation"?: boolean;
+        /**
+          * The hint text shown below the dropdown. Optional occurrence of `${link}` will be replaced by the value of `hintLinkText` upon rendering.
+         */
+        "hint"?: string;
+        /**
+          * Href for optional hyperlink rendered within the hint text.  Works together with `hintLinkText`.
+         */
+        "hintLinkHref"?: string;
+        /**
+          * Hyperlink text for optional link rendered within the hint text. Works together with `hintLinkHref`.
+         */
+        "hintLinkText"?: string;
+        /**
+          * `true` if the dropdown field has error validation state. This should always be used in combination with an error-text
+         */
+        "invalid"?: boolean;
+        /**
+          * The label of the dropdown
+         */
+        "label": string;
+        /**
+          * `true` if multiple options may be selected in the dropdown. It's not meant to be used together with search dropdown.
+         */
+        "multiple"?: boolean;
+        /**
+          * The text to display inside the dropdown if multiple selections were made. `{num}` will be replaced by the number of options selected.
+         */
+        "multipleSelectionsLabel"?: string;
+        /**
+          * The name of the dropdown
+         */
+        "name": string;
+        /**
+          * Emitted after the input is changed when the focus is lost
+         */
+        "onChange"?: (event: AppDropdownCustomEvent<any>) => void;
+        /**
+          * Renders an input that run in-memory dropdown option filtering. It's meant to be used with single-selection dropdown only.
+         */
+        "search"?: boolean;
+        /**
+          * Placeholder for the search input
+         */
+        "searchInputPlaceholder"?: string;
+        /**
+          * Placeholder text for search dropdown result list
+         */
+        "searchResultPlaceholder"?: string;
+        /**
+          * `small` or `medium` (default: `medium`)
+         */
+        "size"?: "medium" | "small";
+        /**
+          * The value (default selected option value) of the dropdown. If multiple is true, you may provide a comma separated list of values ("1, 2, 3").
+         */
+        "value"?: string | Array<string>;
+        /**
+          * `true` if the dropdown field has warning validation state. This should always be used in combination with an error-text When multiple validation states are set to true (`invalid`, `warning`, `hasInfo`), the `invalid` state takes precedence.
+         */
+        "warning"?: boolean;
+    }
+    /**
+     * Renders a dropdown group heading which is meant to be used as slotted content for the clustered flavour of <app-dropdown> element.
+     */
+    interface AppDropdownGroupHeading {
+        /**
+          * The text dropdown group heading
+         */
+        "text"?: string;
+    }
+    /**
+     * Renders a dropdown option list which is not meant to be used as a standalone custom element.
+     * It is used internally by <app-dropdown> and publicly exposed in the collection only for Patternlab showcasing purposes.
+     */
+    interface AppDropdownList {
+        /**
+          * Whether the first dropdown item is active(highlighted) when the list opens
+         */
+        "activateFirstItem"?: boolean;
+        /**
+          * Whether the dropdown list host is mounted in the document body or not
+         */
+        "attachToBody"?: boolean;
+        /**
+          * `true` if the the dropdown options are grouped under subheadings
+         */
+        "clustered"?: boolean;
+        /**
+          * Dropdown child items to be rendered by the dropdown list
+         */
+        "dropdownItems"?: (DropdownOptionModel | DropdownGroupHeadingModel)[];
+        /**
+          * Filter value
+         */
+        "filterValue"?: string;
+        /**
+          * `true` if multiple options may be selected in the dropdown
+         */
+        "multiple"?: boolean;
+        /**
+          * Emitted when the active dropdown option is changed or set for the first time
+         */
+        "onActiveOptionChanged"?: (event: AppDropdownListCustomEvent<HTMLAppDropdownOptionElement>) => void;
+        /**
+          * Emitted as soon as the dropdown list is 'stolen' from the original mount element and appeneded to the body element
+         */
+        "onAppendedToDom"?: (event: AppDropdownListCustomEvent<HTMLAppDropdownListElement>) => void;
+        /**
+          * Emitted when user clicks the outer most part of the dropdown list, around the option wrapper, i.e clicking the padding space around the full screen mobile overlay
+         */
+        "onClickAway"?: (event: AppDropdownListCustomEvent<any>) => void;
+        /**
+          * Renders an input that run in-memory dropdown option filtering on mobile screens
+         */
+        "search"?: boolean;
+        /**
+          * Search input placeholder
+         */
+        "searchInputPlaceholder"?: string;
+        /**
+          * Search input value (for mobile viewports only)
+         */
+        "searchInputValue"?: string;
+        /**
+          * Search label placeholder
+         */
+        "searchResultPlaceholder"?: string;
+        /**
+          * `small` or `medium` (default: `medium`)
+         */
+        "size"?: "medium" | "small";
+        /**
+          * Use slotted contented as an alternative to setting 'dropdownItems' prop.
+         */
+        "useSlot"?: boolean;
+        /**
+          * Amount of visible options at one time
+         */
+        "visibleOptionsCount"?: number;
+    }
+    /**
+     * Renders a dropdown option which is meant to be used as slotted content for <app-dropdown> element.
+     */
+    interface AppDropdownOption {
+        /**
+          * `true` if the option is active
+         */
+        "active"?: boolean;
+        /**
+          * `true` if the the dropdown options are grouped under subheadings
+         */
+        "clustered"?: boolean;
+        /**
+          * `true` if the option should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The name of the icon (optional)
+         */
+        "icon"?: string;
+        /**
+          * The path to the custom icon (optional)
+         */
+        "iconSrc"?: string;
+        /**
+          * The label of the option
+         */
+        "label"?: string;
+        /**
+          * Renders and optional checkbox when set to true
+         */
+        "multiselect"?: boolean;
+        /**
+          * `true` if the option should be selected.
+         */
+        "selected"?: boolean;
+        /**
+          * `small` or `medium` (default: `medium`)
+         */
+        "size"?: "medium" | "small";
+        /**
+          * The value of the option
+         */
+        "value"?: string;
+    }
+    interface AppEventList {
+    }
+    interface AppEventListItem {
+        /**
+          * The day to display inside of the calendar
+         */
+        "calendarDay": string;
+        /**
+          * The month (abbreveated) to display inside of the calendar
+         */
+        "calendarMonth": string;
+        /**
+          * The date label to display above the headline
+         */
+        "date": string;
+        /**
+          * The headline of the event
+         */
+        "headline": string;
+        /**
+          * The url, the event should link to
+         */
+        "href"?: string;
+        /**
+          * The location of the event
+         */
+        "location": string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+        /**
+          * The time label to display above the headline
+         */
+        "time"?: string;
+    }
+    interface AppEyeCatcher {
+        /**
+          * The background-color to use for the eye catcher
+         */
+        "color"?: "red" | "grey";
+        /**
+          * The position of the tip
+         */
+        "tipPosition"?: "top" | "bottom";
+    }
+    interface AppFilterContainer {
+        /**
+          * The base api url to request the news from.
+         */
+        "apiUrl": string;
+        /**
+          * The label of the basic-1 dropdown
+         */
+        "basic1Label"?: string;
+        /**
+          * The value of the basic-1 dropdown
+         */
+        "basic1Value"?: string;
+        /**
+          * An optional url prefix which is prepended to the href of the news item coming from caas
+         */
+        "caasItemUrlPrefix"?: string;
+        /**
+          * The number of results to display on a page
+         */
+        "itemsPerPage"?: number;
+        /**
+          * The language to fetch the news in.
+         */
+        "language"?: "en" | "fr" | "de" | "ch" | "at";
+        /**
+          * The label of the refinement-1 dropdown
+         */
+        "refinement1Label"?: string;
+        /**
+          * The selections label of the refinement-1 dropdown
+         */
+        "refinement1SelectionsLabel"?: string;
+        /**
+          * The value of the refinement-1 dropdown
+         */
+        "refinement1Value"?: string;
+        /**
+          * The label of the refinement-2 dropdown
+         */
+        "refinement2Label"?: string;
+        /**
+          * The selections label of the refinement-2 dropdown
+         */
+        "refinement2SelectionsLabel"?: string;
+        /**
+          * The value of the refinement-2 dropdown
+         */
+        "refinement2Value"?: string;
+        /**
+          * The label of the refinement-3 dropdown
+         */
+        "refinement3Label"?: string;
+        /**
+          * The selections label of the refinement-3 dropdown
+         */
+        "refinement3SelectionsLabel"?: string;
+        /**
+          * The value of the refinement-3 dropdown
+         */
+        "refinement3Value"?: string;
+        /**
+          * The headline to show above the refinement section
+         */
+        "refinementHeadline"?: string;
+        /**
+          * The text of the search-results headline. `{{numResults}}` will be replaced by the number of results.
+         */
+        "searchResultsText"?: string;
+        /**
+          * The text of the submit button. `{{numResults}}` will be replaced by the number of results.
+         */
+        "submitText"?: string;
+        /**
+          * The label of the year dropdown
+         */
+        "yearLabel"?: string;
+        /**
+          * The value of the year dropdown
+         */
+        "yearValue"?: string;
+    }
+    interface AppFilterContainerOption {
+        /**
+          * In which caregory the option should be placed.
+         */
+        "category": "basic-1" | "year" | "refinement-1" | "refinement-2" | "refinement-3";
+        /**
+          * `true` if the option should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The label of the option
+         */
+        "label": string;
+        /**
+          * The value of the option
+         */
+        "value": string;
+    }
+    interface AppForm {
+        /**
+          * The alignment of the image
+         */
+        "imageAlignment"?: "left" | "right";
+    }
+    interface AppGroupSiteFooter {
+        /**
+          * The text to display as the copyright
+         */
+        "copyright"?: string;
+        /**
+          * The title to display above the social icons
+         */
+        "socialTitle"?: string;
+    }
+    interface AppGroupSiteFooterContact {
+        /**
+          * An optional link on the label
+         */
+        "href"?: string;
+        /**
+          * The label of the group
+         */
+        "label": string;
+        /**
+          * The target of the link on the label. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppGroupSiteFooterNavLink {
+        /**
+          * The url of the link
+         */
+        "href": string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+        /**
+          * The text inside the link
+         */
+        "text": string;
+    }
+    interface AppGroupSiteFooterNavLinkGroup {
+        /**
+          * An optional link on the label
+         */
+        "href"?: string;
+        /**
+          * The label of the group
+         */
+        "label": string;
+        /**
+          * The target of the link on the label. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppHeadlineSecondary {
+        /**
+          * The level to use for this headline. Defaults to "h2"
+         */
+        "tag"?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+        /**
+          * The default (black) text for the headline
+         */
+        "text"?: string;
+        /**
+          * The highlighted (red) text for the headline. This appears above the black text
+         */
+        "textRed"?: string;
+    }
+    interface AppHeadlineTertiary {
+        /**
+          * If the headline should be highlighted (displayed in red)
+         */
+        "highlight"?: boolean;
+        /**
+          * The level to use for this headline. Defaults to "h2"
+         */
+        "tag"?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+        /**
+          * The text for the headline
+         */
+        "text"?: string;
+    }
+    interface AppHeroMediaText {
+        /**
+          * The background color of the media text module
+         */
+        "backgroundColor"?: "light" | "dark";
+        /**
+          * Large source of the background image
+         */
+        "backgroundImageLarge"?: string;
+        /**
+          * Medium source of the background image
+         */
+        "backgroundImageMedium"?: string;
+        /**
+          * Small source of the background image
+         */
+        "backgroundImageSmall"?: string;
+        /**
+          * XLarge source of the background image
+         */
+        "backgroundImageXlarge"?: string;
+        /**
+          * XSmall source of the background image
+         */
+        "backgroundImageXsmall"?: string;
+        /**
+          * The alignment of the image inside of the hero-media-text module
+         */
+        "imageAlignment"?: "left" | "right";
+        /**
+          * The alt text of the image
+         */
+        "imageAlt"?: string;
+        /**
+          * Large source of the image
+         */
+        "imageLarge"?: string;
+        /**
+          * Medium source of the image
+         */
+        "imageMedium"?: string;
+        /**
+          * Small source of the image
+         */
+        "imageSmall"?: string;
+        /**
+          * XLarge source of the image
+         */
+        "imageXlarge"?: string;
+        /**
+          * XSmall source of the image
+         */
+        "imageXsmall"?: string;
+    }
+    interface AppHeroMediaTextParallax {
+        /**
+          * The side on which the content should be displayed
+         */
+        "alignContent"?: "left" | "right";
+        /**
+          * The background color of the media text module
+         */
+        "backgroundColor"?: "light" | "dark";
+    }
+    interface AppIconList {
+        /**
+          * The number of columns the items should be distributed upon
+         */
+        "columns"?: 1 | 2 | 3;
+    }
+    interface AppIconListItem {
+        /**
+          * The link of the press excerpt
+         */
+        "href"?: string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+        /**
+          * The text of list item
+         */
+        "text"?: string;
+    }
+    interface AppIframe {
+        /**
+          * If the iframe should be the full width of the viewport
+         */
+        "breakout"?: boolean;
+        /**
+          * The height of the iframe in the XL breakpoint
+         */
+        "height"?: number;
+        /**
+          * The src url to display inside the iframe
+         */
+        "src"?: string;
     }
     interface AppImage {
         /**
@@ -214,31 +3330,1113 @@ declare namespace LocalJSX {
          */
         "imgSrc"?: string;
         /**
+          * Large source of the image
+         */
+        "large"?: string;
+        /**
           * loading `auto` or `eager` (default: `lazy`)
          */
         "loading"?: "auto" | "eager" | "lazy";
         /**
+          * Medium source of the image
+         */
+        "medium"?: string;
+        /**
+          * Emitted, as soon as the image is completely loaded
+         */
+        "onLoad"?: (event: AppImageCustomEvent<any>) => void;
+        /**
+          * Small source of the image
+         */
+        "small"?: string;
+        /**
+          * The subtitle text of the image
+         */
+        "subtitle"?: string;
+        /**
           * The default width of the image
          */
         "width"?: number;
+        /**
+          * XLarge source of the image
+         */
+        "xlarge"?: string;
+        /**
+          * XSmall source of the image
+         */
+        "xsmall"?: string;
+    }
+    interface AppImageGrid {
+    }
+    interface AppImageGridItem {
+        /**
+          * The headline of the item
+         */
+        "headline"?: string;
+        /**
+          * true of the element is hovered on touch devices
+         */
+        "hovered"?: boolean;
+        /**
+          * The link of the item (on image, headline and optional textlink)
+         */
+        "href"?: string;
+        /**
+          * The text of the standalone link
+         */
+        "linkText"?: string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppImageList {
+    }
+    interface AppImageListItem {
+        /**
+          * The caption (optional) to display below the image
+         */
+        "caption"?: string;
+        /**
+          * The height of the highest image in a row. This does not need to be set manually. It gets set by <app-image-list>
+         */
+        "highestImage"?: number;
+        /**
+          * The link of the slide (on image and headline)
+         */
+        "href"?: string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppInputMultiline {
+        /**
+          * `true` if the button should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The error text shown below the input field.
+         */
+        "errorText"?: string;
+        /**
+          * `true` if the input field has information validation state. This should always be used in combination with an error-text When both `hasInfo` and `warning` are true, the `warning` state takes precedence.
+         */
+        "hasInformation"?: boolean;
+        /**
+          * The hint text shown below the input field. * Optional occurrence of `${link}` will be replaced by the value of `hintLinkText` upon rendering.
+         */
+        "hint": string;
+        /**
+          * Href for optional hyperlink rendered within the hint text.  Works together with `hintLinkText`.
+         */
+        "hintLinkHref"?: string;
+        /**
+          * Hyperlink text for optional link rendered within the hint text. Works together with `hintLinkHref`.
+         */
+        "hintLinkText"?: string;
+        /**
+          * `true` if the input field has error validation state. This should always be used in combination with an error-text
+         */
+        "invalid"?: boolean;
+        /**
+          * The label of the input
+         */
+        "label": string;
+        /**
+          * The maximum number of characters the user is allowed to type into this input.
+         */
+        "maxLength"?: number;
+        /**
+          * The minimum number of characters the user is allowed to type into this input.
+         */
+        "minLength"?: number;
+        /**
+          * The name of the input
+         */
+        "name": string;
+        /**
+          * Emitted after the input is changed when the focus is lost
+         */
+        "onChange"?: (event: AppInputMultilineCustomEvent<any>) => void;
+        /**
+          * Emitted as soon as the input is changed
+         */
+        "onInput"?: (event: AppInputMultilineCustomEvent<any>) => void;
+        /**
+          * `true` if the input field is required
+         */
+        "required"?: boolean;
+        /**
+          * `true` if the inner text area should have a resize handle
+         */
+        "resizable"?: boolean;
+        /**
+          * The value of the input
+         */
+        "value"?: string;
+        /**
+          * `true` if the input field has warning validation state. This should always be used in combination with an error-text When multiple validation states are set to true (`invalid`, `warning`, `hasInfo`), the `invalid` state takes precedence.
+         */
+        "warning"?: boolean;
+    }
+    interface AppInputSingleline {
+        /**
+          * The auto-complete property of the input field. This tells the browser, what he should suggest for this input.
+         */
+        "autoComplete"?: string;
+        /**
+          * `true` if the button should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The error text shown below the input field.
+         */
+        "errorText"?: string;
+        /**
+          * `true` if the input field has information validation state. This should always be used in combination with an error-text When both `hasInfo` and `warning` are true, the `warning` state takes precedence.
+         */
+        "hasInformation"?: boolean;
+        /**
+          * 'true' will hide the up/down arrows rendered by browsers on numeric inputs
+         */
+        "hideArrows"?: boolean;
+        /**
+          * The hint text shown below the input field. Optional occurrence of `${link}` will be replaced by the value of `hintLinkText` upon rendering.
+         */
+        "hint": string;
+        /**
+          * Href for optional hyperlink rendered within the hint text.  Works together with `hintLinkText`.
+         */
+        "hintLinkHref"?: string;
+        /**
+          * Hyperlink text for optional link rendered within the hint text. Works together with `hintLinkHref`.
+         */
+        "hintLinkText"?: string;
+        /**
+          * `true` if the input field has error validation state. This should always be used in combination with an error-text
+         */
+        "invalid"?: boolean;
+        /**
+          * The label of the input
+         */
+        "label": string;
+        /**
+          * The maximum value the user is allowed to type into the input, used with input[type=number]
+         */
+        "max"?: any;
+        /**
+          * The maximum number of characters the user is allowed to type into this input.
+         */
+        "maxLength"?: number;
+        /**
+          * The minimum value the user is allowed to type into the input, used with input[type=number]
+         */
+        "min"?: any;
+        /**
+          * The minimum number of characters the user is allowed to type into this input.
+         */
+        "minLength"?: number;
+        /**
+          * The name of the input
+         */
+        "name": string;
+        /**
+          * Emitted after the input is changed when the focus is lost
+         */
+        "onChange"?: (event: AppInputSinglelineCustomEvent<any>) => void;
+        /**
+          * Emitted as soon as the input is changed
+         */
+        "onInput"?: (event: AppInputSinglelineCustomEvent<any>) => void;
+        /**
+          * The pattern attribute allows validation of an input field based on a given regular expression pattern.
+         */
+        "pattern"?: any;
+        /**
+          * `true` if the input field is required
+         */
+        "required"?: boolean;
+        /**
+          * Whether an show | hide password toggle is rendered. The property is ignored for input types other than 'password'.
+         */
+        "showPasswordEyeToggle"?: boolean;
+        /**
+          * `small` or `large` (default: `large`)
+         */
+        "size"?: "large" | "small";
+        /**
+          * The step attribute specifies the interval between legal numbers in an input, used with input[type=number]
+         */
+        "step"?: number;
+        /**
+          * The type of the input. If you don't find your desired type, there may be another component for that. Defaults to "text"
+         */
+        "type"?: "text" | "password" | "tel" | "url" | "email" | "number";
+        /**
+          * The value of the input
+         */
+        "value"?: string;
+        /**
+          * `true` if the input field has warning validation state. This should always be used in combination with an error-text When multiple validation states are set to true (`invalid`, `warning`, `hasInfo`), the `invalid` state takes precedence.
+         */
+        "warning"?: boolean;
+    }
+    interface AppLinkPrimary {
+        /**
+          * `true` if the link should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The download attribute of the link
+         */
+        "download"?: string;
+        /**
+          * `true` if the link should be grey
+         */
+        "grey"?: boolean;
+        /**
+          * The url where the link should direct to
+         */
+        "href"?: string;
+        /**
+          * The name of the icon on the left side of the text. If not provided, no icon is displayed.
+         */
+        "iconLeft"?: string;
+        /**
+          * The name of the icon on the right side of the text. If not provided, no icon is displayed.
+         */
+        "iconRight"?: string;
+        /**
+          * The size of the icon. S = 12px; M = 18px
+         */
+        "iconSize"?: "S" | "M";
+        /**
+          * true, when the link should be rendered without an <a> tag
+         */
+        "imitateLink"?: boolean;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+        /**
+          * The text displayed inside the link
+         */
+        "text"?: string;
+    }
+    interface AppMediaContainer {
+    }
+    interface AppMediaText {
+        /**
+          * The alignment of the image or video
+         */
+        "mediaAlignment"?: "left" | "right";
+        /**
+          * The size of the image or video
+         */
+        "mediaSize"?: "S" | "M" | "L";
+    }
+    interface AppMediaTextThumbnail {
+        /**
+          * The alignment of the image or video
+         */
+        "mediaAlignment"?: "left" | "right";
+        /**
+          * The size of the image or video
+         */
+        "mediaSize"?: "S" | "M" | "L";
+        /**
+          * The default (grey) text for the thumbnails headline
+         */
+        "thumbnailsHeadline"?: string;
+    }
+    interface AppModuleContainer {
+    }
+    interface AppModuleIntro {
+        /**
+          * The level to use for the headline. Defaults to "h3"
+         */
+        "headlineTag"?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+        /**
+          * The text for the headline
+         */
+        "headlineText"?: string;
+        /**
+          * If the headline should be highlighted (displayed in red)
+         */
+        "highlight"?: boolean;
+        /**
+          * The font-size of the copytext.
+         */
+        "textSize"?: "M" | "L";
+    }
+    interface AppNewsTeaser {
+        /**
+          * The date to display above the headline
+         */
+        "date"?: string;
+        /**
+          * The headline of the teaser
+         */
+        "headline"?: string;
+        /**
+          * The link of the teaser (on image and headline)
+         */
+        "href"?: string;
+        /**
+          * The text of the standalone link
+         */
+        "linkText"?: string;
+        /**
+          * Convert the slotted rich text to plain text (remove all html tags)
+         */
+        "plainText"?: boolean;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppNewsTeaserList {
+        /**
+          * The base api url to request the news from. `/{language}/news` will be appended.
+         */
+        "apiUrl": string;
+        /**
+          * An optional url prefix which is prepended to the href of the news item coming from caas
+         */
+        "caasItemUrlPrefix"?: string;
+        /**
+          * A comma separated list of uuids of the categories, which should be shown in this list
+         */
+        "categories"?: string;
+        /**
+          * The language to fetch the news in.
+         */
+        "language"?: "en" | "fr" | "de" | "ch" | "at";
+        /**
+          * If the teasers' text content should be converted to plain text
+         */
+        "plainText"?: boolean;
+        /**
+          * The total number of items in this list
+         */
+        "total": number;
+    }
+    interface AppOrderedList {
+        /**
+          * The font-size of the list.
+         */
+        "size"?: "S" | "M" | "L" | "XL";
+    }
+    interface AppOrderedListItem {
+        /**
+          * The label of this list item (optional)
+         */
+        "label"?: string;
+    }
+    interface AppPagination {
+        /**
+          * The limit of items to display on one page (page size).
+         */
+        "limit": number;
+        /**
+          * The current offset of the paginated list.
+         */
+        "offset"?: number;
+        /**
+          * Emitted with the new offset, as soon as page changes
+         */
+        "onStPageChange"?: (event: AppPaginationCustomEvent<number>) => void;
+        /**
+          * The total number of items.
+         */
+        "total": number;
+    }
+    /**
+     * Renders a password input form control element typically used for password-reset | registration flows.
+     * The components wraps an inner <app-input-singleline type="password"> element and renders a warn text
+     * under the input while CAPSLOCK is active.
+     * It also has the posibility to list the password rules under the password input.
+     */
+    interface AppPasswordInput {
+        /**
+          * The auto-complete property of the input field. This tells the browser, what he should suggest for this input.
+         */
+        "autoComplete"?: string;
+        /**
+          * Text to be rendered as a hint when the keyboard CAPSLOCK is active
+         */
+        "capsLockHint"?: string;
+        /**
+          * `true` if the password input should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The error text shown below the input field.
+         */
+        "errorText"?: string;
+        /**
+          * `true` if the input field has information validation state. This should always be used in combination with an error-text When both `hasInfo` and `warning` are true, the `warning` state takes precedence.
+         */
+        "hasInformation"?: boolean;
+        /**
+          * The hint text shown below the input field.
+         */
+        "hint": string;
+        /**
+          * `true` if the input field has error validation state. This should always be used in combination with an error-text
+         */
+        "invalid"?: boolean;
+        /**
+          * The label of the password input
+         */
+        "label": string;
+        /**
+          * The name of the password input
+         */
+        "name": string;
+        /**
+          * Emitted after the input is changed when the focus is lost
+         */
+        "onChange"?: (event: AppPasswordInputCustomEvent<any>) => void;
+        /**
+          * Emitted as soon as the input is changed
+         */
+        "onInput"?: (event: AppPasswordInputCustomEvent<any>) => void;
+        /**
+          * `true` if the input field is required
+         */
+        "required"?: boolean;
+        /**
+          * `small` or `large` (default: `large`)
+         */
+        "size"?: "large" | "small";
+        /**
+          * The value of the input
+         */
+        "value"?: string;
+        /**
+          * `true` if the input field has warning validation state. This should always be used in combination with an error-text When multiple validation states are set to true (`invalid`, `warning`, `hasInfo`), the `invalid` state takes precedence.
+         */
+        "warning"?: boolean;
+    }
+    /**
+     * Renders a single password policy rule which consists of a status icon on the left and the rule text on the right.
+     * Both the icon and the text is styled to diffentiate between the valid and invalid state of the rule.
+     */
+    interface AppPasswordPolicyRule {
+        /**
+          * Whether the given password rule has been met or not
+         */
+        "isRuleValid"?: boolean;
+        /**
+          * Password policy text
+         */
+        "ruleText"?: string;
+    }
+    interface AppPressExcerptList {
+        /**
+          * The base api url to request the news from. `/{language}/news` will be appended.
+         */
+        "apiUrl": string;
+        /**
+          * An optional url prefix which is prepended to the href of the news item coming from caas
+         */
+        "caasItemUrlPrefix"?: string;
+        /**
+          * A comma separated list of uuids of the categories, which should be shown in this list
+         */
+        "categories"?: string;
+        /**
+          * The filter to be sent to the api. This overwrites the categories and tags prop.
+         */
+        "filter"?: string;
+        /**
+          * The number of items to display on a page
+         */
+        "itemsPerPage"?: number;
+        /**
+          * The language to fetch the news in.
+         */
+        "language"?: "en" | "fr" | "de" | "ch" | "at";
+        /**
+          * If this module should imediately query the api for new press excerpts
+         */
+        "searchOnLoad"?: boolean;
+        /**
+          * A comma separated list of uuids of the tags, which should be shown in this list
+         */
+        "tags"?: string;
+        /**
+          * The total number of items in this list
+         */
+        "total": number;
+    }
+    interface AppPressExcerptListItem {
+        /**
+          * The date of the press excerpt
+         */
+        "date"?: string;
+        /**
+          * The headline of the press excerpt
+         */
+        "headline"?: string;
+        /**
+          * The link of the press excerpt
+         */
+        "href"?: string;
+        /**
+          * The text of the standalone link
+         */
+        "linkText"?: string;
+        /**
+          * The (optional) subheadline of the press excerpt
+         */
+        "subheadline"?: string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppProductTeaser {
+        /**
+          * The headline of the teaser
+         */
+        "headline"?: string;
+        /**
+          * The link of the teaser (on image and headline)
+         */
+        "href"?: string;
+        /**
+          * The text of the button
+         */
+        "linkText"?: string;
+        /**
+          * The subheadline of the teaser
+         */
+        "subheadline"?: string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppProductTeaserList {
+        /**
+          * show 4 teasers in one row on large
+         */
+        "fourColumnsOnLarge"?: boolean;
+        /**
+          * show teasers as slider
+         */
+        "showAsSlider"?: boolean;
+    }
+    interface AppQuote {
+        /**
+          * The Quotes text content
+         */
+        "quote": string;
+    }
+    /**
+     * Renders a radiobutton form control.
+     * The default text font-styles (font-family, font-style, font-size, line-height) can be overriden using SCSS.
+     * It is recommended to use the canonical App `fontsize-*` mixins from `fonts.scss`
+     * module whenever overriding the font policies is needed.
+     * The default form-control max-width can be overriden using CSS.
+     * Both the radiobutton text and the optional validation | hint texts rendered below
+     * the radiobutton will wrap according to the max-width policy
+     */
+    interface AppRadiobutton {
+        /**
+          * The if the radiobutton should be checked or not
+         */
+        "checked"?: boolean;
+        /**
+          * `true` if the radiobutton should be disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * The error text shown below the radiobutton field.
+         */
+        "errorText"?: string;
+        /**
+          * `true` if the radiobutton field has information validation state. This should always be used in combination with an error-text When both `hasInfo` and `warning` are true, the `warning` state takes precedence.
+         */
+        "hasInformation"?: boolean;
+        /**
+          * The hint text shown below the checkbox field. Optional occurrence of `${link}` will be replaced by the value of `hintLinkText` upon rendering.
+         */
+        "hint"?: string;
+        /**
+          * Href for optional hyperlink rendered within the hint text.  Works together with `hintLinkText`.
+         */
+        "hintLinkHref"?: string;
+        /**
+          * Hyperlink text for optional link rendered within the hint text. Works together with `hintLinkHref`.
+         */
+        "hintLinkText"?: string;
+        /**
+          * `true` if the radiobutton field has error validation state. This should always be used in combination with an error-text
+         */
+        "invalid"?: boolean;
+        /**
+          * The name of the input
+         */
+        "name": string;
+        /**
+          * Emitted with the event, as soon as the radiobutton checked value changes.
+         */
+        "onChange"?: (event: AppRadiobuttonCustomEvent<boolean>) => void;
+        /**
+          * Emitted with the event, as soon as the radiobutton checked value changes.
+          * @deprecated Use `change` instead of `stChange`
+         */
+        "onStChange"?: (event: AppRadiobuttonCustomEvent<boolean>) => void;
+        /**
+          * `true` if the input field is required
+         */
+        "required"?: boolean;
+        /**
+          * `true` if the radiobutton field has warning validation state. This should always be used in combination with an error-text When multiple validation states are set to true (`invalid`, `warning`, `hasInfo`), the `invalid` state takes precedence.
+         */
+        "warning"?: boolean;
     }
     interface AppSection {
     }
+    interface AppSectionIntro {
+        /**
+          * Set this to true, if the Section headline should be the full container width
+         */
+        "fullWidth"?: boolean;
+    }
+    interface AppSelect {
+        /**
+          * active
+         */
+        "active"?: boolean;
+        /**
+          * multiple
+         */
+        "multiple"?: boolean;
+        /**
+          * valueChange
+         */
+        "onValueChange"?: (event: AppSelectCustomEvent<any>) => void;
+        /**
+          * value
+         */
+        "value"?: any;
+    }
+    interface AppSelectOption {
+        /**
+          * label
+         */
+        "label"?: string;
+        /**
+          * multiple
+         */
+        "multiple"?: boolean;
+        /**
+          * value
+         */
+        "value"?: any;
+    }
+    interface AppSelectOptionGroup {
+        /**
+          * label
+         */
+        "label"?: string;
+    }
+    interface AppSimpleFilter {
+        /**
+          * The text to display inside the dropdown if multiple selections were made. `{num}` will be replaced by the number of filters selected.
+         */
+        "dropdownMultipleSelectionsLabel"?: string;
+        /**
+          * The label of the option to select all elements
+         */
+        "selectAllLabel": string;
+    }
+    interface AppSimpleFilterItem {
+        /**
+          * If the item is currently hidden or visible
+         */
+        "hidden"?: boolean;
+        /**
+          * The tag of this item
+         */
+        "tag"?: string;
+    }
+    interface AppTab {
+        /**
+          * The text of the tab
+         */
+        "headline"?: string;
+        /**
+          * The bold text-part of the tab. This always appears before the regular text
+         */
+        "headlineBold"?: string;
+        /**
+          * Emitted with the tabs content, on open
+         */
+        "onStOpen"?: (event: AppTabCustomEvent<HTMLAppTabElement>) => void;
+        /**
+          * If this item is currently open
+         */
+        "open"?: boolean;
+    }
+    interface AppTabContainer {
+    }
+    interface AppTag {
+        /**
+          * The label of the tag
+         */
+        "label": string;
+        /**
+          * Emitted, as soon as the remove button on the tag is clicked
+         */
+        "onStRemove"?: (event: AppTagCustomEvent<any>) => void;
+    }
+    interface AppTagList {
+        /**
+          * Emitted, when the "remove all tags" button is clicked.
+         */
+        "onRemoveAll"?: (event: AppTagListCustomEvent<any>) => void;
+        /**
+          * The text of the remove all tags button. If left empty, the button is not displayed.
+         */
+        "removeAllText"?: string;
+    }
+    interface AppTeaserList {
+        /**
+          * show teasers as slider
+         */
+        "showAsSlider"?: boolean;
+    }
+    interface AppTeaserListItem {
+        /**
+          * The text of the standalone button
+         */
+        "buttonText"?: string;
+        /**
+          * The headline of the teaser
+         */
+        "headline"?: string;
+        /**
+          * The link of the teaser (on image and headline)
+         */
+        "href"?: string;
+        /**
+          * The text of the standalone link
+         */
+        "linkText"?: string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppTeaserSlider {
+        /**
+          * How fast the slides should slide automatically
+         */
+        "autoplaySpeed"?: "Fast" | "Medium" | "Slow" | "Off";
+        /**
+          * Good to enable if you use bullets pagination with a lot of slides. So it will keep only few bullets visible at the same time.
+         */
+        "dynamicBullets"?: boolean;
+        /**
+          * How fast the slides should slide automatically
+         */
+        "slidesPerGroup"?: "normal" | "two" | "Off";
+    }
+    interface AppTeaserSliderSlide {
+        /**
+          * The headline of the slide
+         */
+        "headline"?: string;
+        /**
+          * The link of the slide (on image and headline)
+         */
+        "href"?: string;
+        /**
+          * The text of the standalone link
+         */
+        "linkText"?: string;
+        /**
+          * The (optional) subheadline of the slide
+         */
+        "subheadline"?: string;
+        /**
+          * The target of the link. If this is '_blank', rel="noopener noreferrer" is added automatically.
+         */
+        "target"?: "_top" | "_parent" | "_blank" | "_self";
+    }
+    interface AppText {
+    }
+    interface AppTextContent {
+    }
+    interface AppTextWithBackground {
+        /**
+          * The side on which the content should be displayed
+         */
+        "alignContent"?: "left" | "right";
+        /**
+          * Large source of the background image
+         */
+        "backgroundImageLarge"?: string;
+        /**
+          * Medium source of the background image
+         */
+        "backgroundImageMedium"?: string;
+        /**
+          * Small source of the background image
+         */
+        "backgroundImageSmall"?: string;
+        /**
+          * XLarge source of the background image
+         */
+        "backgroundImageXlarge"?: string;
+        /**
+          * XSmall source of the background image
+         */
+        "backgroundImageXsmall"?: string;
+    }
+    interface AppUnorderedList {
+        /**
+          * If the unordered list should be displayed inverted (white instead of black)
+         */
+        "inverted"?: boolean;
+        /**
+          * The font-size of the list.
+         */
+        "size"?: "S" | "M" | "L" | "XL";
+    }
+    interface AppUnorderedListItem {
+        /**
+          * The path to the custom icon of this list item (optional)
+         */
+        "iconSrc"?: string;
+        /**
+          * The label of this list item (optional)
+         */
+        "label"?: string;
+        /**
+          * The level of this list item
+         */
+        "level"?: number;
+    }
     interface IntrinsicElements {
-        "app-banner": AppBanner;
+        "app-button-list": AppButtonList;
+        "app-button-primary": AppButtonPrimary;
         "app-button-secondary": AppButtonSecondary;
+        "app-checkbox": AppCheckbox;
+        "app-collapsible": AppCollapsible;
+        "app-collapsible-item": AppCollapsibleItem;
+        "app-construction-limit-banner": AppConstructionLimitBanner;
+        "app-construction-limit-banner-item": AppConstructionLimitBannerItem;
+        "app-contact-list": AppContactList;
+        "app-contact-list-item": AppContactListItem;
+        "app-copytext": AppCopytext;
+        "app-download-list": AppDownloadList;
+        "app-download-list-head": AppDownloadListHead;
+        "app-download-list-item": AppDownloadListItem;
+        "app-download-list-item-attribute": AppDownloadListItemAttribute;
+        "app-dropdown": AppDropdown;
+        "app-dropdown-group-heading": AppDropdownGroupHeading;
+        "app-dropdown-list": AppDropdownList;
+        "app-dropdown-option": AppDropdownOption;
+        "app-event-list": AppEventList;
+        "app-event-list-item": AppEventListItem;
+        "app-eye-catcher": AppEyeCatcher;
+        "app-filter-container": AppFilterContainer;
+        "app-filter-container-option": AppFilterContainerOption;
+        "app-form": AppForm;
+        "app-group-site-footer": AppGroupSiteFooter;
+        "app-group-site-footer-contact": AppGroupSiteFooterContact;
+        "app-group-site-footer-nav-link": AppGroupSiteFooterNavLink;
+        "app-group-site-footer-nav-link-group": AppGroupSiteFooterNavLinkGroup;
+        "app-headline-secondary": AppHeadlineSecondary;
+        "app-headline-tertiary": AppHeadlineTertiary;
+        "app-hero-media-text": AppHeroMediaText;
+        "app-hero-media-text-parallax": AppHeroMediaTextParallax;
+        "app-icon-list": AppIconList;
+        "app-icon-list-item": AppIconListItem;
+        "app-iframe": AppIframe;
         "app-image": AppImage;
+        "app-image-grid": AppImageGrid;
+        "app-image-grid-item": AppImageGridItem;
+        "app-image-list": AppImageList;
+        "app-image-list-item": AppImageListItem;
+        "app-input-multiline": AppInputMultiline;
+        "app-input-singleline": AppInputSingleline;
+        "app-link-primary": AppLinkPrimary;
+        "app-media-container": AppMediaContainer;
+        "app-media-text": AppMediaText;
+        "app-media-text-thumbnail": AppMediaTextThumbnail;
+        "app-module-container": AppModuleContainer;
+        "app-module-intro": AppModuleIntro;
+        "app-news-teaser": AppNewsTeaser;
+        "app-news-teaser-list": AppNewsTeaserList;
+        "app-ordered-list": AppOrderedList;
+        "app-ordered-list-item": AppOrderedListItem;
+        "app-pagination": AppPagination;
+        "app-password-input": AppPasswordInput;
+        "app-password-policy-rule": AppPasswordPolicyRule;
+        "app-press-excerpt-list": AppPressExcerptList;
+        "app-press-excerpt-list-item": AppPressExcerptListItem;
+        "app-product-teaser": AppProductTeaser;
+        "app-product-teaser-list": AppProductTeaserList;
+        "app-quote": AppQuote;
+        "app-radiobutton": AppRadiobutton;
         "app-section": AppSection;
+        "app-section-intro": AppSectionIntro;
+        "app-select": AppSelect;
+        "app-select-option": AppSelectOption;
+        "app-select-option-group": AppSelectOptionGroup;
+        "app-simple-filter": AppSimpleFilter;
+        "app-simple-filter-item": AppSimpleFilterItem;
+        "app-tab": AppTab;
+        "app-tab-container": AppTabContainer;
+        "app-tag": AppTag;
+        "app-tag-list": AppTagList;
+        "app-teaser-list": AppTeaserList;
+        "app-teaser-list-item": AppTeaserListItem;
+        "app-teaser-slider": AppTeaserSlider;
+        "app-teaser-slider-slide": AppTeaserSliderSlide;
+        "app-text": AppText;
+        "app-text-content": AppTextContent;
+        "app-text-with-background": AppTextWithBackground;
+        "app-unordered-list": AppUnorderedList;
+        "app-unordered-list-item": AppUnorderedListItem;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "app-banner": LocalJSX.AppBanner & JSXBase.HTMLAttributes<HTMLAppBannerElement>;
+            "app-button-list": LocalJSX.AppButtonList & JSXBase.HTMLAttributes<HTMLAppButtonListElement>;
+            "app-button-primary": LocalJSX.AppButtonPrimary & JSXBase.HTMLAttributes<HTMLAppButtonPrimaryElement>;
             "app-button-secondary": LocalJSX.AppButtonSecondary & JSXBase.HTMLAttributes<HTMLAppButtonSecondaryElement>;
+            /**
+             * Renders a checkbox form control.
+             * The default text font-styles (font-family, font-style, font-size, line-height) can be overriden using SCSS.
+             * The size of the checkbox adapts to the general fontsize.
+             * It is recommended to use the canonical App `fontsize-*` mixins from `fonts.scss`
+             * module whenever overriding the font policies is needed.
+             * The default form-control max-width can be overriden using CSS.
+             * Both the checkbox text and the optional validation | hint texts rendered below the checkbox will wrap according to the max-width policy.
+             */
+            "app-checkbox": LocalJSX.AppCheckbox & JSXBase.HTMLAttributes<HTMLAppCheckboxElement>;
+            "app-collapsible": LocalJSX.AppCollapsible & JSXBase.HTMLAttributes<HTMLAppCollapsibleElement>;
+            "app-collapsible-item": LocalJSX.AppCollapsibleItem & JSXBase.HTMLAttributes<HTMLAppCollapsibleItemElement>;
+            "app-construction-limit-banner": LocalJSX.AppConstructionLimitBanner & JSXBase.HTMLAttributes<HTMLAppConstructionLimitBannerElement>;
+            "app-construction-limit-banner-item": LocalJSX.AppConstructionLimitBannerItem & JSXBase.HTMLAttributes<HTMLAppConstructionLimitBannerItemElement>;
+            "app-contact-list": LocalJSX.AppContactList & JSXBase.HTMLAttributes<HTMLAppContactListElement>;
+            "app-contact-list-item": LocalJSX.AppContactListItem & JSXBase.HTMLAttributes<HTMLAppContactListItemElement>;
+            "app-copytext": LocalJSX.AppCopytext & JSXBase.HTMLAttributes<HTMLAppCopytextElement>;
+            "app-download-list": LocalJSX.AppDownloadList & JSXBase.HTMLAttributes<HTMLAppDownloadListElement>;
+            "app-download-list-head": LocalJSX.AppDownloadListHead & JSXBase.HTMLAttributes<HTMLAppDownloadListHeadElement>;
+            "app-download-list-item": LocalJSX.AppDownloadListItem & JSXBase.HTMLAttributes<HTMLAppDownloadListItemElement>;
+            "app-download-list-item-attribute": LocalJSX.AppDownloadListItemAttribute & JSXBase.HTMLAttributes<HTMLAppDownloadListItemAttributeElement>;
+            /**
+             * Renders a form control dropdown element. The dropdown option list is initially collapsed.
+             * Upon expanding the dropdown an overlay renders the dropdown option list which is positioned relative to the dropdown toggle element.
+             */
+            "app-dropdown": LocalJSX.AppDropdown & JSXBase.HTMLAttributes<HTMLAppDropdownElement>;
+            /**
+             * Renders a dropdown group heading which is meant to be used as slotted content for the clustered flavour of <app-dropdown> element.
+             */
+            "app-dropdown-group-heading": LocalJSX.AppDropdownGroupHeading & JSXBase.HTMLAttributes<HTMLAppDropdownGroupHeadingElement>;
+            /**
+             * Renders a dropdown option list which is not meant to be used as a standalone custom element.
+             * It is used internally by <app-dropdown> and publicly exposed in the collection only for Patternlab showcasing purposes.
+             */
+            "app-dropdown-list": LocalJSX.AppDropdownList & JSXBase.HTMLAttributes<HTMLAppDropdownListElement>;
+            /**
+             * Renders a dropdown option which is meant to be used as slotted content for <app-dropdown> element.
+             */
+            "app-dropdown-option": LocalJSX.AppDropdownOption & JSXBase.HTMLAttributes<HTMLAppDropdownOptionElement>;
+            "app-event-list": LocalJSX.AppEventList & JSXBase.HTMLAttributes<HTMLAppEventListElement>;
+            "app-event-list-item": LocalJSX.AppEventListItem & JSXBase.HTMLAttributes<HTMLAppEventListItemElement>;
+            "app-eye-catcher": LocalJSX.AppEyeCatcher & JSXBase.HTMLAttributes<HTMLAppEyeCatcherElement>;
+            "app-filter-container": LocalJSX.AppFilterContainer & JSXBase.HTMLAttributes<HTMLAppFilterContainerElement>;
+            "app-filter-container-option": LocalJSX.AppFilterContainerOption & JSXBase.HTMLAttributes<HTMLAppFilterContainerOptionElement>;
+            "app-form": LocalJSX.AppForm & JSXBase.HTMLAttributes<HTMLAppFormElement>;
+            "app-group-site-footer": LocalJSX.AppGroupSiteFooter & JSXBase.HTMLAttributes<HTMLAppGroupSiteFooterElement>;
+            "app-group-site-footer-contact": LocalJSX.AppGroupSiteFooterContact & JSXBase.HTMLAttributes<HTMLAppGroupSiteFooterContactElement>;
+            "app-group-site-footer-nav-link": LocalJSX.AppGroupSiteFooterNavLink & JSXBase.HTMLAttributes<HTMLAppGroupSiteFooterNavLinkElement>;
+            "app-group-site-footer-nav-link-group": LocalJSX.AppGroupSiteFooterNavLinkGroup & JSXBase.HTMLAttributes<HTMLAppGroupSiteFooterNavLinkGroupElement>;
+            "app-headline-secondary": LocalJSX.AppHeadlineSecondary & JSXBase.HTMLAttributes<HTMLAppHeadlineSecondaryElement>;
+            "app-headline-tertiary": LocalJSX.AppHeadlineTertiary & JSXBase.HTMLAttributes<HTMLAppHeadlineTertiaryElement>;
+            "app-hero-media-text": LocalJSX.AppHeroMediaText & JSXBase.HTMLAttributes<HTMLAppHeroMediaTextElement>;
+            "app-hero-media-text-parallax": LocalJSX.AppHeroMediaTextParallax & JSXBase.HTMLAttributes<HTMLAppHeroMediaTextParallaxElement>;
+            "app-icon-list": LocalJSX.AppIconList & JSXBase.HTMLAttributes<HTMLAppIconListElement>;
+            "app-icon-list-item": LocalJSX.AppIconListItem & JSXBase.HTMLAttributes<HTMLAppIconListItemElement>;
+            "app-iframe": LocalJSX.AppIframe & JSXBase.HTMLAttributes<HTMLAppIframeElement>;
             "app-image": LocalJSX.AppImage & JSXBase.HTMLAttributes<HTMLAppImageElement>;
+            "app-image-grid": LocalJSX.AppImageGrid & JSXBase.HTMLAttributes<HTMLAppImageGridElement>;
+            "app-image-grid-item": LocalJSX.AppImageGridItem & JSXBase.HTMLAttributes<HTMLAppImageGridItemElement>;
+            "app-image-list": LocalJSX.AppImageList & JSXBase.HTMLAttributes<HTMLAppImageListElement>;
+            "app-image-list-item": LocalJSX.AppImageListItem & JSXBase.HTMLAttributes<HTMLAppImageListItemElement>;
+            "app-input-multiline": LocalJSX.AppInputMultiline & JSXBase.HTMLAttributes<HTMLAppInputMultilineElement>;
+            "app-input-singleline": LocalJSX.AppInputSingleline & JSXBase.HTMLAttributes<HTMLAppInputSinglelineElement>;
+            "app-link-primary": LocalJSX.AppLinkPrimary & JSXBase.HTMLAttributes<HTMLAppLinkPrimaryElement>;
+            "app-media-container": LocalJSX.AppMediaContainer & JSXBase.HTMLAttributes<HTMLAppMediaContainerElement>;
+            "app-media-text": LocalJSX.AppMediaText & JSXBase.HTMLAttributes<HTMLAppMediaTextElement>;
+            "app-media-text-thumbnail": LocalJSX.AppMediaTextThumbnail & JSXBase.HTMLAttributes<HTMLAppMediaTextThumbnailElement>;
+            "app-module-container": LocalJSX.AppModuleContainer & JSXBase.HTMLAttributes<HTMLAppModuleContainerElement>;
+            "app-module-intro": LocalJSX.AppModuleIntro & JSXBase.HTMLAttributes<HTMLAppModuleIntroElement>;
+            "app-news-teaser": LocalJSX.AppNewsTeaser & JSXBase.HTMLAttributes<HTMLAppNewsTeaserElement>;
+            "app-news-teaser-list": LocalJSX.AppNewsTeaserList & JSXBase.HTMLAttributes<HTMLAppNewsTeaserListElement>;
+            "app-ordered-list": LocalJSX.AppOrderedList & JSXBase.HTMLAttributes<HTMLAppOrderedListElement>;
+            "app-ordered-list-item": LocalJSX.AppOrderedListItem & JSXBase.HTMLAttributes<HTMLAppOrderedListItemElement>;
+            "app-pagination": LocalJSX.AppPagination & JSXBase.HTMLAttributes<HTMLAppPaginationElement>;
+            /**
+             * Renders a password input form control element typically used for password-reset | registration flows.
+             * The components wraps an inner <app-input-singleline type="password"> element and renders a warn text
+             * under the input while CAPSLOCK is active.
+             * It also has the posibility to list the password rules under the password input.
+             */
+            "app-password-input": LocalJSX.AppPasswordInput & JSXBase.HTMLAttributes<HTMLAppPasswordInputElement>;
+            /**
+             * Renders a single password policy rule which consists of a status icon on the left and the rule text on the right.
+             * Both the icon and the text is styled to diffentiate between the valid and invalid state of the rule.
+             */
+            "app-password-policy-rule": LocalJSX.AppPasswordPolicyRule & JSXBase.HTMLAttributes<HTMLAppPasswordPolicyRuleElement>;
+            "app-press-excerpt-list": LocalJSX.AppPressExcerptList & JSXBase.HTMLAttributes<HTMLAppPressExcerptListElement>;
+            "app-press-excerpt-list-item": LocalJSX.AppPressExcerptListItem & JSXBase.HTMLAttributes<HTMLAppPressExcerptListItemElement>;
+            "app-product-teaser": LocalJSX.AppProductTeaser & JSXBase.HTMLAttributes<HTMLAppProductTeaserElement>;
+            "app-product-teaser-list": LocalJSX.AppProductTeaserList & JSXBase.HTMLAttributes<HTMLAppProductTeaserListElement>;
+            "app-quote": LocalJSX.AppQuote & JSXBase.HTMLAttributes<HTMLAppQuoteElement>;
+            /**
+             * Renders a radiobutton form control.
+             * The default text font-styles (font-family, font-style, font-size, line-height) can be overriden using SCSS.
+             * It is recommended to use the canonical App `fontsize-*` mixins from `fonts.scss`
+             * module whenever overriding the font policies is needed.
+             * The default form-control max-width can be overriden using CSS.
+             * Both the radiobutton text and the optional validation | hint texts rendered below
+             * the radiobutton will wrap according to the max-width policy
+             */
+            "app-radiobutton": LocalJSX.AppRadiobutton & JSXBase.HTMLAttributes<HTMLAppRadiobuttonElement>;
             "app-section": LocalJSX.AppSection & JSXBase.HTMLAttributes<HTMLAppSectionElement>;
+            "app-section-intro": LocalJSX.AppSectionIntro & JSXBase.HTMLAttributes<HTMLAppSectionIntroElement>;
+            "app-select": LocalJSX.AppSelect & JSXBase.HTMLAttributes<HTMLAppSelectElement>;
+            "app-select-option": LocalJSX.AppSelectOption & JSXBase.HTMLAttributes<HTMLAppSelectOptionElement>;
+            "app-select-option-group": LocalJSX.AppSelectOptionGroup & JSXBase.HTMLAttributes<HTMLAppSelectOptionGroupElement>;
+            "app-simple-filter": LocalJSX.AppSimpleFilter & JSXBase.HTMLAttributes<HTMLAppSimpleFilterElement>;
+            "app-simple-filter-item": LocalJSX.AppSimpleFilterItem & JSXBase.HTMLAttributes<HTMLAppSimpleFilterItemElement>;
+            "app-tab": LocalJSX.AppTab & JSXBase.HTMLAttributes<HTMLAppTabElement>;
+            "app-tab-container": LocalJSX.AppTabContainer & JSXBase.HTMLAttributes<HTMLAppTabContainerElement>;
+            "app-tag": LocalJSX.AppTag & JSXBase.HTMLAttributes<HTMLAppTagElement>;
+            "app-tag-list": LocalJSX.AppTagList & JSXBase.HTMLAttributes<HTMLAppTagListElement>;
+            "app-teaser-list": LocalJSX.AppTeaserList & JSXBase.HTMLAttributes<HTMLAppTeaserListElement>;
+            "app-teaser-list-item": LocalJSX.AppTeaserListItem & JSXBase.HTMLAttributes<HTMLAppTeaserListItemElement>;
+            "app-teaser-slider": LocalJSX.AppTeaserSlider & JSXBase.HTMLAttributes<HTMLAppTeaserSliderElement>;
+            "app-teaser-slider-slide": LocalJSX.AppTeaserSliderSlide & JSXBase.HTMLAttributes<HTMLAppTeaserSliderSlideElement>;
+            "app-text": LocalJSX.AppText & JSXBase.HTMLAttributes<HTMLAppTextElement>;
+            "app-text-content": LocalJSX.AppTextContent & JSXBase.HTMLAttributes<HTMLAppTextContentElement>;
+            "app-text-with-background": LocalJSX.AppTextWithBackground & JSXBase.HTMLAttributes<HTMLAppTextWithBackgroundElement>;
+            "app-unordered-list": LocalJSX.AppUnorderedList & JSXBase.HTMLAttributes<HTMLAppUnorderedListElement>;
+            "app-unordered-list-item": LocalJSX.AppUnorderedListItem & JSXBase.HTMLAttributes<HTMLAppUnorderedListItemElement>;
         }
     }
 }

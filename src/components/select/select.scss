@@ -1,0 +1,67 @@
+:host {
+  display: inline-block;
+  min-width: 100px;
+  height: 25px;
+  outline: none;
+  box-sizing: border-box;
+
+  > div.value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // padding-right: 10px;
+    height: 100%;
+    width: 100%;
+    border: 1px solid $app-grey-05;
+    cursor: pointer;
+    position: relative;
+    border-radius: 5px;
+
+    > .arrow {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      > div {
+        width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        border-top: 7px solid $black;
+      }
+    }
+  }
+
+  > div.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.8);
+
+    &.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    > .options {
+      background: $white;
+      min-width: 230px;
+    }
+  }
+}
+
+:host(:focus) {
+  > div.value {
+    border-color: $app-red;
+  }
+}

@@ -1,0 +1,56 @@
+:host(.SimpleFilter) {
+  * {
+    box-sizing: border-box;
+  }
+
+  .SimpleFilter-wrapper {
+    @include content-holder();
+  }
+
+  ::slotted([slot="headline"]) {
+    margin: 0;
+  }
+
+  .SimpleFilter-filters {
+    position: relative;
+
+    display: block;
+    margin: 0 -20px;
+    padding: 0 0 10px 0;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 10px 0;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 20px;
+      right: 20px;
+
+      display: block;
+      border-bottom: 1px solid $app-grey-07;
+    }
+  }
+
+  .SimpleFilter-filter {
+    padding: 10px 20px;
+  }
+
+  .SimpleFilter-dropdown {
+    width: 100%;
+    margin-top: -2px;
+    margin-bottom: 15px;
+  }
+
+  .SimpleFilter-content {
+    margin-top: 20px;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      margin-top: 30px;
+    }
+  }
+}

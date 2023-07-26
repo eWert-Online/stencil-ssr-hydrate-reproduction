@@ -1,0 +1,389 @@
+$local-spacing-size: 10px;
+$input-height-large: 45px;
+$input-height-small: 30px;
+$has-message-label-top-correction: -2px;
+$label-bottom-border-width: 2px;
+$error-icon-height: 17px;
+$input-with-hint-padding-right: 33px;
+$input-small-with-hint-padding-right: 32px;
+
+:host(.InputSingleline) {
+  display: inline-block;
+  outline: none;
+  background-color: inherit;
+
+  &:host(.size-large) {
+    .InputSingleline-label,
+    .InputSingleline-input,
+    .InputSingleline-errorIcon,
+    .InputSingleline-infoIcon,
+    .InputSingleline-password-eye {
+      @include largeInputSizingPolicy();
+    }
+    .InputSingleline-input {
+      height: $input-height-large;
+    }
+  }
+
+  &:host(.size-small) {
+    .InputSingleline-label,
+    .InputSingleline-input,
+    .InputSingleline-errorIcon,
+    .InputSingleline-infoIcon,
+    .InputSingleline-password-eye {
+      @include smallInputSizingPolicy();
+    }
+    .InputSingleline-input {
+      height: $input-height-small;
+    }
+    .InputSingleline-label {
+      top: calc(50% + 1px);
+    }
+  }
+
+  .InputSingleline-wrapper {
+    position: relative;
+    display: block;
+    margin-top: 7px;
+    background-color: inherit;
+  }
+
+  .InputSingleline-border-gap {
+    position: absolute;
+    top: 0;
+    width: 20px;
+    left: 10px;
+    height: 1px;
+    background-color: inherit;
+    transition: width 150ms ease-out 25ms;
+  }
+
+  .InputSingleline-label {
+    position: absolute;
+    top: 50%;
+    left: $local-spacing-size;
+    z-index: 1;
+    display: block;
+    cursor: text;
+    font-style: italic;
+    color: $app-grey-05;
+    transform: translateY(-50%) translate3d(0, 0, 0);
+    transition: top 150ms ease-out, font-size 150ms ease-out;
+    border-bottom: $label-bottom-border-width solid transparent;
+    pointer-events: none;
+    max-width: calc(100% - 2 * #{$local-spacing-size});
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .InputSingleline-input {
+    @include font-nimbus-sans();
+
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border-style: solid;
+    border-color: $app-grey-05;
+    border-width: 1px;
+    color: $black;
+    border-radius: 5px;
+    background-color: $white;
+    outline: none;
+    padding: 0 $local-spacing-size;
+
+    &:focus {
+      border-color: $app-grey-03;
+      & ~ .InputSingleline-label {
+        @include moveInputLabelUp($app-grey-03);
+      }
+    }
+
+    &:hover {
+      &:not([class*="has-message-"]):not(.is-disabled) {
+        border-color: $app-grey-03;
+        ~ .InputSingleline-label {
+          color: $app-grey-03;
+        }
+      }
+
+      &.has-message-invalid {
+        border-color: $app-red-hover-02;
+        ~ .InputSingleline-label {
+          color: $app-red-hover-02;
+        }
+      }
+      &.has-message-warning {
+        border-color: $app-orange-01;
+        ~ .InputSingleline-label {
+          color: $app-orange-01;
+        }
+      }
+      &.has-message-info {
+        border-color: $app-dark-green-01;
+        ~ .InputSingleline-label {
+          color: $app-dark-green-01;
+        }
+      }
+    }
+
+    &[class*="has-message-"] {
+      &.size-large {
+        padding: 0 $input-with-hint-padding-right 0 12px;
+        & ~ .InputSingleline-label {
+          max-width: calc(100% - #{$local-spacing-size} - #{$input-with-hint-padding-right});
+        }
+      }
+      &.size-small {
+        padding: 0 $input-small-with-hint-padding-right 0 11px;
+        & ~ .InputSingleline-label {
+          max-width: calc(100% - #{$local-spacing-size} - #{$input-small-with-hint-padding-right});
+        }
+      }
+    }
+
+    &.is-password-field {
+      &.size-large {
+        padding: 0 $input-with-hint-padding-right 0 12px;
+        & ~ .InputSingleline-label {
+          max-width: calc(100% - #{$local-spacing-size} - #{$input-with-hint-padding-right});
+        }
+      }
+      &.size-small {
+        padding: 0 $input-small-with-hint-padding-right 0 11px;
+        & ~ .InputSingleline-label {
+          max-width: calc(100% - #{$local-spacing-size} - #{$input-small-with-hint-padding-right});
+        }
+      }
+    }
+
+    &.has-arrows-hidden[type="number"] {
+      -moz-appearance: textfield;
+      appearance: textfield;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        -webkit-appearance: none;
+      }
+    }
+
+    &.has-message-invalid {
+      border-color: $app-red;
+      border-width: 2px;
+      background-color: $app-orange-03;
+
+      &:focus {
+        border-color: $app-red-hover-02;
+        & ~ .InputSingleline-label {
+          @include moveInputLabelUp($app-red-hover-02, $has-message-label-top-correction);
+        }
+      }
+
+      & ~ .InputSingleline-label {
+        color: $app-red;
+      }
+    }
+    &.has-message-warning {
+      border-color: $app-yellow-01;
+      background-color: $app-yellow-03;
+
+      &:focus {
+        border-color: $app-orange-01;
+        & ~ .InputSingleline-label {
+          @include moveInputLabelUp($app-orange-01, $has-message-label-top-correction);
+        }
+      }
+
+      & ~ .InputSingleline-errorIcon {
+        color: $app-orange-01;
+      }
+
+      & ~ .InputSingleline-label {
+        color: $app-grey-04;
+      }
+    }
+
+    &.has-message-info {
+      border-color: $app-green-01;
+      background-color: $app-green-03;
+
+      &:focus {
+        border-color: $app-green-01;
+        & ~ .InputSingleline-label {
+          @include moveInputLabelUp($app-green-01, $has-message-label-top-correction);
+        }
+      }
+
+      & ~ .InputSingleline-infoIcon {
+        color: $app-green-01;
+      }
+
+      & ~ .InputSingleline-label {
+        color: $app-grey-04;
+      }
+    }
+  }
+  .InputSingleline-password-eye {
+    cursor: pointer;
+    color: $app-grey-05;
+  }
+  .InputSingleline-show-password-eye {
+    @include app-icon("eye");
+  }
+
+  .InputSingleline-hide-password-eye {
+    @include app-icon("eye-stroked");
+  }
+
+  .InputSingleline-errorIcon {
+    @include app-icon("warning");
+    color: $app-red;
+  }
+
+  .InputSingleline-infoIcon {
+    @include app-icon("i-circle");
+    color: $app-green-01;
+  }
+
+  .InputSingleline-errorIcon,
+  .InputSingleline-infoIcon,
+  .InputSingleline-password-eye {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: $error-icon-height;
+    width: 20px;
+    text-align: center;
+  }
+
+  .InputSingleline-errorIcon,
+  .InputSingleline-infoIcon {
+    pointer-events: none;
+  }
+
+  .InputSingleline-error,
+  .InputSingleline-hint {
+    display: flex;
+    padding: 0 $local-spacing-size;
+    margin-top: 7px;
+    @include smallInputSizingPolicy();
+    color: $app-grey-05;
+
+    & > span {
+      flex-grow: 1;
+      width: 0;
+    }
+  }
+
+  .InputSingleline-error ~ .InputSingleline-hint {
+    margin-top: 5px;
+  }
+}
+
+:host(.is-disabled) {
+  .InputSingleline-label {
+    color: $app-grey-07;
+    font-style: italic;
+    cursor: not-allowed;
+  }
+
+  .InputSingleline-input {
+    color: $app-grey-07;
+    border-color: $app-grey-07;
+    cursor: not-allowed;
+
+    &:focus {
+      border-color: $app-grey-07;
+    }
+  }
+}
+
+:host(.is-filled) {
+  .InputSingleline-border-gap {
+    transition-property: none;
+  }
+  &:host(:not(.is-disabled):not([class*="has-message-"])) {
+    .InputSingleline-label {
+      @include moveInputLabelUp();
+    }
+  }
+  &:host(.is-disabled:not([class*="has-message-"])) {
+    .InputSingleline-input {
+      color: $app-grey-05;
+    }
+    .InputSingleline-label {
+      @include moveInputLabelUp($app-grey-07);
+    }
+  }
+  &:host(.has-message-warning) {
+    .InputSingleline-label {
+      @include moveInputLabelUp($app-grey-05, $has-message-label-top-correction);
+    }
+  }
+  &:host(.has-message-invalid) {
+    .InputSingleline-label {
+      @include moveInputLabelUp($app-red, $has-message-label-top-correction);
+    }
+  }
+  &:host(.has-message-info) {
+    .InputSingleline-label {
+      @include moveInputLabelUp($app-grey-05, $has-message-label-top-correction);
+    }
+  }
+}
+
+:host(.has-transparent-background) {
+  background-color: $white;
+}
+
+:host(.has-label),
+:host(.is-filled) {
+  &:host(.size-large) {
+    .InputSingleline-errorIcon,
+    .InputSingleline-infoIcon,
+    .InputSingleline-password-eye {
+      right: calc((#{$input-with-hint-padding-right} - #{$error-icon-height}) / 2);
+    }
+    .InputSingleline-infoIcon {
+      right: calc((#{$input-with-hint-padding-right} - #{$error-icon-height}) / 2);
+    }
+  }
+  &:host(.size-small) {
+    .InputSingleline-errorIcon,
+    .InputSingleline-infoIcon,
+    .InputSingleline-password-eye {
+      right: calc((#{$input-small-with-hint-padding-right} - #{$error-icon-height}) / 2);
+    }
+  }
+  .InputSingleline-errorIcon,
+  .InputSingleline-infoIcon,
+  .InputSingleline-password-eye {
+    left: auto;
+  }
+}
+
+:host(.has-message-invalid) {
+  .InputSingleline-error {
+    color: $app-red;
+  }
+  .InputSingleline-border-gap {
+    border-bottom: 2px solid $app-orange-03;
+  }
+}
+
+:host(.has-message-warning) {
+  .InputSingleline-error {
+    color: $app-orange-01;
+  }
+}
+
+:host(.has-message-info) {
+  .InputSingleline-error {
+    color: $app-green-01;
+  }
+}

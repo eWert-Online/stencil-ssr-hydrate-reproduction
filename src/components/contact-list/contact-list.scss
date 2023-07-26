@@ -1,0 +1,49 @@
+:host(.ContactList) {
+    @include content-holder();
+    display: block;
+
+    .ContactList-contacts {
+        @include grid-container();
+        row-gap: 40px;
+
+        ::slotted(*) {
+            @include grid-item(12);
+
+            @media screen and (min-width: $breakpoint-large) {
+                @include grid-item(3);
+            }
+        }
+    }
+}
+
+:host(.ContactList--1) {
+    .ContactList-contacts {
+        ::slotted(*) {
+            @include grid-item(12);
+        }
+    }
+}
+
+:host(.ContactList--2) {
+    .ContactList-contacts {
+        ::slotted(*) {
+            @include grid-item(12);
+
+            @media screen and (min-width: $breakpoint-websiteSmall) {
+                @include grid-item(6);
+            }
+        }
+    }
+}
+
+:host(.ContactList--3) {
+    .ContactList-contacts {
+        ::slotted(*) {
+            @include grid-item(12);
+
+            @media screen and (min-width: $breakpoint-medium) {
+                @include grid-item(4);
+            }
+        }
+    }
+}

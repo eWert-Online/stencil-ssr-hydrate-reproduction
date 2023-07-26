@@ -1,0 +1,40 @@
+:host(.Tab) {
+  display: block;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .Tab-toggle {
+    position: relative;
+
+    display: block;
+    width: 100%;
+    padding: 15px 20px 5px 20px;
+    border: none;
+
+    @include fontsize-xl();
+    text-align: center;
+    color: $black;
+
+    background: none;
+    outline: none;
+    cursor: pointer;
+
+    transition: color 200ms ease-in-out;
+
+    &:hover {
+      color: $app-red;
+    }
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      padding: 20px 15px 10px 15px;
+    }
+  }
+}
+
+:host(.Tab--open) {
+  .Tab-toggle {
+    color: $app-red;
+  }
+}

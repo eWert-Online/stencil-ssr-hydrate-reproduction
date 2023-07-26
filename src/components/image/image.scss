@@ -3,6 +3,7 @@
   max-width: 100%;
   height: auto;
 
+  figure,
   picture,
   img {
     display: block;
@@ -14,7 +15,16 @@
     object-fit: inherit;
     object-position: inherit;
 
-    aspect-ratio: attr(width) / attr(height);
+    aspect-ratio: inherit;
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  figcaption {
+    @include fontsize-m();
+    margin-top: 20px;
   }
 }
 

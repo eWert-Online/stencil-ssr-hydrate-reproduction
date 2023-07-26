@@ -9,15 +9,14 @@ const port = 3333;
 const indexHtml = fs.readFileSync(path.resolve("./views/index.html"), "utf8");
 
 async function serverRenderer(req, res, next) {
-  const renderedHtml = await hydrate.renderToString(indexHtml, {
-    url: req.url,
-    removeBooleanAttributeQuotes: true,
+  const rendered = await hydrate.renderToString(indexHtml, {
     prettyHtml: true,
-    removeUnusedStyles: true,
+    removeHtmlComments: false,
+    maxHydrateCount: Infinity,
   });
   // console.log(renderedHtml);
   console.log(`SERVER RENDERED ${req.url} at ${Date.now()}`);
-  res.send(renderedHtml.html);
+  res.send(rendered.html);
 }
 
 function run() {

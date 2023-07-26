@@ -1,0 +1,202 @@
+:host(.MediaTextThumbnail) {
+  @extend %spacing-definitions;
+  display: block;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .MediaTextThumbnail-intro {
+    @include content-holder();
+    margin-bottom: var(--spacing-l);
+  }
+
+  .MediaTextThumbnail-container {
+    @include content-holder();
+    @include grid-container();
+  }
+
+  .MediaTextThumbnail-media {
+    @include grid-item(12);
+    align-self: flex-start;
+    overflow: hidden;
+
+    .MediaTextThumbnail-original {
+      position: relative;
+      overflow: hidden;
+
+      ::slotted(*) {
+        transition: opacity ease-in-out 500ms;
+        opacity: 1;
+        max-height: 600px;
+        object-fit: contain;
+      }
+
+      ::slotted(.hidden) {
+        position: absolute;
+        top: 0;
+        opacity: 0;
+      }
+    }
+
+    .MediaTextThumbnail-thumbnails {
+      display: flex;
+      flex-flow: wrap;
+      justify-content: flex-start;
+      margin: 0 -10px;
+      @media screen and (min-width: $breakpoint-large) {
+        margin: 0 -15px;
+      }
+
+      > p {
+        flex-basis: 100%;
+        margin: 15px 10px 0;
+        @media screen and (min-width: $breakpoint-websiteSmall) {
+          margin: 20px 10px 0;
+        }
+        @media screen and (min-width: $breakpoint-large) {
+          margin: 20px 15px 0;
+        }
+        @media screen and (min-width: $breakpoint-xlarge) {
+          margin: 30px 15px 0;
+        }
+
+        font-size: 20px;
+        line-height: 1.45;
+        color: $app-grey-05;
+      }
+
+      ::slotted([slot="thumbnail"]) {
+        max-width: 40px;
+        max-height: 40px;
+        margin: 20px 10px 0;
+        transition: all ease-in-out 150ms;
+        overflow: hidden;
+        object-fit: contain;
+        @media screen and (min-width: $breakpoint-websiteSmall) {
+          max-width: 82px;
+          max-height: 82px;
+        }
+        @media screen and (min-width: $breakpoint-medium) {
+          max-width: 54px;
+          max-height: 54px;
+          margin: 20px 10px 0;
+        }
+        @media screen and (min-width: $breakpoint-large) {
+          max-width: 64px;
+          max-height: 64px;
+          margin: 20px 15px 0;
+        }
+        @media screen and (min-width: $breakpoint-xlarge) {
+          max-width: 80px;
+          max-height: 80px;
+        }
+        cursor: pointer;
+      }
+
+      ::slotted(.active) {
+        border: 1px solid $app-red;
+        padding: 5px;
+      }
+    }
+  }
+
+  .MediaTextThumbnail-content {
+    @include grid-item(12);
+    align-self: flex-start;
+  }
+}
+
+:host(.MediaTextThumbnail--s) {
+  .MediaTextThumbnail-media {
+    @include grid-item(12);
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item(4);
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      @include grid-item(4);
+    }
+  }
+
+  .MediaTextThumbnail-content {
+    @include grid-item(12);
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item(8);
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      @include grid-item(8);
+    }
+  }
+}
+
+:host(.MediaTextThumbnail--m) {
+  .MediaTextThumbnail-media {
+    @include grid-item(12);
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item(6);
+    }
+  }
+
+  .MediaTextThumbnail-content {
+    @include grid-item(12);
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item(6);
+    }
+  }
+}
+
+:host(.MediaTextThumbnail--l) {
+  .MediaTextThumbnail-media {
+    @include grid-item(12);
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item(6);
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      @include grid-item(8);
+    }
+  }
+
+  .MediaTextThumbnail-content {
+    @include grid-item(12);
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item(6);
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      @include grid-item(4);
+    }
+  }
+}
+
+:host(.MediaTextThumbnail--left) {
+  @media screen and (min-width: $breakpoint-medium) {
+    .MediaTextThumbnail-media {
+      order: 0;
+    }
+
+    .MediaTextThumbnail-content {
+      order: 1;
+    }
+  }
+}
+
+:host(.MediaTextThumbnail--right) {
+  @media screen and (min-width: $breakpoint-medium) {
+    .MediaTextThumbnail-media {
+      order: 1;
+    }
+
+    .MediaText-content {
+      order: 0;
+    }
+  }
+}

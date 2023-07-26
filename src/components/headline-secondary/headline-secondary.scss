@@ -1,0 +1,21 @@
+:host {
+  display: block;
+  text-align: left;
+
+  color: $black;
+
+  .HeadlineSecondary {
+    @include fontsize-3xl();
+    color: inherit;
+    margin: 0;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include fontsize-4xl();
+    }
+  }
+
+  .HeadlineSecondary-highlight {
+    display: block;
+    color: $app-red;
+  }
+}

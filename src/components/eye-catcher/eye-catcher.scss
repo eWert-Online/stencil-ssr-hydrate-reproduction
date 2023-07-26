@@ -1,0 +1,118 @@
+:host(.EyeCatcher) {
+  @extend %spacing-definitions;
+  @include fontface-regular();
+
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+
+  background-color: $app-red;
+  color: #ffffff;
+
+  @media screen and (min-width: $breakpoint-medium) {
+    width: 228px;
+    height: 228px;
+    border-radius: 50% 20px 50% 50%;
+
+    padding: 35px 20px;
+
+    text-align: center;
+  }
+
+  @media screen and (min-width: $breakpoint-large) {
+    width: 280px;
+    height: 280px;
+    padding: 50px 30px;
+  }
+
+  @media screen and (min-width: $breakpoint-xlarge) {
+    width: 300px;
+    height: 300px;
+    padding: 60px 30px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .EyeCatcher-container {
+    @include content-holder();
+    @include grid-container($row-gap: false);
+    align-items: center;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      display: block;
+      padding: 0;
+    }
+  }
+
+  .EyeCatcher-headline {
+    @include grid-item(12);
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include grid-item(4);
+    }
+
+    ::slotted(*) {
+      @include fontface-regular();
+      @include fontsize-l();
+      margin: 0;
+
+      @media screen and (min-width: $breakpoint-websiteSmall) {
+        @include fontsize-2xl();
+      }
+
+      @media screen and (min-width: $breakpoint-large) {
+        @include fontsize-4xl();
+        margin: 0 0 10px 0;
+      }
+    }
+  }
+
+  .EyeCatcher-text {
+    @include grid-item(12);
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include grid-item(8);
+    }
+
+    ::slotted(*) {
+      @include fontface-regular();
+      @include fontsize-s();
+      margin: 0;
+
+      @media screen and (min-width: $breakpoint-websiteSmall) {
+        @include fontsize-l();
+      }
+    }
+  }
+
+  .EyeCatcher-subtext {
+    @media screen and (min-width: $breakpoint-medium) {
+      margin-top: 10px;
+    }
+
+    ::slotted(*) {
+      @include fontface-regular();
+      @include fontsize-s();
+
+      @media screen and (min-width: $breakpoint-small) {
+        display: none;
+      }
+
+      @media screen and (min-width: $breakpoint-websiteSmall) {
+        display: block;
+      }
+    }
+  }
+}
+
+:host(.EyeCatcher--grey) {
+  background-color: $app-grey-03;
+}
+
+:host(.EyeCatcher--bottom) {
+  @media screen and (min-width: $breakpoint-medium) {
+    border-radius: 50% 50% 20px 50%;
+  }
+}

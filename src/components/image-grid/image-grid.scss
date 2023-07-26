@@ -1,0 +1,323 @@
+:host(.ImageGrid) {
+  @include content-holder();
+
+  display: block;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .ImageGrid-images {
+    display: grid;
+    gap: 30px;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 160px;
+    grid-template-areas: "img1";
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      grid-template-rows: 363px;
+      gap: 20px;
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      grid-template-rows: 444px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      gap: 40px;
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      grid-template-rows: 560px;
+    }
+  }
+
+  ::slotted(app-image-grid-item:nth-of-type(1)) {
+    grid-area: img1;
+  }
+
+  ::slotted(app-image-grid-item:nth-of-type(2)) {
+    grid-area: img2;
+  }
+
+  ::slotted(app-image-grid-item:nth-of-type(3)) {
+    grid-area: img3;
+  }
+
+  ::slotted(app-image-grid-item:nth-of-type(4)) {
+    grid-area: img4;
+  }
+
+  ::slotted(app-image-grid-item:nth-of-type(5)) {
+    grid-area: img5;
+  }
+
+  ::slotted(app-image-grid-item:nth-of-type(6)) {
+    grid-area: img6;
+  }
+
+  ::slotted(app-image-grid-item:nth-of-type(7)) {
+    grid-area: img7;
+  }
+
+  ::slotted(app-image-grid-item:nth-of-type(8)) {
+    grid-area: img8;
+  }
+}
+
+:host(.ImageGrid--2) {
+  .ImageGrid-images {
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas:
+      "img1"
+      "img2";
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      grid-template-rows: 286px;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas: "img1 img2";
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      grid-template-rows: 352px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      grid-template-rows: 440px;
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      grid-template-rows: 560px;
+    }
+  }
+}
+
+:host(.ImageGrid--3) {
+  .ImageGrid-images {
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas:
+      "img1"
+      "img2"
+      "img3";
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 133px 133px;
+      grid-template-areas:
+        "img1 img2"
+        "img1 img3";
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      grid-template-rows: 166px 166px;
+      grid-template-areas:
+        "img1 img2"
+        "img1 img3";
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      grid-template-rows: 200px 200px;
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      grid-template-rows: 260px 260px;
+    }
+  }
+}
+
+:host(.ImageGrid--4) {
+  .ImageGrid-images {
+    grid-template-rows: repeat(4, auto);
+    grid-template-areas:
+      "img1"
+      "img2"
+      "img3"
+      "img4";
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 133px 133px 133px;
+      grid-template-areas:
+        "img1 img2"
+        "img1 img4"
+        "img3 img4";
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      grid-template-rows: 166px 166px 166px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 200px 200px;
+      grid-template-areas:
+        "img1 img2 img3"
+        "img1 img4 img4";
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      grid-template-rows: 260px 260px;
+    }
+  }
+}
+
+:host(.ImageGrid--5) {
+  .ImageGrid-images {
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas:
+      "img1"
+      "img2"
+      "img3"
+      "img4"
+      "img5";
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      grid-template-rows: 133px 133px 133px;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "img1 img2"
+        "img1 img3"
+        "img4 img5";
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      grid-template-rows: 166px 166px 166px;
+      grid-template-areas:
+        "img1 img2"
+        "img1 img3"
+        "img4 img5";
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      grid-template-rows: 200px 200px;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-areas:
+        "img1 img2 img3"
+        "img1 img4 img5";
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      grid-template-rows: 260px 260px;
+    }
+  }
+}
+
+:host(.ImageGrid--6) {
+  .ImageGrid-images {
+    grid-template-rows: repeat(6, auto);
+    grid-template-areas:
+      "img1"
+      "img2"
+      "img3"
+      "img4"
+      "img5"
+      "img6";
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      grid-template-rows: 133px 133px 133px;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "img1 img2"
+        "img3 img4"
+        "img5 img6";
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      grid-template-rows: 166px 166px 166px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      grid-template-rows: 200px 200px;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-areas:
+        "img1 img2 img3"
+        "img4 img5 img6";
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      grid-template-rows: 260px 260px;
+    }
+  }
+}
+
+:host(.ImageGrid--7) {
+  .ImageGrid-images {
+    grid-template-rows: repeat(7, auto);
+    grid-template-areas:
+      "img1"
+      "img2"
+      "img3"
+      "img4"
+      "img5"
+      "img6"
+      "img7";
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      grid-template-rows: 133px 133px 133px 133px;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "img1 img2"
+        "img1 img3"
+        "img4 img5"
+        "img6 img7";
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      grid-template-rows: 166px 166px 166px 166px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      grid-template-rows: 200px 200px;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-areas:
+        "img1 img1 img2 img3"
+        "img4 img5 img6 img7";
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      grid-template-rows: 260px 260px;
+    }
+  }
+}
+
+:host(.ImageGrid--8) {
+  .ImageGrid-images {
+    grid-template-rows: repeat(8, auto);
+    grid-template-areas:
+      "img1"
+      "img2"
+      "img3"
+      "img4"
+      "img5"
+      "img6"
+      "img7"
+      "img8";
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      grid-template-rows: 133px 133px 133px 133px;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "img1 img2"
+        "img3 img4"
+        "img5 img6"
+        "img7 img8";
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      grid-template-rows: 166px 166px 166px 166px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      grid-template-rows: 200px 200px;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-areas:
+        "img1 img2 img3 img4"
+        "img5 img6 img7 img8";
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      grid-template-rows: 260px 260px;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+:host(.MediaContainer) {
+    @extend %spacing-definitions;
+    @include content-holder();
+
+    display: block;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .MediaContainer-media {
+        display: block;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .MediaContainer-caption {
+        display: block;
+        @include fontsize-s();
+    }
+}

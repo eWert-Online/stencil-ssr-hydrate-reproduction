@@ -1,0 +1,12 @@
+:host(.ModuleContainer) {
+    @extend %spacing-definitions;
+
+    display: block;
+
+    ::slotted(*) {
+        margin-bottom: var(--spacing-l);
+    }
+    ::slotted(*:last-child) {
+        margin-bottom: 0;
+    }
+}

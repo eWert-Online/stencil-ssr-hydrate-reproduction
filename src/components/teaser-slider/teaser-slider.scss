@@ -1,0 +1,134 @@
+@import "../../../node_modules/swiper/swiper.scss";
+@import "../../../node_modules/swiper/components/pagination/pagination.scss";
+
+:host(.TeaserSlider) {
+  @include content-holder();
+  @extend %spacing-definitions;
+
+  display: block;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .TeaserSlider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    margin-bottom: var(--spacing-sm);
+
+    @media screen and (min-width: $breakpoint-large) {
+      margin-bottom: 0;
+    }
+  }
+
+  .TeaserSlider-slides {
+    flex: 1;
+  }
+
+  .TeaserSlider-filter {
+    margin-bottom: 30px;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      margin-bottom: 40px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      margin-bottom: 60px;
+    }
+  }
+
+  .TeaserSlider-button {
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 50px;
+    height: 50px;
+    border: 1px solid $app-grey-05;
+    border-radius: 5px;
+
+    text-align: center;
+    font-size: 0;
+
+    color: $app-grey-03;
+    background-color: $white;
+    cursor: pointer;
+    transition: color 200ms ease-in-out, border-color 200ms ease-in-out;
+
+    @media screen and (min-width: $breakpoint-large) {
+      display: flex;
+    }
+
+    &.swiper-button-disabled {
+      cursor: not-allowed;
+      border-color: $app-grey-07;
+      color: $app-grey-07;
+    }
+
+    &:hover:not(.swiper-button-disabled) {
+      color: $app-red;
+      border-color: $app-red;
+    }
+
+    &::before {
+      font-size: 12px;
+    }
+  }
+
+  .TeaserSlider-button--prev {
+    @include app-icon("arrow-left");
+    margin-right: 30px;
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      margin-right: 50px;
+    }
+  }
+
+  .TeaserSlider-button--next {
+    @include app-icon("arrow-right");
+    margin-left: 30px;
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      margin-left: 50px;
+    }
+  }
+
+  .TeaserSlider-pagination {
+    position: relative;
+    bottom: 0;
+    left: 50%;
+
+    margin-top: 20px;
+    @media screen and (min-width: $breakpoint-medium) {
+      margin-top: 30px;
+    }
+
+    display: block;
+    transform: translateX(-50%);
+
+    .swiper-pagination-bullet {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin: 0 2.5px;
+
+      border: 1px solid $app-grey-04;
+      border-radius: 50%;
+      background-color: $white;
+      opacity: 1;
+
+      transition: 200ms transform, 200ms left;
+    }
+
+    .swiper-pagination-bullet-active {
+      border-color: $app-red;
+      background-color: $app-red;
+    }
+  }
+
+  .TeaserSlider-pagination.swiper-pagination-bullets-dynamic {
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,123 @@
+:host(.DownloadListItem) {
+  .DownloadListItem-li {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 30px 15px 25px;
+    @media screen and (min-width: $breakpoint-medium) {
+      flex-wrap: nowrap;
+      min-height: 42px;
+      padding: 18px 15px 13px;
+    }
+    align-items: center;
+    border-bottom: 1px solid $app-grey-05;
+
+    ::slotted(app-download-list-item-attribute) {
+      display: flex;
+      flex-flow: row nowrap;
+      flex-grow: 1;
+      flex-basis: 100%;
+      order: 2;
+
+      margin: 0 85px 15px 35px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      @media screen and (min-width: $breakpoint-medium) {
+        order: 0;
+        flex-basis: 0;
+
+        justify-content: center;
+        text-align: center;
+        color: $app-grey-05;
+
+        margin: 0 20px;
+      }
+    }
+
+    .DownloadListItem-name {
+      display: flex;
+      flex-grow: 2;
+      flex-basis: 0;
+      margin: 0 20px 25px 0;
+
+      order: 1;
+      @media screen and (min-width: $breakpoint-medium) {
+        order: 0;
+        margin-bottom: 0;
+      }
+
+      .LinkPrimary-icon {
+        font-size: 30px;
+      }
+
+      .DownloadListItem-link {
+        @include fontsize-m();
+        display: inline-flex;
+        align-items: flex-start;
+        text-align: left;
+        text-decoration: none;
+
+        color: $black;
+        cursor: pointer;
+
+        transition: color 300ms ease-in-out;
+
+        &:hover {
+          color: $app-red;
+        }
+
+        @include app-icon("documents");
+        &::before {
+          font-size: 30px;
+          margin-right: 10px;
+          color: $app-red;
+        }
+      }
+    }
+
+    .DownloadListItem-action {
+      display: flex;
+      min-width: 65px;
+      flex-basis: 0;
+      justify-content: center;
+      margin: 0 0 25px 15px;
+      font-size: 20px;
+
+      order: 1;
+      @media screen and (min-width: $breakpoint-medium) {
+        order: 0;
+        margin-bottom: 0;
+      }
+
+      .DownloadListItem-download {
+        margin-right: 15px;
+      }
+    }
+  }
+
+  .DownloadListItem-li:nth-last-of-type(0) {
+    margin-bottom: 0;
+  }
+}
+
+:host(.DownloadListItem--without-head) {
+  .DownloadListItem-li {
+    padding: 15px 15px 10px;
+    border-bottom: 0 none;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      padding: 15px 15px 10px 0;
+    }
+
+    .DownloadListItem-action,
+    .DownloadListItem-name {
+      margin-bottom: 0;
+    }
+
+    .DownloadListItem-action {
+      margin-right: 15px;
+    }
+  }
+}

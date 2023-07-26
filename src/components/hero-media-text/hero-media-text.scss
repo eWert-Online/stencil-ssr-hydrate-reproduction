@@ -1,0 +1,159 @@
+:host(.HeroMediaText) {
+  display: block;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .HeroMediaText-intro {
+    @include content-holder();
+  }
+
+  .HeroMediaText-wrapper {
+    position: relative;
+
+    ::slotted(app-headline-primary),
+    ::slotted(app-headline-secondary),
+    ::slotted(app-headline-tertiary),
+    ::slotted(app-headline-quaternary) {
+      margin-bottom: 20px;
+
+      @media screen and (min-width: $breakpoint-websiteSmall) {
+        margin-bottom: 15px;
+      }
+
+      @media screen and (min-width: $breakpoint-medium) {
+        margin-bottom: 20px;
+      }
+
+      @media screen and (min-width: $breakpoint-xlarge) {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .HeroMediaText-background {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: block;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+  }
+
+  .HeroMediaText-container {
+    @include content-holder();
+    @include grid-container($row-gap: false);
+
+    position: relative;
+    z-index: 1;
+
+    margin-top: 100px;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      margin-top: 130px;
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      margin-top: 0;
+    }
+  }
+
+  .HeroMediaText-image {
+    @include grid-item($span: 10, $start: 1);
+    align-self: flex-start;
+    margin-top: -100px;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include grid-item($span: 8, $start: 2);
+      margin-top: -130px;
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item($span: 6);
+      margin-top: 0;
+    }
+  }
+
+  .HeroMediaText-content {
+    @include grid-item(12);
+    align-self: flex-start;
+    padding: 20px 0;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      padding: 40px 0;
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item(6);
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      padding: 60px 0;
+    }
+  }
+}
+
+:host(.HeroMediaText--left) {
+  @media screen and (min-width: $breakpoint-medium) {
+    .HeroMediaText-image {
+      order: 0;
+    }
+
+    .HeroMediaText-content {
+      order: 1;
+    }
+  }
+}
+
+:host(.HeroMediaText--right) {
+  @media screen and (min-width: $breakpoint-medium) {
+    .HeroMediaText-image {
+      order: 1;
+    }
+
+    .HeroMediaText-content {
+      order: 0;
+    }
+  }
+}
+
+:host(.HeroMediaText--light) {
+  .HeroMediaText-wrapper {
+    background: $app-grey-08;
+  }
+}
+
+:host(.HeroMediaText--dark) {
+  .HeroMediaText-wrapper {
+    background: $app-grey-03;
+
+    ::slotted(app-headline-primary),
+    ::slotted(app-headline-secondary),
+    ::slotted(app-headline-tertiary),
+    ::slotted(app-headline-quaternary) {
+      color: $white;
+    }
+  }
+}
+
+:host(.HeroMediaText--imagePadding) {
+  .HeroMediaText-image {
+    @media screen and (min-width: $breakpoint-medium) {
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      margin-top: 60px;
+      margin-bottom: 60px;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+:host {
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: 0.07px;
+  height: 20px;
+  padding: 5px 0 3px 30px;
+  color: $app-grey-03;
+  box-sizing: border-box;
+  @include font-nimbus-sans();
+
+  @media screen and (min-width: $breakpoint-websiteSmall) {
+    padding-left: 10px;
+  }
+}

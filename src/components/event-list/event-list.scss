@@ -1,0 +1,23 @@
+:host(.EventList) {
+    @extend %spacing-definitions;
+    @include content-holder();
+    display: block;
+
+    .EventList-teasers {
+        @include grid-container();
+
+        row-gap: 30px;
+
+        @media screen and (min-width: $breakpoint-xlarge) {
+            row-gap: 40px;
+        }
+
+        ::slotted(*) {
+            @include grid-item(12);
+
+            @media screen and (min-width: $breakpoint-large) {
+                @include grid-item(6);
+            }
+        }
+    }
+}

@@ -1,0 +1,44 @@
+:host(.UnorderedList) {
+  display: block;
+  @include fontsize-m();
+  color: $black;
+  text-align: left;
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  ::slotted(app-unordered-list-item) {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  ::slotted(app-unordered-list-item:nth-last-of-type(1)) {
+    margin-bottom: 0;
+  }
+}
+
+:host(.UnorderedList:not(:last-child)) {
+  margin-bottom: 15px;
+}
+
+:host(.UnorderedList--s) {
+  @include fontsize-s();
+
+  ::slotted(app-unordered-list-item) {
+    margin-bottom: 15px;
+  }
+}
+
+:host(.UnorderedList--l) {
+  @include fontsize-l();
+}
+
+:host(.UnorderedList--xl) {
+  @include fontsize-xl();
+}
+
+:host(.UnorderedList--inverted) {
+  color: $white;
+}

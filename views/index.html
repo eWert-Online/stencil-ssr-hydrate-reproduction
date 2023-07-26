@@ -6,42 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
 
-    <link rel="icon" type="image/x-icon" href="/assets/icon/favicon.ico" />
-
     <link rel="stylesheet" href="/public/dist/ssr-repro-app/ssr-repro-app.css" media="all" />
-    <script type="module" src="/public/dist/ssr-repro-app/ssr-repro-app.esm.js"></script>
+
+    <!-- <script type="module" crossorigin="use-credentials" src="/dist/warema-ui/warema-ui.esm.js?1619181468663"></script> -->
+    <script src="/public/dist/ssr-repro-app/ssr-repro-app.js"></script>
   </head>
   <body>
-    <app-section>
-      <app-banner
-        image-alignment="left"
-        headline-tag="h3"
-        headline-text="When rendering inside app-section, it doesn't re-hydrate correctly"
-        link-text="Habitasse congue"
-        link-href="#0"
-      >
-        <app-image
-          slot="image"
-          background="true"
-          alt="lorem ipsum dolor sit amet"
-          img-src="/assets/images/dummy-images/banner-xlarge.png"
-        ></app-image>
-      </app-banner>
-    </app-section>
-
-    <app-banner
-      image-alignment="left"
-      headline-tag="h3"
-      headline-text="When the banner is used on its own, everything works as expected"
-      link-text="Some link!"
-      link-href="#0"
-    >
-      <app-image
-        slot="image"
-        background="true"
-        alt="lorem ipsum dolor sit amet"
-        img-src="/assets/images/dummy-images/banner-xlarge.png"
-      ></app-image>
-    </app-banner>
+    <main>
+      <app-section>
+        <app-section-intro slot="intro">
+          <app-headline-secondary
+            id="tag-2"
+            tag="h2"
+            text="H2 - Lorem ipsum dolor sit amet, consetetur."
+          ></app-headline-secondary>
+          <app-copytext size="XL">
+            <p
+              >Copy XL - Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+              <b>tempor invidunt ut</b> labore et dolore magna aliquyam erat, sed diam voluptua.</p
+            >
+          </app-copytext>
+        </app-section-intro>
+        <app-contact-list>
+          <app-module-intro
+            slot="intro"
+            highlight="true"
+            headline-tag="h3"
+            headline-text="H3 / 3XL - Einzelner Kontakt lorem ipsum dolor sit amet"
+          >
+          </app-module-intro>
+          <app-contact-list-item
+            subject="Fachbereich lorem ipsum dolor (Copy M optional)"
+            name="Margarete Mustermann (Headline XL) lorem ipsum"
+            phone="+49 9391 20-3919"
+            email="bWFyZ2FyZXRlLm11c3Rlcm1hbm5Ad2FyZW1hLmRl"
+            email-href="mailto:bWFyZ2FyZXRlLm11c3Rlcm1hbm5Ad2FyZW1hLmRlP3N1YmplY3Q9VGVzdA&#x3D;&#x3D;"
+            image-alt="lorem ipsum dolor sit amet"
+            image-xsmall="/assets/images/dummy-images/contact-xsmall.png"
+            image-xsmall-2x="/assets/images/dummy-images/contact-xsmall@2x.png"
+            image-small="/assets/images/dummy-images/contact-small.png"
+            image-small-2x="/assets/images/dummy-images/contact-small@2x.png"
+            image-medium="/assets/images/dummy-images/contact-medium.png"
+            image-medium-2x="/assets/images/dummy-images/contact-medium@2x.png"
+            image-large="/assets/images/dummy-images/contact-large.png"
+            image-large-2x="/assets/images/dummy-images/contact-large@2x.png"
+            image-xlarge="/assets/images/dummy-images/contact-xlarge.png"
+            image-xlarge-2x="/assets/images/dummy-images/contact-xlarge@2x.png"
+          >
+            <b>Teaser Copy S</b> optionaler Text zur Ansprache des <a href="/page-1.html">Page 1</a> zu welchen Themen
+            die <em>hier abgebildete Person</em> der direkte Ansprechpartner ist.
+          </app-contact-list-item>
+        </app-contact-list>
+      </app-section>
+    </main>
   </body>
 </html>

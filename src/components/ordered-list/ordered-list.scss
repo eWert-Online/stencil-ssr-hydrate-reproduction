@@ -1,0 +1,36 @@
+:host(.OrderedList) {
+  @include fontsize-m();
+  color: $black;
+  text-align: left;
+
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: ol;
+  }
+
+  ::slotted(app-ordered-list-item) {
+    margin-bottom: 20px;
+  }
+
+  ::slotted(app-ordered-list-item:nth-last-of-type(0)) {
+    margin-bottom: 0;
+  }
+
+  ::slotted(app-ordered-list-item:nth-last-of-type(1)) {
+    margin-bottom: 0;
+  }
+}
+
+:host(.OrderedList--s) {
+  @include fontsize-s();
+}
+
+:host(.OrderedList--l) {
+  @include fontsize-l();
+}
+
+:host(.OrderedList--xl) {
+  @include fontsize-xl();
+}

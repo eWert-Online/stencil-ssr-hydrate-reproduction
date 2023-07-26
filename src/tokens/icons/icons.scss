@@ -1,0 +1,200 @@
+@font-face {
+  font-family: "app-icon";
+  src: url("../../fonts/app-iconfont/app-icon.woff2?5a8758e57ca3c3de067cb1cb2e8ac5a4") format("woff2"),
+    url("../../fonts/app-iconfont/app-icon.woff?5a8758e57ca3c3de067cb1cb2e8ac5a4") format("woff");
+  font-display: swap;
+}
+
+@mixin app-icon-styles {
+  font-family: "app-icon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &::before {
+    display: block;
+  }
+}
+
+%app-icon {
+  @include app-icon-styles;
+}
+
+$app-icon-map: (
+  "arrow-down": "\f101",
+  "arrow-left": "\f102",
+  "arrow-right": "\f103",
+  "arrow-up": "\f104",
+  "bars": "\f105",
+  "checkmark-circle": "\f106",
+  "checkmark-square": "\f107",
+  "checkmark": "\f108",
+  "configurator": "\f109",
+  "cookie-small": "\f10a",
+  "documents": "\f10b",
+  "download-small": "\f10c",
+  "download": "\f10d",
+  "envelope": "\f10e",
+  "eye-stroked": "\f10f",
+  "eye": "\f110",
+  "filter": "\f111",
+  "globe": "\f112",
+  "hand": "\f113",
+  "home": "\f114",
+  "i-circle": "\f115",
+  "indeterminate": "\f116",
+  "long-arrow-up": "\f117",
+  "pdf": "\f118",
+  "pencil": "\f119",
+  "pin": "\f11a",
+  "play-circle": "\f11b",
+  "play": "\f11c",
+  "plus-circle": "\f11d",
+  "quote": "\f11e",
+  "search": "\f11f",
+  "support": "\f120",
+  "trash": "\f121",
+  "user": "\f122",
+  "warning": "\f123",
+  "word": "\f124",
+  "x-circle": "\f125",
+  "x": "\f126",
+  "xml": "\f127",
+  "zip": "\f128",
+);
+
+@mixin app-icon($filename, $insert: before, $extend: true) {
+  &::#{$insert} {
+    @if $extend {
+      @extend %app-icon;
+    } @else {
+      @include app-icon-styles;
+    }
+    content: map-get($app-icon-map, $filename);
+  }
+}
+
+.app-icon--arrow-down {
+  @include app-icon("arrow-down");
+}
+.app-icon--arrow-left {
+  @include app-icon("arrow-left");
+}
+.app-icon--arrow-right {
+  @include app-icon("arrow-right");
+}
+.app-icon--arrow-up {
+  @include app-icon("arrow-up");
+}
+.app-icon--bars {
+  @include app-icon("bars");
+}
+.app-icon--checkmark-circle {
+  @include app-icon("checkmark-circle");
+}
+.app-icon--checkmark-square {
+  @include app-icon("checkmark-square");
+}
+.app-icon--checkmark {
+  @include app-icon("checkmark");
+}
+.app-icon--configurator {
+  @include app-icon("configurator");
+}
+.app-icon--cookie-small {
+  @include app-icon("cookie-small");
+}
+.app-icon--documents {
+  @include app-icon("documents");
+}
+.app-icon--download-small {
+  @include app-icon("download-small");
+}
+.app-icon--download {
+  @include app-icon("download");
+}
+.app-icon--envelope {
+  @include app-icon("envelope");
+}
+.app-icon--eye-stroked {
+  @include app-icon("eye-stroked");
+}
+.app-icon--eye {
+  @include app-icon("eye");
+}
+.app-icon--filter {
+  @include app-icon("filter");
+}
+.app-icon--globe {
+  @include app-icon("globe");
+}
+.app-icon--hand {
+  @include app-icon("hand");
+}
+.app-icon--home {
+  @include app-icon("home");
+}
+.app-icon--i-circle {
+  @include app-icon("i-circle");
+}
+.app-icon--indeterminate {
+  @include app-icon("indeterminate");
+}
+.app-icon--long-arrow-up {
+  @include app-icon("long-arrow-up");
+}
+.app-icon--pdf {
+  @include app-icon("pdf");
+}
+.app-icon--pencil {
+  @include app-icon("pencil");
+}
+.app-icon--pin {
+  @include app-icon("pin");
+}
+.app-icon--play-circle {
+  @include app-icon("play-circle");
+}
+.app-icon--play {
+  @include app-icon("play");
+}
+.app-icon--plus-circle {
+  @include app-icon("plus-circle");
+}
+.app-icon--quote {
+  @include app-icon("quote");
+}
+.app-icon--search {
+  @include app-icon("search");
+}
+.app-icon--support {
+  @include app-icon("support");
+}
+.app-icon--trash {
+  @include app-icon("trash");
+}
+.app-icon--user {
+  @include app-icon("user");
+}
+.app-icon--warning {
+  @include app-icon("warning");
+}
+.app-icon--word {
+  @include app-icon("word");
+}
+.app-icon--x-circle {
+  @include app-icon("x-circle");
+}
+.app-icon--x {
+  @include app-icon("x");
+}
+.app-icon--xml {
+  @include app-icon("xml");
+}
+.app-icon--zip {
+  @include app-icon("zip");
+}

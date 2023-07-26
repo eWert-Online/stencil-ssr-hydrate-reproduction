@@ -1,0 +1,237 @@
+:host(.ImageGridItem) {
+  position: relative;
+  overflow: hidden;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .ImageGridItem-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    row-gap: 15px;
+  }
+
+  .ImageGridItem-imageWrapper {
+    display: block;
+    height: 160px;
+    color: $black;
+    text-decoration: none;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: unset;
+    }
+
+    ::slotted(app-image) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      height: 160px;
+
+      background-position: center;
+      background-size: cover;
+      transition: transform 300ms;
+
+      @media screen and (min-width: $breakpoint-websiteSmall) {
+        height: unset;
+      }
+    }
+  }
+
+  .ImageGridItem-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 5px;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      z-index: 2;
+      row-gap: 0;
+
+      width: 180px;
+      height: 112px;
+      padding: 10px;
+
+      background-color: rgba($white, 0.85);
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      height: 146px;
+      row-gap: 5px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      width: unset;
+      right: 10px;
+      height: 95px;
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      height: 120px;
+      padding: 17px;
+    }
+  }
+
+  .ImageGridItem-headline,
+  .ImageGridItem-text,
+  .ImageGridItem-link {
+    @include fontsize-m();
+    margin: 0;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include fontsize-s();
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      @include fontsize-m();
+    }
+  }
+
+  .ImageGridItem-headline {
+    color: $app-red;
+    margin-bottom: 5px;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      margin-bottom: 0;
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      margin-bottom: 5px;
+    }
+  }
+
+  .ImageGridItem-link {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    color: $black;
+    width: 100%;
+
+    .ImageGridItem-linkText {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .ImageGridItem-linkIcon {
+      color: $app-red;
+      font-size: 9px;
+    }
+  }
+
+  .ImageGridItem-textWrapper {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
+  }
+}
+
+:host(.ImageGridItem--medium) {
+  .ImageGridItem-overlay {
+    width: 180px;
+    height: 180px;
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      width: 240px;
+      height: 240px;
+    }
+  }
+}
+
+:host(.ImageGridItem--large) {
+  .ImageGridItem-overlay {
+    width: 250px;
+    height: unset;
+    min-height: 220px;
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      min-height: 240px;
+      width: 280px;
+    }
+  }
+
+  .ImageGridItem-headline {
+    @include fontsize-xl;
+  }
+
+  .ImageGridItem-text,
+  .ImageGridItem-link {
+    @include fontsize-m;
+  }
+}
+
+:host(.ImageGridItem--medium),
+:host(.ImageGridItem--large) {
+  .ImageGridItem-textWrapper {
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+  }
+}
+
+:host(.ImageGridItem--linked:hover) {
+  .ImageGridItem-link .ImageGridItem-linkText {
+    color: $app-red;
+  }
+
+  .ImageGridItem-imageWrapper ::slotted(app-image) {
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      transform: scale(1.05, 1.05);
+    }
+  }
+}
+
+:host(:not(.ImageGridItem--linked)) {
+  .ImageGridItem-textWrapper {
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      -webkit-line-clamp: 4;
+      line-clamp: 4;
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      -webkit-line-clamp: 5;
+      line-clamp: 5;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+    }
+  }
+}
+
+:host(.ImageGridItem--medium:not(.ImageGridItem--linked)),
+:host(.ImageGridItem--large:not(.ImageGridItem--linked)) {
+  .ImageGridItem-textWrapper {
+    -webkit-line-clamp: 7;
+    line-clamp: 7;
+  }
+}

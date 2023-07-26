@@ -1,0 +1,365 @@
+$local-spacing-size: 10px;
+$label-up-height: $local-spacing-size * 2;
+$primary-error-color: $app-red;
+$secondary-error-color: $app-orange-03;
+$primary-warning-color: $app-yellow-01;
+$secondary-warning-color: $app-yellow-03;
+$tertiary-warning-color: $app-orange-01;
+$primary-info-color: $app-green-01;
+$secondary-info-color: $app-green-03;
+$tertiary-info-color: $app-green-01;
+$disabled-color: $app-grey-07;
+$label-bottom-border-width: 2px;
+$error-icon-height: 17px;
+$input-with-hint-padding-right: 47px;
+
+@mixin validation-input-multiline-style(
+  $primary-color,
+  $secondary-color,
+  $tertiary-color,
+  $error-icon-color,
+  $active-color
+) {
+  .InputMultiline-input {
+    padding-right: $input-with-hint-padding-right;
+    border-style: solid;
+    border-color: $primary-color;
+    background-color: $secondary-color;
+
+    &:focus {
+      border-color: $active-color;
+      & ~ .InputMultiline-label {
+        color: $active-color;
+      }
+    }
+  }
+
+  .InputMultiline-error {
+    color: $tertiary-color;
+    & ~ .InputMultiline-hint {
+      margin-top: 5px;
+    }
+  }
+
+  .InputMultiline-label {
+    max-width: calc(100% - #{$local-spacing-size} - #{$input-with-hint-padding-right});
+  }
+
+  .InputMultiline-errorIcon,
+  .InputMultiline-infoIcon {
+    color: $error-icon-color;
+  }
+}
+
+@mixin validation-input-multiline-state(
+  $primary-color,
+  $secondary-color,
+  $tertiary-color,
+  $error-icon-color,
+  $active-color
+) {
+  @include validation-input-multiline-style(
+    $primary-color,
+    $secondary-color,
+    $tertiary-color,
+    $error-icon-color,
+    $active-color
+  );
+  .InputMultiline-input {
+    border-width: 1px;
+  }
+}
+
+@mixin validation-input-multiline-error-state(
+  $primary-color,
+  $secondary-color,
+  $tertiary-color,
+  $error-icon-color,
+  $active-color
+) {
+  @include validation-input-multiline-style(
+    $primary-color,
+    $secondary-color,
+    $tertiary-color,
+    $error-icon-color,
+    $active-color
+  );
+  .InputMultiline-input {
+    border-width: 2px;
+  }
+  .InputMultiline-border-gap {
+    border-bottom: 2px solid $app-orange-03;
+  }
+}
+
+:host(.InputMultiline) {
+  display: inline-block;
+  background-color: inherit;
+  outline: none;
+  @include app-scrollbar;
+
+  .InputMultiline-outer-wrapper {
+    background-color: inherit;
+    height: 100%;
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .InputMultiline-wrapper {
+    position: relative;
+    display: block;
+    margin-top: 7px;
+    height: 100%;
+    width: 100%;
+    background-color: inherit;
+  }
+
+  .InputMultiline-border-gap {
+    position: absolute;
+    top: 0;
+    width: 20px;
+    left: 10px;
+    height: 1px;
+    background-color: inherit;
+    transition: width 150ms ease-out 25ms;
+
+    @-moz-document url-prefix() {
+      height: 2px;
+    }
+  }
+
+  .InputMultiline-label {
+    @include largeInputSizingPolicy();
+
+    position: absolute;
+    top: calc(#{$local-spacing-size} + 5px);
+    left: $local-spacing-size;
+    z-index: 1;
+    display: block;
+    font-style: italic;
+    color: $app-grey-05;
+    border-bottom: $label-bottom-border-width solid transparent;
+    transition: top 150ms ease-out, font-size 150ms ease-out;
+    transform: translateY(-50%) translate3d(0, 0, 0);
+    pointer-events: none;
+    max-width: calc(100% - 2 * #{$local-spacing-size});
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .InputMultiline-input {
+    @include font-nimbus-sans();
+    @include largeInputSizingPolicy();
+
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: $local-spacing-size;
+    border: 1px solid $app-grey-05;
+    color: $black;
+    border-radius: 5px;
+    background-color: $white;
+    outline: none;
+    resize: none;
+    min-height: 70px;
+
+    &:focus {
+      border-color: $app-grey-03;
+
+      & ~ .InputMultiline-label {
+        @include moveInputLabelUp();
+      }
+    }
+
+    &:hover {
+      &:not([class*="has-message-"]):not(.is-disabled) {
+        border-color: $app-grey-03;
+        ~ .InputMultiline-label {
+          color: $app-grey-03;
+        }
+      }
+
+      &.has-message-invalid {
+        border-color: $app-red-hover-02;
+        ~ .InputMultiline-label {
+          color: $app-red-hover-02;
+        }
+      }
+      &.has-message-warning {
+        border-color: $app-orange-01;
+        ~ .InputMultiline-label {
+          color: $app-orange-01;
+        }
+      }
+      &.has-message-info {
+        border-color: $app-dark-green-01;
+        ~ .InputMultiline-label {
+          color: $app-dark-green-01;
+        }
+      }
+    }
+  }
+
+  .InputMultiline-error,
+  .InputMultiline-hint {
+    display: flex;
+    padding: 0 $local-spacing-size;
+    margin-top: 7px;
+    @include smallInputSizingPolicy();
+
+    & > span {
+      flex-grow: 1;
+      width: 0;
+    }
+  }
+
+  .InputMultiline-hint {
+    color: $app-grey-05;
+  }
+
+  .InputMultiline-errorIcon {
+    @include app-icon("warning");
+    color: $primary-error-color;
+  }
+
+  .InputMultiline-infoIcon {
+    @include app-icon("i-circle");
+    color: $app-green-01;
+  }
+
+  .InputMultiline-errorIcon,
+  .InputMultiline-infoIcon {
+    @include largeInputSizingPolicy();
+
+    position: absolute;
+    top: -2px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: $local-spacing-size auto auto auto;
+    height: $error-icon-height;
+    width: 20px;
+    text-align: center;
+    pointer-events: none;
+  }
+}
+
+:host(.is-disabled) {
+  .InputMultiline-label {
+    color: $disabled-color;
+    font-style: italic;
+    cursor: not-allowed;
+  }
+
+  .InputMultiline-input {
+    color: $disabled-color;
+    border-color: $disabled-color;
+    cursor: not-allowed;
+
+    &:focus {
+      border-color: $disabled-color;
+    }
+  }
+}
+
+:host(.is-filled) {
+  .InputMultiline-border-gap {
+    transition-property: none;
+  }
+
+  &:host(:not(.is-disabled):not([class*="has-message-"])) {
+    .InputMultiline-label {
+      @include moveInputLabelUp();
+    }
+  }
+
+  &:host(.is-disabled:not([class*="has-message-"])) {
+    .InputMultiline-input {
+      color: $app-grey-05;
+    }
+    .InputMultiline-label {
+      @include moveInputLabelUp($app-grey-07);
+    }
+  }
+
+  &:host(.has-message-warning),
+  &:host(.has-message-info) {
+    .InputMultiline-label {
+      @include moveInputLabelUp($app-grey-05);
+    }
+  }
+
+  &:host(.has-message-invalid) {
+    .InputMultiline-label {
+      @include moveInputLabelUp($app-red);
+    }
+  }
+
+  &:host(.is-disabled:not([class*="has-message-"])) {
+    .InputMultiline-label {
+      @include moveInputLabelUp($label-up-height, $disabled-color);
+    }
+  }
+}
+
+:host(.has-message-invalid) {
+  @include validation-input-multiline-error-state(
+    $primary-error-color,
+    $secondary-error-color,
+    $primary-error-color,
+    $app-red,
+    $app-red-hover-02
+  );
+}
+
+:host(.has-message-warning) {
+  @include validation-input-multiline-state(
+    $primary-warning-color,
+    $secondary-warning-color,
+    $tertiary-warning-color,
+    $app-orange-01,
+    $app-orange-01
+  );
+}
+
+:host(.has-message-info) {
+  @include validation-input-multiline-state(
+    $primary-info-color,
+    $secondary-info-color,
+    $tertiary-info-color,
+    $app-green-01,
+    $app-green-01
+  );
+}
+
+:host(.is-resizable) {
+  .InputMultiline-input {
+    resize: vertical;
+  }
+}
+
+:host(.has-transparent-background) {
+  background-color: $white;
+}
+
+:host(.has-label),
+:host(.is-filled) {
+  .InputMultiline-errorIcon,
+  .InputMultiline-infoIcon {
+    left: auto;
+    right: calc((#{$input-with-hint-padding-right} - #{$error-icon-height}) / 2);
+  }
+
+  .InputMultiline-input {
+    &.has-scrollbar {
+      & ~ .InputMultiline-errorIcon,
+      & ~ .InputMultiline-infoIcon {
+        right: calc((#{$input-with-hint-padding-right} - #{$error-icon-height}) / 2 + 8px);
+      }
+    }
+  }
+}

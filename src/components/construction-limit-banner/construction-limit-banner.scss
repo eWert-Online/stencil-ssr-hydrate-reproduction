@@ -1,0 +1,78 @@
+:host(.ConstructionLimitBanner) {
+  display: block;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .ConstructionLimitBanner-intro {
+    @include content-holder();
+  }
+
+  .ConstructionLimitBanner-wrapper {
+    background: $app-grey-04;
+
+    ::slotted(app-headline-primary),
+    ::slotted(app-headline-secondary),
+    ::slotted(app-headline-tertiary),
+    ::slotted(app-headline-quaternary) {
+      color: $white;
+    }
+  }
+
+  .ConstructionLimitBanner-container {
+    @include content-holder();
+    @include grid-container($column-gap: false, $row-gap: false);
+
+    @media screen and (min-width: $breakpoint-medium) {
+      column-gap: 40px;
+    }
+
+    position: relative;
+    z-index: 1;
+  }
+
+  .ConstructionLimitBanner-media {
+    @include grid-item($span: 10, $start: 1);
+    padding-top: var(--spacing-xs);
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include grid-item($span: 8, $start: 2);
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item($span: 4);
+      position: relative;
+      overflow: hidden;
+      padding-top: 0;
+
+      ::slotted(app-image) {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      ::slotted(app-video) {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      ::slotted(app-youtube-embed) {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  .ConstructionLimitBanner-content {
+    @include grid-item(12);
+    padding: var(--spacing-l) 0;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item(8);
+      align-self: center;
+    }
+  }
+}

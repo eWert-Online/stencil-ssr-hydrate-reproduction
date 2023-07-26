@@ -1,0 +1,15 @@
+:host {
+  display: block;
+
+  > div.title {
+    padding: 12px 20px;
+  }
+
+  > div.options {
+    padding: 0;
+  }
+
+  ::slotted(app-select-option) {
+    padding-left: 30px;
+  }
+}

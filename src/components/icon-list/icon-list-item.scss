@@ -1,0 +1,45 @@
+:host(.IconListItem) {
+  border-bottom: 1px solid $app-grey-07;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .IconListItem-container {
+    display: flex;
+    padding: 20px 0;
+
+    text-decoration: none;
+  }
+
+  .IconListItem-image {
+    margin-top: 0.25em;
+    flex: 0 0 30px;
+
+    ::slotted(app-image) {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .IconListItem-content {
+    @include fontsize-l();
+
+    flex: 1;
+    margin-left: 20px;
+
+    color: $black;
+    transition: color 200ms ease-in-out;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include fontsize-xl();
+    }
+  }
+}
+
+:host(.IconListItem--linked:hover) {
+  .IconListItem-content {
+    color: $app-red;
+  }
+}

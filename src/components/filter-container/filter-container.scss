@@ -1,0 +1,87 @@
+:host(.FilterContainer) {
+  @extend %spacing-definitions;
+
+  display: block;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .FilterContainer-results {
+    margin-top: var(--spacing-l);
+  }
+
+  .FilterContainer-container {
+    @include content-holder();
+  }
+
+  .FilterContainer-intro {
+    margin-bottom: var(--spacing-xs);
+
+    ::slotted(app-headline-secondary) {
+      @media screen and (min-width: $breakpoint-large) {
+        max-width: calc(100% / 12 * 8 - var(--spacing-grid) / 12 * 4);
+      }
+
+      @media screen and (min-width: $breakpoint-xlarge) {
+        max-width: calc(100% / 12 * 7 - var(--spacing-grid) / 12 * 5);
+      }
+    }
+
+    ::slotted(app-copytext) {
+      display: block;
+      margin-top: var(--spacing-xxs);
+    }
+  }
+
+  .FilterContainer-basic {
+    @include grid-container();
+    margin-bottom: 40px;
+  }
+
+  .FilterContainer-basicDropdown {
+    @include grid-item(12);
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include grid-item(6);
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      @include grid-item(4);
+    }
+  }
+
+  app-dropdown {
+    width: 100%;
+    margin-top: -2px;
+    margin-bottom: 15px;
+  }
+
+  .FilterContainer-submit {
+    @include grid-item(12);
+
+    @media screen and (min-width: $breakpoint-large) {
+      @include grid-item(4);
+    }
+  }
+
+  .FilterContainer-submitButton {
+    @include fontsize-l();
+  }
+
+  .FilterContainer-refinementHeadline {
+    margin-bottom: 15px;
+  }
+
+  .FilterContainer-refinement {
+    @include grid-container();
+  }
+
+  .FilterContainer-refinementColumn {
+    @include grid-item(12);
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include grid-item(4);
+    }
+  }
+}

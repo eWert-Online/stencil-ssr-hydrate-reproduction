@@ -1,0 +1,56 @@
+:host(.TagList) {
+  display: block;
+  text-align: right;
+
+  @media screen and (min-width: $breakpoint-websiteSmall) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .TagList-tags {
+    display: flex;
+    flex-wrap: wrap;
+
+    ::slotted(app-tag) {
+      margin: 0 20px 15px 0;
+
+      @media screen and (min-width: $breakpoint-xlarge) {
+        margin: 0 30px 15px 0;
+      }
+    }
+  }
+
+  .TagList-removeAll {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0;
+    margin: 5px 0 0 30px;
+    border: none;
+
+    @include font-nimbus-sans();
+    font-size: 15px;
+    color: $black;
+    text-decoration: none;
+
+    background: none;
+    outline: none;
+    cursor: pointer;
+    white-space: nowrap;
+
+    transition: color 300ms ease-in-out;
+
+    @include app-icon("trash", $insert: after);
+    &::after {
+      margin-left: 10px;
+      font-size: 18px;
+      color: $app-red;
+    }
+
+    &:hover {
+      color: $app-red;
+    }
+  }
+}

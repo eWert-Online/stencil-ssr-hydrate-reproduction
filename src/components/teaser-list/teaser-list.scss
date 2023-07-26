@@ -1,0 +1,174 @@
+@import "../../../node_modules/swiper/swiper.scss";
+@import "../../../node_modules/swiper/components/pagination/pagination.scss";
+
+:host(.TeaserList) {
+  @include content-holder();
+  display: block;
+
+  .TeaserList-teasers {
+    @include grid-container();
+    row-gap: 40px;
+
+    ::slotted(*) {
+      @include grid-item(12);
+
+      @media screen and (min-width: $breakpoint-large) {
+        @include grid-item(3);
+      }
+    }
+  }
+
+  .TeaserList-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .TeaserList-slides {
+    flex: 1;
+  }
+
+  .TeaserList-ui-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 30px;
+  }
+
+  .TeaserList-button {
+    @include app-icon("long-arrow-up");
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 20px;
+    width: 30px;
+
+    padding: 0;
+
+    border: none;
+
+    text-align: center;
+    font-size: 0;
+
+    color: $app-red;
+    background-color: transparent;
+    cursor: pointer;
+    transition: color 200ms ease-in-out, border-color 200ms ease-in-out;
+
+    &.swiper-button-disabled {
+      cursor: not-allowed;
+      color: $app-grey-07;
+    }
+
+    &::before {
+      font-size: 20px;
+    }
+  }
+
+  .TeaserList-button--prev {
+    margin-right: 30px;
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      margin-right: 50px;
+    }
+
+    &::before {
+      transform: rotate(-90deg);
+    }
+  }
+
+  .TeaserList-button--next {
+    margin-left: 30px;
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      margin-left: 50px;
+    }
+
+    &::before {
+      transform: rotate(90deg);
+    }
+  }
+
+  .TeaserList-pagination {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .swiper-pagination-bullet {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin: 0 2.5px;
+
+      border: 1px solid $app-grey-04;
+      border-radius: 50%;
+      background-color: $white;
+      opacity: 1;
+
+      transition: background-color 200ms ease-in-out, border 200ms ease-in-out, width 200ms ease-in-out,
+        height 200ms ease-in-out, margin 200ms ease-in-out;
+    }
+
+    .swiper-pagination-bullet-active {
+      border-color: $app-red;
+      background-color: $app-red;
+    }
+
+    .small {
+      width: 6px;
+      height: 6px;
+    }
+
+    .micro {
+      width: 4px;
+      height: 4px;
+    }
+
+    .hidden {
+      width: 0;
+      height: 0;
+      margin: 0;
+      border: none;
+    }
+  }
+
+  .TeaserList-pagination.swiper-pagination-bullets-dynamic {
+    white-space: nowrap;
+  }
+}
+
+:host(.TeaserList--1) {
+  .TeaserList-teasers {
+    ::slotted(*) {
+      @include grid-item(12);
+    }
+  }
+}
+
+:host(.TeaserList--2) {
+  .TeaserList-teasers {
+    ::slotted(*) {
+      @include grid-item(12);
+
+      @media screen and (min-width: $breakpoint-websiteSmall) {
+        @include grid-item(6);
+      }
+    }
+  }
+}
+
+:host(.TeaserList--3) {
+  .TeaserList-teasers {
+    ::slotted(*) {
+      @include grid-item(12);
+
+      @media screen and (min-width: $breakpoint-medium) {
+        @include grid-item(4);
+      }
+    }
+  }
+}

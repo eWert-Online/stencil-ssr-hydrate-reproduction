@@ -1,0 +1,263 @@
+@mixin radioButtonUncheckedValidationState($primary-validation-color, $secondary-validation-color) {
+  &:host(:not(.is-checked)) {
+    .Radiobutton-outercircle {
+      stroke: $primary-validation-color;
+      fill: $secondary-validation-color;
+    }
+
+    .Radiobutton-innercircle {
+      fill: $secondary-validation-color;
+    }
+  }
+}
+@mixin radiobuttonBorderHoverStateColor($border-color) {
+  .Radiobutton-input {
+    &:hover {
+      & ~ .Radiobutton-box {
+        .Radiobutton-outercircle {
+          stroke: $border-color;
+        }
+      }
+    }
+  }
+}
+
+@mixin radiobuttonIconHoverStateColor($icon-color) {
+  .Radiobutton-input {
+    &:hover {
+      & ~ .Radiobutton-box {
+        .Radiobutton-innercircle {
+          fill: $icon-color;
+        }
+      }
+    }
+  }
+}
+
+@mixin radiobuttonBoxShadowFocusState($box-shadow-color) {
+  .Radiobutton-input {
+    &:focus {
+      &:not(:hover) {
+        & ~ .Radiobutton-box {
+          filter: drop-shadow(0 0 2px $box-shadow-color);
+        }
+      }
+    }
+  }
+}
+
+@mixin radiobuttonBorderFocusStateColor($border-color) {
+  .Radiobutton-input {
+    &:focus {
+      &:not(:hover) {
+        & ~ .Radiobutton-box {
+          .Radiobutton-outercircle {
+            stroke: $border-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin checkedHoverState {
+  &:host(:not(.is-disabled)) {
+    @include radiobuttonBorderHoverStateColor($app-red-hover-01);
+    @include radiobuttonIconHoverStateColor($app-red-hover-01);
+  }
+
+  @include radiobuttonBoxShadowFocusState(rgba($app-red, 0.9));
+  @include radiobuttonBorderFocusStateColor($app-red);
+}
+
+:host(.Radiobutton) {
+  display: inline-block;
+  max-width: 180px;
+  @include font-nimbus-sans();
+  @include fontsize-m;
+  @media (min-width: $breakpoint-medium) {
+    @include fontsize-s;
+  }
+
+  @include radiobuttonBoxShadowFocusState(rgba($app-red, 0.8));
+  @include radiobuttonBorderFocusStateColor($app-red);
+
+  .Radiobutton-label {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: flex-start;
+
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    pointer-events: none;
+  }
+
+  .Radiobutton-info {
+    margin-left: 10px;
+    user-select: none;
+    pointer-events: auto;
+  }
+
+  .Radiobutton-text {
+    color: $app-grey-01;
+  }
+
+  .Radiobutton-input {
+    position: absolute;
+    overflow: hidden;
+
+    width: 1em;
+    height: 1em;
+    opacity: 0;
+
+    font-size: inherit;
+  }
+
+  .Radiobutton-box {
+    flex-shrink: 0;
+    pointer-events: auto;
+  }
+
+  .Radiobutton-outercircle {
+    stroke: $app-grey-04;
+    fill: $white;
+  }
+
+  .Radiobutton-innercircle {
+    fill: $white;
+  }
+
+  .Radiobutton-error {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    width: fit-content;
+    margin-top: 7px;
+    padding: 7px 10px;
+    border-radius: 5px;
+    color: $black;
+    @include smallInputSizingPolicy();
+  }
+
+  .Radiobutton-hint {
+    display: flex;
+    padding: 0 10;
+    margin-top: 7px;
+    color: $app-grey-05;
+    @include smallInputSizingPolicy();
+    width: 100%;
+
+    & > span {
+      flex-grow: 1;
+    }
+  }
+
+  .Radiobutton-error ~ .Radiobutton-hint {
+    margin-top: 5px;
+  }
+
+  .Radiobutton-errorIcon {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+}
+
+:host(.is-checked) {
+  .Radiobutton-outercircle {
+    stroke: $app-red;
+  }
+  .Radiobutton-innercircle {
+    fill: $app-red;
+  }
+
+  @include checkedHoverState;
+}
+
+:host(.has-message-invalid) {
+  @include radioButtonUncheckedValidationState($app-red, $app-orange-03);
+
+  .Radiobutton-errorIcon {
+    @include app-icon("warning");
+    color: $app-red;
+  }
+
+  .Radiobutton-error {
+    background: $app-orange-03;
+  }
+
+  @include radiobuttonBorderHoverStateColor($app-red-hover-02);
+  @include radiobuttonBoxShadowFocusState(rgba($app-red, 0.8));
+}
+
+:host(.has-message-warning) {
+  @include radioButtonUncheckedValidationState($app-yellow-01, $app-yellow-03);
+
+  .Radiobutton-errorIcon {
+    @include app-icon("warning");
+    color: $app-orange-01;
+  }
+
+  .Radiobutton-error {
+    background: $app-yellow-03;
+  }
+
+  @include radiobuttonBorderHoverStateColor($app-orange-01);
+  @include radiobuttonBoxShadowFocusState(rgba($app-red, 0.8));
+}
+
+:host(.has-message-info) {
+  @include radioButtonUncheckedValidationState($app-green-01, $app-green-03);
+
+  .Radiobutton-errorIcon {
+    @include app-icon("i-circle");
+    color: $app-green-01;
+  }
+
+  .Radiobutton-error {
+    background: $app-green-03;
+  }
+
+  @include radiobuttonBorderHoverStateColor($app-dark-green-01);
+  @include radiobuttonBoxShadowFocusState(rgba($app-red, 0.8));
+}
+
+:host(.is-disabled) {
+  cursor: not-allowed;
+
+  .Radiobutton-text {
+    color: $app-grey-07;
+    cursor: not-allowed;
+  }
+
+  .Radiobutton-box {
+    cursor: not-allowed;
+  }
+
+  .Radiobutton-outercircle {
+    stroke: $app-grey-08;
+  }
+
+  .Radiobutton-info {
+    cursor: not-allowed;
+  }
+
+  &:host(.is-checked) {
+    .Radiobutton-outercircle {
+      stroke: $app-grey-08;
+    }
+
+    .Radiobutton-innercircle {
+      fill: $app-grey-08;
+    }
+  }
+}
+
+:host(:not(.is-disabled):not(.is-checked):not([class*="has-message-"])) {
+  @include radiobuttonBorderHoverStateColor($app-grey-02);
+}

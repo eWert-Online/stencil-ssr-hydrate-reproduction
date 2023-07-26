@@ -1,0 +1,43 @@
+:host(.SectionIntro) {
+  @extend %spacing-definitions;
+
+  @include content-holder();
+  display: block;
+  margin-bottom: var(--spacing-l);
+
+  ::slotted(app-headline-secondary),
+  ::slotted(app-headline-tertiary) {
+    @media screen and (min-width: $breakpoint-large) {
+      max-width: calc(100% / 12 * 8 - var(--spacing-grid) / 12 * 4);
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      max-width: calc(100% / 12 * 7 - var(--spacing-grid) / 12 * 5);
+    }
+  }
+
+  ::slotted(app-copytext) {
+    display: block;
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  ::slotted(app-button-primary),
+  ::slotted(app-button-secondary) {
+    display: table;
+    margin-top: var(--spacing-xxs);
+    margin-bottom: var(--spacing-xxs);
+  }
+
+  ::slotted(app-link-primary) {
+    margin-top: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+  }
+}
+
+:host(.SectionIntro--fullWidth) {
+  ::slotted(app-headline-secondary),
+  ::slotted(app-headline-tertiary) {
+    max-width: none;
+  }
+}

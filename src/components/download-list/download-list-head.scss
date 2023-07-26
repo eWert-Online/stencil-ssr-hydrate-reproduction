@@ -1,0 +1,47 @@
+:host(.DownloadListHead) {
+  .DownloadListHead-li {
+    display: flex;
+    align-items: flex-end;
+    min-height: 49px;
+    padding: 0 15px 14px;
+    @include fontsize-s();
+    border-bottom: 1px solid $app-grey-05;
+
+    ::slotted(*) {
+      display: none;
+      @media screen and (min-width: $breakpoint-medium) {
+        display: flex;
+        flex-grow: 1;
+        flex-basis: 0;
+        justify-content: center;
+        text-align: center;
+        @include fontsize-s();
+        color: $app-grey-05;
+        margin: 0 20px;
+      }
+    }
+
+    .DownloadListHead-name {
+      display: flex;
+      flex-grow: 2;
+      flex-basis: 0;
+      margin: 0 20px 0 0;
+      color: $app-grey-05;
+      @include fontsize-s();
+    }
+
+    .DownloadListHead-action {
+      display: flex;
+      min-width: 65px;
+      flex-basis: 0;
+      justify-content: center;
+      margin: 0 0 0 15px;
+      @include fontsize-s();
+      color: $app-grey-05;
+
+      .DownloadListHead-action-download {
+        margin-right: 15px;
+      }
+    }
+  }
+}

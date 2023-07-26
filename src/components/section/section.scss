@@ -4,4 +4,10 @@
     display: block;
     padding-top: var(--spacing-md);
     padding-bottom: var(--spacing-md);
+
+    scroll-margin-top: 60px;
+
+    @media screen and (min-width: $breakpoint-large) {
+        scroll-margin-top: 170px;
+    }
 }

@@ -1,0 +1,100 @@
+:host(.TextWithBackground) {
+    display: block;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .TextWithBackground-intro {
+        @include content-holder();
+    }
+
+    .TextWithBackground-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        min-height: 400px;
+    }
+
+    .TextWithBackground-background {
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        display: block;
+
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        @media screen and (min-width: $breakpoint-medium) {
+            background-attachment: fixed;
+        }
+    }
+
+    .TextWithBackground-container {
+        @include content-holder();
+        @include grid-container($row-gap: false);
+
+        position: relative;
+        z-index: 1;
+        padding-left: 0;
+        padding-right: 0;
+
+        @media screen and (min-width: $breakpoint-medium) {
+            padding-left: var(--layout-content-padding);
+            padding-right: var(--layout-content-padding);
+        }
+    }
+
+    .TextWithBackground-content {
+        @include layout-definitions;
+
+        padding: 30px var(--layout-content-padding);
+        background-color: rgba($white, 0.7);
+
+        @media screen and (min-width: $breakpoint-websiteSmall) {
+            padding: 40px var(--layout-content-padding);
+        }
+
+        @media screen and (min-width: $breakpoint-medium) {
+            padding: 40px 20px;
+            min-height: 400px;
+        }
+
+        @media screen and (min-width: $breakpoint-large) {
+            padding: 60px 20px;
+        }
+    }
+}
+
+:host(.TextWithBackground--left) {
+    .TextWithBackground-content {
+        @include grid-item(12);
+
+        @media screen and (min-width: $breakpoint-medium) {
+            @include grid-item(6);
+        }
+
+        @media screen and (min-width: $breakpoint-xlarge) {
+            @include grid-item(5);
+        }
+    }
+}
+
+:host(.TextWithBackground--right) {
+    .TextWithBackground-content {
+        @include grid-item(12);
+
+        @media screen and (min-width: $breakpoint-medium) {
+            @include grid-item($span: 6, $start: 6);
+        }
+
+        @media screen and (min-width: $breakpoint-xlarge) {
+            @include grid-item($span: 5, $start: 7);
+        }
+    }
+}

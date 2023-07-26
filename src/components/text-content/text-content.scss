@@ -1,0 +1,44 @@
+:host(.TextContent) {
+  @extend %spacing-definitions;
+
+  display: block;
+
+  ::slotted(app-headline-primary) {
+    display: none;
+  }
+
+  ::slotted(app-headline-secondary) {
+    margin-bottom: var(--spacing-sm);
+  }
+
+  ::slotted(app-headline-tertiary) {
+    margin-bottom: var(--spacing-xxs);
+  }
+
+  ::slotted(app-headline-quaternary) {
+    margin-bottom: var(--spacing-xxs);
+  }
+
+  ::slotted(app-copytext) {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  ::slotted(app-unordered-list),
+  ::slotted(app-ordered-list) {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  ::slotted(app-button-primary),
+  ::slotted(app-button-secondary) {
+    display: table;
+    margin-top: var(--spacing-xxs);
+    margin-bottom: var(--spacing-xxs);
+  }
+
+  ::slotted(app-link-primary) {
+    margin-top: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+  }
+}

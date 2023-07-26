@@ -1,0 +1,25 @@
+:host(.PressExcerptList) {
+    @include content-holder();
+    display: block;
+
+    .PressExcerptList-pagination {
+        margin-top: 40px;
+    }
+
+    .PressExcerptList-items {
+        opacity: 1;
+        transition: opacity 200ms linear;
+    }
+}
+
+:host(.PressExcerptList--fetching) {
+    .PressExcerptList-items {
+        opacity: 0;
+    }
+}
+
+:host(.PressExcerptList--fetched) {
+    .PressExcerptList-items {
+        opacity: 1;
+    }
+}

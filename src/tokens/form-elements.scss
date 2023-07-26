@@ -1,0 +1,37 @@
+@mixin moveInputLabelUp($label-color: $app-grey-05, $correction: -2px) {
+  padding: 0 3px;
+
+  font-size: 12px;
+  color: $label-color;
+  cursor: default;
+
+  background-color: transparent;
+  top: $correction;
+  transition: top 200ms ease-out 34ms, background-color 20ms ease-out 214ms, font-size 200ms ease-out 34ms;
+
+  & ~ .InputSingleline-border-gap,
+  & ~ .InputMultiline-border-gap,
+  & ~ .Dropdown-border-gap {
+    transition: width 200ms ease-out;
+    &.initial {
+      transition-property: none;
+    }
+  }
+}
+
+@mixin smallInputSizingPolicy() {
+  @media (min-width: $breakpoint-small) {
+    @include fontsize-s;
+  }
+  @media (min-width: $breakpoint-medium) {
+    @include fontsize-xs;
+  }
+}
+@mixin largeInputSizingPolicy() {
+  @media (min-width: $breakpoint-small) {
+    @include fontsize-m;
+  }
+  @media (min-width: $breakpoint-medium) {
+    @include fontsize-s;
+  }
+}

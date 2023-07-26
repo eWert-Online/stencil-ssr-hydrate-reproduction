@@ -1,0 +1,117 @@
+:host(.Pagination) {
+  display: flex;
+  justify-content: center;
+
+  * {
+    box-sizing: border-box;
+    outline: none;
+  }
+
+  .Pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Pagination-filler {
+    display: inline-block;
+    min-width: 40px;
+    padding: 0 5px;
+    text-align: center;
+  }
+
+  .Pagination-page {
+    @include fontsize-s();
+
+    position: relative;
+
+    min-width: 40px;
+    padding: 0 5px;
+    border: none;
+
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+
+    background: none;
+    cursor: pointer;
+    transition: color 200ms ease-in-out;
+
+    &:hover {
+      color: $app-red;
+    }
+  }
+
+  .Pagination-page.is-active {
+    cursor: default;
+    color: $app-red;
+
+    @include app-icon("arrow-up", $insert: after);
+    &::after {
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+
+      width: 12px;
+      margin: auto;
+
+      font-size: 12px;
+      transform: translateY(100%);
+    }
+  }
+
+  .Pagination-prev,
+  .Pagination-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+    border: 1px solid $app-grey-05;
+    border-radius: 5px;
+
+    text-align: center;
+    font-size: 0;
+
+    color: $app-grey-03;
+    background-color: $white;
+    cursor: pointer;
+    transition: color 200ms ease-in-out, border-color 200ms ease-in-out;
+
+    &:disabled {
+      cursor: not-allowed;
+      border-color: $app-grey-07;
+      color: $app-grey-07;
+    }
+
+    &:hover:not(:disabled) {
+      color: $app-red;
+      border-color: $app-red;
+    }
+
+    &::before {
+      font-size: 12px;
+    }
+  }
+
+  .Pagination-prev {
+    @include app-icon("arrow-left");
+
+    margin-right: 10px;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      margin-right: 20px;
+    }
+  }
+
+  .Pagination-next {
+    @include app-icon("arrow-right");
+
+    margin-left: 10px;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      margin-left: 20px;
+    }
+  }
+}

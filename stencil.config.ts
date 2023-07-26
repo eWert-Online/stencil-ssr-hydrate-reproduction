@@ -6,27 +6,22 @@ export const config: Config = {
   namespace: "ssr-repro-app",
   srcDir: "src/components",
   taskQueue: "async",
+  sourceMap: true,
+  buildEs5: "prod",
   rollupPlugins: {
     before: [resolvePlugin({ browser: true })],
-  },
-  buildEs5: "prod",
-  extras: {
-    cssVarsShim: false,
-    dynamicImportShim: true,
-    safari10: false,
-    shadowDomShim: false,
   },
   outputTargets: [
     {
       type: "dist",
       dir: "public/dist",
       esmLoaderPath: "../loader",
-      empty: true,
+      empty: false,
     },
     {
       type: "dist-hydrate-script",
       dir: "public/hydrate",
-      empty: true,
+      empty: false,
     },
   ],
   plugins: [

@@ -1,0 +1,14 @@
+:host {
+  li {
+    list-style-type: none;
+  }
+
+  a {
+    color: $black;
+    text-decoration: none;
+
+    &:hover {
+      color: $app-red;
+    }
+  }
+}

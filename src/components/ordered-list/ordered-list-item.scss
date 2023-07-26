@@ -1,0 +1,27 @@
+:host(.OrderedListItem) {
+  display: flex;
+  align-items: baseline;
+
+  counter-increment: ol;
+
+  &::before {
+    content: counter(ol) ".";
+
+    @include fontface-bold();
+    color: $app-red;
+    margin-right: 15px;
+  }
+
+  .OrderedListItem-title {
+    @include fontface-bold();
+    display: block;
+  }
+
+  .OrderedListItem-text {
+    flex: 1;
+
+    ::slotted(p) {
+      margin: 0;
+    }
+  }
+}

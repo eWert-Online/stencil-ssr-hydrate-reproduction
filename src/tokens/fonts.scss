@@ -1,0 +1,195 @@
+@import './breakpoints.scss';
+
+@mixin fontface-light {
+    font-weight: 300;
+}
+@mixin fontface-regular {
+    font-weight: 400;
+}
+@mixin fontface-bold {
+    font-weight: 700;
+}
+@mixin fontface-italic {
+    font-style: italic;
+}
+
+// xl fontsizes default to fontface-light
+@mixin fontsize-5xl {
+    @include fontface-light();
+
+    font-size: 56px;
+    line-height: 65px;
+    letter-spacing: -0.22px;
+
+    @media (min-width: $breakpoint-medium) {
+        font-size: 60px;
+        line-height: 71px;
+        letter-spacing: -0.24px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        font-size: 63px;
+        line-height: 76px;
+        letter-spacing: -0.38px;
+    }
+}
+
+@mixin fontsize-4xl {
+    @include fontface-light();
+
+    font-size: 40px;
+    line-height: 50px;
+    letter-spacing: -0.12px;
+
+    @media (min-width: $breakpoint-medium) {
+        font-size: 42px;
+        line-height: 53px;
+        letter-spacing: -0.08px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        font-size: 45px;
+        line-height: 56px;
+        letter-spacing: -0.14px;
+    }
+}
+
+@mixin fontsize-3xl {
+    @include fontface-light();
+
+    font-size: 32px;
+    line-height: 40px;
+
+    @media (min-width: $breakpoint-medium) {
+        font-size: 34px;
+        line-height: 43px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        font-size: 36px;
+        line-height: 45px;
+    }
+}
+
+@mixin fontsize-2xl {
+    @include fontface-light();
+
+    font-size: 26px;
+    line-height: 35px;
+
+    @media (min-width: $breakpoint-medium) {
+        font-size: 28px;
+        line-height: 38px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        font-size: 30px;
+        line-height: 41px;
+    }
+}
+
+@mixin fontsize-xl {
+    @include fontface-light();
+
+    font-size: 22px;
+    line-height: 32px;
+
+    @media (min-width: $breakpoint-medium) {
+        font-size: 23px;
+        line-height: 34px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        font-size: 25px;
+        line-height: 36px;
+    }
+}
+
+// normal fontsizes default to fontface-regular
+@mixin fontsize-l {
+    @include fontface-regular();
+
+    font-size: 18px;
+    line-height: 26px;
+    letter-spacing: 0.05;
+
+    @media (min-width: $breakpoint-medium) {
+        font-size: 19px;
+        line-height: 27px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        font-size: 20px;
+        line-height: 29px;
+    }
+}
+
+@mixin fontsize-m {
+    @include fontface-regular();
+
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: 0.05px;
+
+    @media (min-width: $breakpoint-medium) {
+        font-size: 17px;
+        line-height: 25px;
+        letter-spacing: 0.05px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        font-size: 18px;
+        line-height: 26px;
+        letter-spacing: 0.05px;
+    }
+}
+
+@mixin fontsize-s {
+    @include fontface-regular();
+
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.04px;
+
+    @media (min-width: $breakpoint-medium) {
+        font-size: 15px;
+        line-height: 22px;
+        letter-spacing: 0.05px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        font-size: 16px;
+        line-height: 23px;
+        letter-spacing: 0.1px;
+    }
+}
+
+@mixin fontsize-xs {
+    @include fontface-regular();
+
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.07px;
+
+    @media (min-width: $breakpoint-medium) {
+        font-size: 13px;
+        line-height: 17px;
+        letter-spacing: 0.08px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0.08px;
+    }
+}
+
+@mixin fontsize-2xs {
+    @include fontface-regular();
+
+    font-size: 10px; // gibt es die nicht?
+    line-height: 14px; // gibt es die nicht?
+    letter-spacing: 0.06px;
+
+    @media (min-width: $breakpoint-medium) {
+        font-size: 10px;
+        line-height: 14px;
+        letter-spacing: 0.06px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        font-size: 10px;
+        line-height: 14px;
+        letter-spacing: 0.06px;
+    }
+}

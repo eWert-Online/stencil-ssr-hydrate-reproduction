@@ -1,0 +1,69 @@
+:host {
+    --gap-h: 0;
+    --gap-v: 7.5px;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+        --gap-h: 10px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+        --gap-h: 20px;
+    }
+}
+
+:host(.ButtonList) {
+    @extend %spacing-definitions;
+    @include content-holder();
+    display: block;
+
+    .ButtonList-buttons {
+        display: flex;
+        flex-wrap: wrap;
+
+        margin: calc(var(--gap-v) * -1) calc(var(--gap-h) * -1);
+
+        ::slotted(*) {
+            @include fontsize-l();
+            margin: var(--gap-v) var(--gap-h);
+            flex: 1 1 100%;
+
+            @media screen and (min-width: $breakpoint-websiteSmall) {
+                max-width: calc(100% / 2 - var(--gap-h) * 2);
+            }
+
+            @media screen and (min-width: $breakpoint-large) {
+                max-width: calc(100% / 3 - var(--gap-h) * 2);
+            }
+        }
+    }
+}
+
+:host(.ButtonList--2) {
+    .ButtonList-buttons {
+        @media screen and (min-width: $breakpoint-websiteSmall) {
+            flex-wrap: nowrap;
+        }
+    }
+}
+
+:host(.ButtonList--3) {
+    .ButtonList-buttons {
+        justify-content: center;
+
+        @media screen and (min-width: $breakpoint-large) {
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+        }
+    }
+}
+
+:host(.ButtonList--4) {
+    .ButtonList-buttons {
+        justify-content: center;
+
+        @media screen and (min-width: $breakpoint-large) {
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+        }
+    }
+}

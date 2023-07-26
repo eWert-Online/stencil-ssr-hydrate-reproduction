@@ -1,0 +1,67 @@
+:host(.UnorderedListItem) {
+  .UnorderedListItem-li {
+    display: flex;
+    list-style: none;
+    align-items: baseline;
+  }
+
+  .UnorderedListItem-text {
+    flex: 1;
+
+    ::slotted(p) {
+      margin: 0;
+    }
+
+    ::slotted(app-unordered-list) {
+      margin-top: 15px;
+      margin-left: calc((0.778em + 0.8334em) * -1);
+    }
+  }
+
+  .UnorderedListItem-title {
+    @include fontface-bold();
+    display: block;
+  }
+
+  .UnorderedListItem-icon {
+    font-size: 0.778em;
+    color: $app-red;
+
+    margin-right: 0.8334em;
+  }
+
+  .UnorderedListItem-icon--custom {
+    font-size: inherit;
+
+    align-self: flex-start;
+    width: 1.223em;
+    height: auto;
+    margin-top: 0.25em;
+  }
+}
+
+:host(.UnorderedListItem--level-2) {
+  padding-left: 25px;
+
+  @media screen and (min-width: $breakpoint-websiteSmall) {
+    padding-left: 35px;
+  }
+
+  @media screen and (min-width: $breakpoint-medium) {
+    padding-left: 45px;
+  }
+
+  @media screen and (min-width: $breakpoint-large) {
+    padding-left: 55px;
+  }
+
+  @media screen and (min-width: $breakpoint-xlarge) {
+    padding-left: 65px;
+  }
+}
+
+:host(.UnorderedListItem--inverted) {
+  .UnorderedListItem-icon {
+    color: $white;
+  }
+}

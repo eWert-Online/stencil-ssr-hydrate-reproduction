@@ -1,0 +1,20 @@
+:host(.Iframe) {
+    display: block;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .Iframe-intro {
+        @include content-holder();
+    }
+
+    .Iframe-container {
+        @include content-holder();
+    }
+
+    .Iframe-frame {
+        display: block;
+        width: 100%;
+    }
+}

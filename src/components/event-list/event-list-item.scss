@@ -1,0 +1,113 @@
+:host(.EventListItem) {
+  * {
+    box-sizing: border-box;
+  }
+
+  .EventListItem-container {
+    display: flex;
+    align-items: flex-start;
+
+    text-decoration: none;
+  }
+
+  .EventListItem-calendar {
+    position: relative;
+
+    flex: 0 0 58px;
+    margin-right: 20px;
+    padding: 10px 6px 0 6px;
+    border: 1px solid $app-red;
+    border-radius: 2px;
+
+    text-align: center;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      margin-right: 30px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      margin-right: 25px;
+    }
+  }
+
+  .EventListItem-calendarRings {
+    position: absolute;
+    top: 0;
+    left: 6px;
+    right: 6px;
+
+    display: flex;
+    justify-content: space-around;
+
+    transform: translateY(-50%);
+  }
+
+  .EventListItem-calendarRing {
+    height: 7px;
+    width: 1px;
+    background-color: $app-red;
+  }
+
+  .EventListItem-calendarTearLine {
+    display: block;
+    width: 100%;
+    height: 1px;
+
+    background-color: $app-red;
+  }
+
+  .EventListItem-calendarDay {
+    @include fontface-bold();
+    @include fontsize-m();
+    margin-bottom: -5px;
+    color: $app-red;
+  }
+
+  .EventListItem-calendarMonth {
+    @include fontsize-s();
+    color: $black;
+  }
+
+  .EventListItem-content {
+    flex: 1;
+  }
+
+  .EventListItem-meta {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .EventListItem-date,
+  .EventListItem-time {
+    @include fontsize-s();
+    color: $app-grey-03;
+  }
+
+  .EventListItem-date {
+    margin-right: 20px;
+  }
+
+  .EventListItem-headline {
+    @include fontsize-xl();
+
+    margin: 0 0 5px 0;
+
+    color: $app-red;
+    hyphens: auto;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      hyphens: none;
+    }
+  }
+
+  .EventListItem-location {
+    @include fontsize-m();
+    color: $black;
+  }
+}
+
+:host(.EventListItem--hovered) {
+  .EventListItem-headline {
+    text-decoration: underline;
+  }
+}

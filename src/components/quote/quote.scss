@@ -1,0 +1,47 @@
+:host(.Quote) {
+  @extend %spacing-definitions;
+  @include content-holder();
+  display: block;
+  text-align: center;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .Quote-icon {
+    @include app-icon("quote");
+    display: block;
+    margin-bottom: var(--spacing-xs);
+
+    font-size: 54px;
+    color: $app-grey-07;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      font-size: 72px;
+    }
+  }
+
+  .Quote-content {
+    @include fontface-italic();
+    @include fontsize-2xl();
+    color: $app-red;
+
+    margin: 0;
+  }
+
+  .Quote-cite {
+    @include fontsize-l();
+    color: $app-grey-04;
+
+    &::before {
+      content: "";
+
+      display: block;
+      width: 150px;
+      height: 1px;
+      margin: var(--spacing-xxs) auto;
+
+      background-color: $app-red;
+    }
+  }
+}

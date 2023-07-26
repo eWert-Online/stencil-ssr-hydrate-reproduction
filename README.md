@@ -18,12 +18,7 @@ To reproduce the bug, I've created an index.html which shows the error. In order
 npm start
 ```
 
-The `start` script will start a local web server on port 3333 which prerenders the `views/index.html`. In here, you can
-see the same component placed twice on the page.
+The `start` script will start a local web server on port 3333 which prerenders the `views/index.html`. If you load the
+page enough times, the copytext below the headline will sometimes be shown and sometimes not.
 
-The first instance is placed inside an `app-section` component, which just renders its slotted content with a few
-additional styles. As you can see, the slotted content does not get re-hydrated correctly. It instead appears twice on
-the page.
-
-The second instance is **not** nested inside the `app-section` component. Here you can see, that it gets rendered and
-re-hydrated correctly.
+The attached video ![Reproduction Video](reproduction-video.webm) also shows the issue.

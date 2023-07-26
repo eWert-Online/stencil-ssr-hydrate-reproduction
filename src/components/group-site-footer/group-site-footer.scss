@@ -1,0 +1,224 @@
+@keyframes bounceUp {
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-3px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+:host(.GroupSiteFooter) {
+  @extend %spacing-definitions;
+
+  display: block;
+  margin-top: var(--spacing-md);
+
+  /* ========================= INTRO SECTION ========================= */
+
+  .GroupSiteFooter-intro {
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+    background: $app-grey-09;
+  }
+
+  .GroupSiteFooter-introContainer {
+    @include content-holder();
+    @include grid-container();
+    position: relative;
+  }
+
+  .GroupSiteFooter-socialContainer {
+    @include grid-item($span: 12);
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include grid-item($span: 6, $start: 3);
+    }
+  }
+
+  .GroupSiteFooter-socialTitle {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .GroupSiteFooter-socialIcons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    margin: -7.5px;
+
+    ::slotted(*) {
+      margin: 7.5px;
+    }
+  }
+
+  .GroupSiteFooter-buttonContainer {
+    display: flex;
+    column-gap: 30px;
+    @include grid-item($span: 12);
+    margin: 15px auto 0 auto;
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      column-gap: 15px;
+      @include grid-item($span: 3);
+      margin: auto 0 auto auto;
+    }
+  }
+
+  .GroupSiteFooter-cookie,
+  .GroupSiteFooter-scrollTop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    margin: 15px auto 0 auto;
+    border: none;
+    border-radius: 5px;
+
+    font-size: 20px;
+    background: $white;
+    color: $app-red;
+    cursor: pointer;
+
+    &::before {
+      will-change: transform;
+    }
+
+    &.is-animated::before {
+      animation: bounceUp 800ms forwards;
+    }
+  }
+
+  .GroupSiteFooter-scrollTop {
+    @include app-icon("long-arrow-up");
+  }
+
+  .GroupSiteFooter-cookie {
+    flex-direction: column;
+    font-size: 22px;
+    @include app-icon("cookie-small");
+
+    &::after {
+      content: "Cookies";
+      color: $black;
+      font-size: 10px;
+      margin-top: 4px;
+    }
+  }
+
+  /* ========================= META NAV ========================= */
+
+  .GroupSiteFooter-metaNav {
+    @include content-holder();
+
+    background: $white;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .GroupSiteFooter-metaNavLinks {
+    margin: -20px 0;
+    padding: 0;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      margin: -12.5px;
+    }
+
+    ::slotted(*) {
+      display: block;
+      margin: 20px 0;
+
+      text-align: center;
+      text-transform: uppercase;
+
+      @media screen and (min-width: $breakpoint-medium) {
+        margin: 12.5px;
+      }
+    }
+  }
+
+  /* ========================= MAIN SECTION ========================= */
+
+  .GroupSiteFooter-main {
+    background-color: $app-grey-09;
+    border-top: 1px solid $black;
+    padding: 40px 0;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      padding: 60px 0;
+    }
+  }
+
+  .GroupSiteFooter-mainNav {
+    @include content-holder();
+    @extend %spacing-definitions;
+
+    column-gap: var(--spacing-grid);
+    column-fill: balance;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      column-count: 2;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      column-count: 4;
+    }
+
+    ::slotted([slot="main-nav"]) {
+      display: none;
+      @media screen and (min-width: $breakpoint-medium) {
+        display: block;
+      }
+    }
+
+    ::slotted(*) {
+      margin-bottom: 30px;
+
+      @media screen and (min-width: $breakpoint-medium) {
+        break-inside: avoid;
+      }
+    }
+  }
+
+  .GroupSiteFooter-contact {
+    break-inside: avoid;
+
+    ::slotted(*) {
+      text-align: center;
+
+      @media screen and (min-width: $breakpoint-medium) {
+        text-align: left;
+      }
+    }
+  }
+
+  /* ========================= SUB FOOTER ========================= */
+
+  .GroupSiteFooter-subFooter {
+    padding: 15px;
+
+    background: $app-grey-02;
+    color: $white;
+  }
+
+  .GroupSiteFooter-copyright {
+    @include content-holder();
+
+    text-align: center;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      text-align: right;
+    }
+  }
+}

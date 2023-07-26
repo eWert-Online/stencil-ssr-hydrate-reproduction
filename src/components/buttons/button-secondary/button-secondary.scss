@@ -1,0 +1,198 @@
+@import "../buttons.scss";
+
+:host(.ButtonSecondary) {
+  display: inline-block;
+  outline: none;
+  @include fontsize-m;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .ButtonSecondary-button {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    padding: $button-vertical-padding $button-side-padding;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: $button-min-height;
+    width: 100%;
+    height: 100%;
+
+    border-radius: 5px;
+    background-color: $white;
+    color: $app-red;
+    text-decoration: none;
+    border: 1px solid $app-red;
+    cursor: pointer;
+
+    transition: color 300ms ease-in-out;
+    outline: none;
+    @include button-focus(rgba($app-red, 0.8), $app-red);
+
+    & > div {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .ButtonSecondary-icon {
+    @include fontsize-m;
+    @include app-red;
+  }
+
+  .ButtonSecondary-icon--left,
+  img.left {
+    margin-right: $button-size-small-side-margin;
+  }
+
+  .ButtonSecondary-icon--right,
+  img.right {
+    margin-left: $button-size-small-side-margin;
+  }
+
+  img {
+    display: inline-block;
+    height: 16px;
+    @include app-red;
+  }
+
+  .text {
+    text-align: center;
+  }
+}
+
+:host(.ButtonSecondary) .ButtonSecondary-button:hover,
+:host(.ButtonSecondary.is-hovered) .ButtonSecondary-button {
+  color: $app-red-hover-02;
+  border-color: $app-red-hover-02;
+
+  img,
+  .ButtonSecondary-icon {
+    @include app-red-hover-02;
+  }
+}
+
+:host(.ButtonSecondary--grey) {
+  .ButtonSecondary-button {
+    background-color: $white;
+    border-color: $app-grey-05;
+    color: $black;
+    transition: border-color 300ms ease-in-out;
+  }
+
+  img,
+  .ButtonSecondary-icon {
+    @include app-grey-03;
+  }
+}
+
+:host(.ButtonSecondary--grey) .ButtonSecondary-button:hover,
+:host(.ButtonSecondary--grey.is-hovered) .ButtonSecondary-button {
+  border-color: $app-grey-03;
+  color: $black;
+
+  img,
+  .ButtonSecondary-icon {
+    @include app-grey-03;
+  }
+}
+
+:host(.ButtonSecondary--mixed) {
+  .ButtonSecondary-button {
+    background-color: $white;
+    border-color: $app-grey-05;
+    color: $black;
+    transition: border-color 300ms ease-in-out;
+
+    img {
+      @include app-red;
+    }
+  }
+}
+
+:host(.ButtonSecondary--mixed) .ButtonSecondary-button:hover,
+:host(.ButtonSecondary--mixed.is-hovered) .ButtonSecondary-button {
+  border-color: $app-grey-03;
+  color: $black;
+
+  img {
+    @include white;
+  }
+}
+
+:host(.ButtonSecondary--disabled) {
+  .ButtonSecondary-button {
+    cursor: not-allowed;
+    border-color: $app-grey-07;
+    background-color: $white;
+    color: $app-grey-07;
+
+    img {
+      @include app-grey-07;
+    }
+  }
+
+  .ButtonSecondary-icon {
+    @include app-grey-07;
+  }
+}
+
+:host(.ButtonSecondary--disabled) .ButtonSecondary-button:hover,
+:host(.ButtonSecondary--disabled.is-hovered) .ButtonSecondary-button {
+  background-color: $white;
+  color: $app-grey-07;
+  border-color: $app-grey-07;
+
+  img,
+  .ButtonSecondary-icon {
+    @include app-grey-07;
+  }
+}
+
+:host(.ButtonSecondary--hasLeftIcon) {
+  .ButtonSecondary-button {
+    padding-left: $button-icon-outer-padding;
+    padding-right: $button-size-side-padding-with-icon;
+  }
+}
+
+:host(.ButtonSecondary--hasRightIcon) {
+  .ButtonSecondary-button {
+    padding-left: $button-size-side-padding-with-icon;
+    padding-right: $button-icon-outer-padding;
+  }
+}
+
+:host(.ButtonSecondary--hasLeftIcon.ButtonSecondary--hasRightIcon) {
+  .ButtonSecondary-button {
+    padding-left: $button-icon-outer-padding;
+    padding-right: $button-icon-outer-padding;
+  }
+}
+
+:host(.small) {
+  .ButtonSecondary-button {
+    min-height: $button-size-small-min-height;
+    padding-top: $button-size-small-vertical-padding;
+    padding-bottom: $button-size-small-vertical-padding;
+
+    .ButtonSecondary-icon {
+      font-size: 15px;
+      line-height: 22px;
+      letter-spacing: 0.05px;
+    }
+
+    img {
+      font-size: 15px;
+    }
+  }
+}

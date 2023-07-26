@@ -1,0 +1,11 @@
+:host(.Collapsible) {
+    display: block;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .Collapsible-intro {
+        @include content-holder();
+    }
+}

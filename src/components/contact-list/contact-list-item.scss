@@ -1,0 +1,155 @@
+:host(.ContactListItem) {
+  display: block;
+
+  .ContactListItem-image {
+    display: block;
+    overflow: hidden;
+    margin-bottom: 15px;
+  }
+
+  .ContactListItem-subject {
+    display: block;
+    margin: 0 0 5px 0;
+
+    @include fontsize-m();
+    @include fontface-bold();
+    color: $app-red;
+  }
+
+  .ContactListItem-name {
+    margin: 0 0 15px 0;
+
+    @include fontsize-xl();
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include fontsize-2xl();
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      @include fontsize-xl();
+    }
+  }
+
+  .ContactListItem-description {
+    display: block;
+    margin: 0 0 20px 0;
+
+    @include fontsize-s();
+  }
+
+  .ContactListItem-phone,
+  .ContactListItem-email {
+    @include fontsize-s();
+
+    display: flex;
+    align-items: flex-start;
+
+    color: $black;
+    text-decoration: none;
+    word-break: break-all;
+
+    &:hover {
+      color: $app-red;
+    }
+  }
+
+  .ContactListItem-phone {
+    margin: 0 0 20px 0;
+  }
+
+  .ContactListItem-phoneIcon,
+  .ContactListItem-emailIcon {
+    width: 20px;
+    min-width: 20px;
+    margin-right: 12px;
+
+    fill: $app-red;
+  }
+
+  .ContactListItem-phoneIcon {
+    width: 25px;
+    min-width: 25px;
+    margin-top: -2px;
+  }
+}
+
+:host(.ContactListItem--xs) {
+  display: block;
+}
+
+:host(.ContactListItem--sm) {
+  @include grid-container($row-gap: false);
+
+  .ContactListItem-imageContainer {
+    @include grid-item($span: 12);
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item($span: 4);
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      @include grid-item($span: 6);
+    }
+  }
+
+  .ContactListItem-content {
+    @include grid-item($span: 12);
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item($span: 8);
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      @include grid-item($span: 6);
+    }
+  }
+}
+
+:host(.ContactListItem--md) {
+  @include grid-container($row-gap: false);
+
+  .ContactListItem-name {
+    @media screen and (min-width: $breakpoint-xlarge) {
+      @include fontsize-2xl();
+    }
+  }
+
+  .ContactListItem-contact {
+    @media screen and (min-width: $breakpoint-medium) {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: -20px;
+    }
+  }
+
+  .ContactListItem-email,
+  .ContactListItem-phone {
+    @media screen and (min-width: $breakpoint-medium) {
+      margin: 0 40px 20px 0;
+    }
+  }
+
+  .ContactListItem-imageContainer {
+    @include grid-item($span: 12);
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include grid-item($span: 4);
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item($span: 4);
+    }
+  }
+
+  .ContactListItem-content {
+    @include grid-item($span: 12);
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include grid-item($span: 8);
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item($span: 8);
+    }
+  }
+}

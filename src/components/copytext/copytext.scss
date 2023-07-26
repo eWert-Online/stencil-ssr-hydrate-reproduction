@@ -1,0 +1,38 @@
+:host(.Copytext) {
+  @include fontsize-m();
+  color: $black;
+  text-align: left;
+
+  ::slotted(p) {
+    margin: 0;
+    margin-bottom: 1em;
+  }
+
+  ::slotted(p:last-child) {
+    margin-bottom: 0;
+  }
+}
+
+:host(.Copytext--s) {
+  @include fontsize-s();
+}
+
+:host(.Copytext--m) {
+  @include fontsize-m();
+}
+
+:host(.Copytext--l) {
+  @include fontsize-l();
+}
+
+:host(.Copytext--xl) {
+  @include fontsize-xl();
+}
+
+:host(.Copytext--inverted) {
+  color: $white;
+}
+
+:host(.Copytext--highlighted) {
+  color: $app-grey-05;
+}

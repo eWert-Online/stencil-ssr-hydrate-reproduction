@@ -1,0 +1,16 @@
+:host(.Text) {
+    display: block;
+
+    // Restrict z-index for the content inside of this module to below 0,
+    // so it can't overlap the header & footer (which have a z-index of 1000)
+    position: relative;
+    z-index: 0;
+
+    .Text-intro {
+        @include content-holder();
+    }
+
+    .Text-content {
+        @include content-holder();
+    }
+}

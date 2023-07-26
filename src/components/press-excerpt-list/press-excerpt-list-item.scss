@@ -1,0 +1,111 @@
+:host(.PressExcerptListItem) {
+  .PressExcerptListItem-container {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px 10px;
+    border-bottom: 1px solid $app-grey-07;
+
+    color: $black;
+    text-decoration: none;
+    background-color: $white;
+    cursor: pointer;
+
+    transition: background-color 200ms ease-in-out;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      padding: 30px 20px;
+    }
+  }
+
+  .PressExcerptListItem-image {
+    flex: 0 0 60px;
+
+    position: relative;
+    display: block;
+    overflow: hidden;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      flex: 0 0 145px;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      opacity: 0;
+
+      background-color: rgba($black, 0.6);
+      pointer-events: none;
+      transition: opacity 200ms ease-in-out;
+    }
+
+    ::slotted(app-image) {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .PressExcerptListItem-content {
+    @extend %spacing-definitions;
+    flex: 1;
+
+    margin-left: 15px;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      margin-left: 20px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      margin-left: 40px;
+    }
+  }
+
+  .PressExcerptListItem-date {
+    @include fontsize-s();
+    color: $app-grey-03;
+    margin-bottom: 5px;
+  }
+
+  .PressExcerptListItem-headline {
+    @include fontsize-m();
+    @include fontface-regular();
+
+    margin: 0 0 10px 0;
+    color: $black;
+    transition: color 200ms ease-in-out;
+  }
+
+  .PressExcerptListItem-subheadline {
+    display: block;
+  }
+
+  .PressExcerptListItem-text {
+    @include fontsize-s();
+    color: $app-grey-05;
+
+    ::slotted(b),
+    ::slotted(strong) {
+      @include fontface-regular();
+    }
+  }
+}
+
+:host(.PressExcerptListItem--hovered) {
+  .PressExcerptListItem-container {
+    background-color: $app-grey-09;
+  }
+
+  .PressExcerptListItem-headline {
+    color: $app-red;
+  }
+
+  .PressExcerptListItem-image::before {
+    opacity: 1;
+  }
+}

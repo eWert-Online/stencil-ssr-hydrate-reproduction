@@ -1,0 +1,29 @@
+:host(.DownloadList) {
+  display: block;
+  @include content-holder();
+
+  @include fontsize-m();
+  color: $black;
+  text-align: left;
+
+  .DownloadList-downloads {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0;
+    padding: 0;
+  }
+
+  .DownloadList-cta {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  ::slotted(app-button-primary) {
+    margin-top: 10px;
+  }
+}
+
+:host(.DownloadList--without-head) {
+  padding-bottom: 10px;
+}

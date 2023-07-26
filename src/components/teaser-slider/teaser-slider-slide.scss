@@ -1,0 +1,116 @@
+:host(.TeaserSliderSlide) {
+  @extend %spacing-definitions;
+
+  will-change: transform;
+
+  .TeaserSliderSlide-container {
+    @include grid-container();
+    align-items: start;
+
+    text-decoration: none;
+  }
+
+  .TeaserSliderSlide-image {
+    @include grid-item(12);
+
+    position: relative;
+
+    overflow: hidden;
+    display: block;
+    width: 100%;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include grid-item(6);
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      @include grid-item(5);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      opacity: 0;
+
+      background-color: rgba($black, 0.6);
+      pointer-events: none;
+      transition: opacity 200ms ease-in-out;
+    }
+
+    ::slotted(app-image) {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .TeaserSliderSlide-content {
+    @include grid-item(12);
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      @include grid-item(6);
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      @include grid-item(7);
+    }
+  }
+
+  .TeaserSliderSlide-tagline {
+    @include fontsize-s();
+    color: $app-grey-03;
+    margin-bottom: 5px;
+  }
+
+  .TeaserSliderSlide-headline {
+    @include fontsize-2xl();
+    color: $app-red;
+
+    margin: 0 0 10px 0;
+  }
+
+  .TeaserSliderSlide-subheadline {
+    display: block;
+  }
+
+  .TeaserSliderSlide-text {
+    display: block;
+  }
+
+  .TeaserSliderSlide-link {
+    margin-top: var(--spacing-xs);
+  }
+}
+
+:host(.TeaserSliderSlide--hovered) {
+  .TeaserSliderSlide-image::before {
+    opacity: 1;
+  }
+}
+
+:host(.TeaserSliderSlide--2cols) {
+  .TeaserSliderSlide-container {
+    display: block;
+  }
+
+  .TeaserSliderSlide-headline,
+  .TeaserSliderSlide-headline a {
+    @include fontsize-l();
+
+    @media screen and (max-width: ($breakpoint-websiteSmall - 1)) {
+      font-size: 26px;
+      line-height: 35px;
+    }
+
+    margin-top: 20px;
+    @media screen and (min-width: $breakpoint-xlarge) {
+      margin-top: 30px;
+    }
+  }
+}

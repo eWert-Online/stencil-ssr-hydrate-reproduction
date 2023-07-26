@@ -1,0 +1,91 @@
+@import "../dropdown.scss";
+@mixin overlay-style() {
+  display: block;
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.23);
+  border-radius: 5px;
+  max-width: inherit;
+  padding: 5px 0;
+  overflow: auto;
+  outline: none;
+  background-color: $white;
+}
+
+@mixin leave-transition() {
+  transition: visibility 0s ease-out 200ms, transform 200ms ease-out, opacity 200ms ease-out;
+}
+
+:host {
+  position: fixed;
+  /* should be a higher value than both <app-popup> and <app-lightbox> z-index */
+  z-index: 20000;
+
+  @include app-scrollbar;
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+:host(:not(.mobile-overlay)) {
+  @include overlay-style();
+  overscroll-behavior: none;
+  transform-origin: top;
+}
+
+:host(.mobile-overlay) {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  margin-bottom: 100px;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  transform-origin: center;
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: rgba($app-grey-04, 0.8);
+  div {
+    @include overlay-style();
+    width: 100%;
+  }
+
+  &:host(.search-filter) {
+    justify-content: flex-start;
+    input {
+      margin: 20px 0 6px 0;
+      width: 100%;
+      border-radius: 5px;
+      padding: 0 11px;
+      outline: none;
+      box-sizing: border-box;
+      border: solid 1px $app-grey-05;
+
+      @include placeholder {
+        @include fontface-italic;
+        color: $app-grey-07;
+      }
+
+      &.size-large {
+        min-height: 45px;
+        @include fontsize-m;
+        @media (min-width: $breakpoint-medium) {
+          @include fontsize-s;
+        }
+      }
+      &.size-small {
+        min-height: 30px;
+        @include fontsize-s;
+        @media (min-width: $breakpoint-medium) {
+          @include fontsize-xs;
+        }
+      }
+    }
+  }
+
+  app-dropdown-option {
+    margin-top: 10px;
+  }
+}
+
+:host(.leave) {
+  @include leave-transition();
+}

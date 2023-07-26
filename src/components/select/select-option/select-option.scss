@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  cursor: pointer;
+
+  > input {
+    display: none;
+    margin-right: 10px;
+  }
+
+  &:hover {
+    background: $app-grey-05;
+  }
+}
+
+:host(:hover) {
+  background: $app-grey-05;
+}
+
+:host(.active) {
+  color: $app-red;
+}
+
+:host(.focused) {
+  background: $app-grey-05;
+}
+
+:host(.multiple) {
+  > input {
+    display: flex;
+  }
+}

@@ -1,0 +1,224 @@
+@import "../buttons.scss";
+
+:host(.ButtonPrimary) {
+  display: inline-block;
+  outline: none;
+  @include fontsize-m;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .ButtonPrimary-button {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    padding: $button-vertical-padding $button-side-padding;
+    text-decoration: none;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: $button-min-height;
+    width: 100%;
+    height: 100%;
+
+    border-radius: 5px;
+    background-color: $app-red;
+    color: $white;
+    border: 1px solid $app-red;
+    cursor: pointer;
+
+    transition: background-color 300ms ease-in-out;
+    outline: none;
+    @include button-focus($app-red, $app-red-hover-02);
+
+    &:hover {
+      background-color: $app-red-hover-01;
+      border-color: $app-red-hover-01;
+    }
+
+    & > div {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .ButtonPrimary-icon {
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: 0.05px;
+  }
+
+  .ButtonPrimary-icon--left,
+  img.left {
+    margin-right: $button-size-small-side-margin;
+  }
+
+  .ButtonPrimary-icon--right,
+  img.right {
+    margin-left: $button-size-small-side-margin;
+  }
+
+  img {
+    display: inline-block;
+    height: 16px;
+  }
+
+  img,
+  .ButtonPrimary-icon {
+    @include white;
+  }
+
+  .text {
+    margin-top: 4px;
+    text-align: center;
+  }
+}
+
+:host(.ButtonPrimary--grey) {
+  .ButtonPrimary-button {
+    background-color: $app-grey-03;
+    border-color: $app-grey-03;
+    @include button-focus($app-red-hover-02, $app-red-hover-02);
+
+    &:hover {
+      background-color: $app-grey-02;
+      border-color: $app-grey-02;
+    }
+  }
+}
+
+:host(.ButtonPrimary--inverted) {
+  &:host(.ButtonPrimary--grey) {
+    .ButtonPrimary-button {
+      color: $black;
+      img,
+      .ButtonPrimary-icon {
+        @include app-grey-03;
+      }
+
+      &:hover {
+        background-color: $white;
+        border-color: $app-grey-03;
+        color: $black;
+
+        img,
+        .ButtonPrimary-icon {
+          @include app-grey-03;
+        }
+      }
+    }
+  }
+  &:host(.ButtonPrimary--mixed) {
+    .ButtonPrimary-button {
+      color: $black;
+
+      &:hover {
+        background-color: $white;
+        border-color: $app-grey-03;
+        color: $black;
+
+        img,
+        .ButtonPrimary-icon {
+          @include app-red;
+        }
+      }
+    }
+  }
+  .ButtonPrimary-button {
+    background-color: $white;
+    border-color: $white;
+    color: $app-red;
+    img,
+    .ButtonPrimary-icon {
+      @include app-red;
+    }
+    @include button-focus(rgba($app-red, 0.8), $app-red);
+
+    &:hover {
+      background-color: $white;
+      border-color: $app-red;
+      color: $app-red;
+
+      img,
+      .ButtonPrimary-icon {
+        @include app-red;
+      }
+    }
+  }
+}
+
+:host(.ButtonPrimary--disabled) {
+  .ButtonPrimary-button {
+    cursor: not-allowed;
+    border-color: $app-grey-09;
+    background-color: $app-grey-09;
+    color: $app-grey-07;
+
+    &:hover {
+      border-color: $app-grey-09;
+      background-color: $app-grey-09;
+      color: $app-grey-07;
+
+      img,
+      .ButtonPrimary-icon {
+        @include app-grey-07;
+      }
+    }
+
+    img,
+    .ButtonPrimary-icon {
+      @include app-grey-07;
+    }
+  }
+}
+
+:host(.ButtonPrimary--hasLeftIcon) {
+  .ButtonPrimary-button {
+    padding-left: $button-icon-outer-padding;
+    padding-right: $button-size-side-padding-with-icon;
+  }
+}
+
+:host(.ButtonPrimary--hasRightIcon) {
+  .ButtonPrimary-button {
+    padding-left: $button-size-side-padding-with-icon;
+    padding-right: $button-icon-outer-padding;
+  }
+}
+
+:host(.ButtonPrimary--hasLeftIcon.ButtonPrimary--hasRightIcon) {
+  .ButtonPrimary-button {
+    padding-left: $button-icon-outer-padding;
+    padding-right: $button-icon-outer-padding;
+  }
+}
+
+:host(.small) {
+  .ButtonPrimary-button {
+    min-height: $button-size-small-min-height;
+    padding-top: $button-size-small-vertical-padding;
+    padding-bottom: $button-size-small-vertical-padding;
+
+    .ButtonPrimary-icon {
+      font-size: 15px;
+      line-height: 22px;
+      letter-spacing: 0.05px;
+    }
+
+    img {
+      font-size: 15px;
+    }
+
+    .text {
+      margin-top: 0;
+      margin-bottom: -5px;
+    }
+  }
+}

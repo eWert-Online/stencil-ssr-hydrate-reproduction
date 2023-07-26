@@ -1,0 +1,208 @@
+:host(.HeroMediaTextParallax) {
+  display: block;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .HeroMediaTextParallax-intro {
+    @include content-holder();
+  }
+
+  .HeroMediaTextParallax-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 400px;
+  }
+
+  .HeroMediaTextParallax-background {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+
+    overflow: hidden;
+
+    ::slotted(app-image) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      display: block;
+      height: 100%;
+      width: 100%;
+
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+  }
+
+  .HeroMediaTextParallax-container {
+    @include content-holder();
+    @include grid-container($row-gap: false);
+
+    position: relative;
+    z-index: 1;
+    padding-left: 0;
+    padding-right: 0;
+
+    @media screen and (min-width: $breakpoint-large) {
+      padding-left: var(--layout-content-padding);
+      padding-right: var(--layout-content-padding);
+    }
+  }
+
+  .HeroMediaTextParallax-media {
+    display: none;
+    position: relative;
+
+    padding-left: var(--layout-content-padding);
+    padding-right: var(--layout-content-padding);
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item(6);
+      display: block;
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      @include grid-item(7);
+    }
+  }
+
+  .HeroMediaTextParallax-parallax {
+    @include layout-definitions;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: var(--layout-content-padding);
+
+    overflow: hidden;
+
+    @media screen and (min-width: $breakpoint-large) {
+      right: 0;
+    }
+  }
+
+  .HeroMediaTextParallax-content {
+    @include layout-definitions;
+    @include grid-item(12);
+
+    padding: 30px var(--layout-content-padding);
+    background-color: rgba($white, 0.7);
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      padding: 40px var(--layout-content-padding);
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item(6);
+      min-height: 400px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      padding: 60px 20px;
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      @include grid-item(5);
+    }
+  }
+}
+
+:host(.HeroMediaTextParallax--left) {
+  .HeroMediaTextParallax-parallax {
+    @include layout-definitions;
+    left: 0;
+    right: var(--layout-content-padding);
+
+    @media screen and (min-width: $breakpoint-large) {
+      right: 0;
+    }
+  }
+
+  .HeroMediaTextParallax-media {
+    @media screen and (min-width: $breakpoint-medium) {
+      order: 1;
+    }
+  }
+
+  .HeroMediaTextParallax-content {
+    @media screen and (min-width: $breakpoint-medium) {
+      order: 0;
+    }
+  }
+}
+
+:host(.HeroMediaTextParallax--right) {
+  .HeroMediaTextParallax-parallax {
+    @include layout-definitions;
+    right: 0;
+    left: var(--layout-content-padding);
+
+    @media screen and (min-width: $breakpoint-large) {
+      left: 0;
+    }
+  }
+
+  .HeroMediaTextParallax-media {
+    @media screen and (min-width: $breakpoint-medium) {
+      order: 0;
+    }
+  }
+
+  .HeroMediaTextParallax-content {
+    @media screen and (min-width: $breakpoint-medium) {
+      order: 1;
+    }
+  }
+}
+
+:host(.HeroMediaTextParallax--light) {
+  .HeroMediaTextParallax-wrapper {
+    background: $app-grey-08;
+  }
+}
+
+:host(.HeroMediaTextParallax--dark) {
+  .HeroMediaTextParallax-wrapper {
+    background: $app-grey-03;
+
+    ::slotted(app-headline-primary),
+    ::slotted(app-headline-secondary),
+    ::slotted(app-headline-tertiary),
+    ::slotted(app-headline-quaternary) {
+      color: $white;
+    }
+  }
+
+  .HeroMediaTextParallax-content {
+    @include layout-definitions;
+    @include grid-item(12);
+
+    padding: 30px var(--layout-content-padding);
+    background-color: transparent;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      padding: 40px var(--layout-content-padding);
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      @include grid-item(6);
+      min-height: 400px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      padding: 60px 0;
+    }
+
+    @media screen and (min-width: $breakpoint-xlarge) {
+      @include grid-item(5);
+    }
+  }
+}

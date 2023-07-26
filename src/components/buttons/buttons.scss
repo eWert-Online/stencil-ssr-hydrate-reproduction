@@ -1,0 +1,17 @@
+$button-min-height: 50px;
+$button-size-small-min-height: 40px;
+$button-side-padding: 30px;
+$button-size-side-padding-with-icon: 20px;
+$button-right-padding: 15px;
+$button-icon-outer-padding: 15px;
+$button-vertical-padding: 9px;
+$button-size-small-vertical-padding: 6px;
+$button-size-small-side-margin: 8px;
+$button-shadow: 0 0 6px 0;
+
+@mixin button-focus($shadow-color, $border-color) {
+    &:focus:not(:active) {
+        box-shadow: $button-shadow $shadow-color;
+        border-color: $border-color;
+    }
+}

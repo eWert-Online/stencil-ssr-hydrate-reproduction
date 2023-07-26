@@ -1,0 +1,121 @@
+@import '../breakpoints.scss';
+
+@mixin iconsize-5xl {
+    display: inline-block;
+    height: 40px;
+    width: auto;
+    @media (min-width: $breakpoint-websiteSmall) {
+        height: 56px;
+    }
+    @media (min-width: $breakpoint-medium) {
+        height: 60px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        height: 63px;
+    }
+}
+
+@mixin iconsize-4xl {
+    display: inline-block;
+    height: 32px;
+    @media (min-width: $breakpoint-websiteSmall) {
+        height: 40px;
+    }
+    @media (min-width: $breakpoint-medium) {
+        height: 42px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        height: 45px;
+    }
+}
+
+@mixin iconsize-3xl {
+    display: inline-block;
+    height: 26px;
+    @media (min-width: $breakpoint-websiteSmall) {
+        height: 32px;
+    }
+    @media (min-width: $breakpoint-medium) {
+        height: 34px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        height: 36px;
+    }
+}
+
+@mixin iconsize-2xl {
+    display: inline-block;
+    height: 26px;
+    @media (min-width: $breakpoint-medium) {
+        height: 28px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        height: 30px;
+    }
+}
+
+@mixin iconsize-xl {
+    display: inline-block;
+    height: 22px;
+    @media (min-width: $breakpoint-medium) {
+        height: 23px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        height: 25px;
+    }
+}
+
+@mixin iconsize-l {
+    display: inline-block;
+    height: 18px;
+    @media (min-width: $breakpoint-medium) {
+        height: 19px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        height: 20px;
+    }
+}
+
+@mixin iconsize-m {
+    display: inline-block;
+    height: 16px;
+    @media (min-width: $breakpoint-medium) {
+        height: 17px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        height: 18px;
+    }
+}
+
+@mixin iconsize-s {
+    display: inline-block;
+    height: 14px;
+    @media (min-width: $breakpoint-medium) {
+        height: 15px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        height: 16px;
+    }
+}
+
+@mixin iconsize-xs {
+    display: inline-block;
+    height: 12px;
+    @media (min-width: $breakpoint-medium) {
+        height: 13px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        height: 14px;
+    }
+}
+
+@mixin iconsize-2xs {
+    display: inline-block;
+    height: 10px;
+    @media (min-width: $breakpoint-medium) {
+        height: 10px;
+    }
+    @media (min-width: $breakpoint-xlarge) {
+        height: 10px;
+    }
+}

@@ -1,0 +1,85 @@
+:host(.ImageListItem) {
+  @extend %spacing-definitions;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .ImageListItem-wrapper {
+    display: block;
+    color: $black;
+    text-decoration: none;
+
+    transition: color ease-in-out 200ms;
+    backface-visibility: hidden;
+  }
+
+  .ImageListItem-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto var(--spacing-xxs);
+    max-width: 140px;
+    overflow: hidden;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      max-width: 120px;
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      max-width: 140px;
+    }
+
+    @media screen and (min-width: $breakpoint-large) {
+      max-width: 180px;
+    }
+
+    ::slotted(app-image) {
+      max-width: 100%;
+      margin-top: auto;
+      outline: 1px solid transparent;
+      outline-offset: 10px;
+
+      transform: scale(1);
+      transition: transform ease-in-out 200ms;
+    }
+  }
+
+  .ImageListItem-caption {
+    @include fontsize-xl();
+
+    display: block;
+    margin-bottom: 5px;
+
+    text-align: center;
+
+    transform: translateZ(0);
+    backface-visibility: hidden;
+
+    @media screen and (min-width: $breakpoint-medium) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .ImageListItem-text {
+    ::slotted(app-copytext) {
+      display: block;
+      text-align: center;
+
+      transform: translateZ(0);
+      backface-visibility: hidden;
+    }
+  }
+}
+
+:host(.ImageListItem--hovered) {
+  .ImageListItem-wrapper {
+    color: $app-red;
+  }
+
+  .ImageListItem-image {
+    ::slotted(app-image) {
+      transform: scale(1.05);
+    }
+  }
+}

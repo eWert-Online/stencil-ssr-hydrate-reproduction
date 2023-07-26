@@ -1,0 +1,105 @@
+:host(.CollapsibleItem) {
+  display: block;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .CollapsibleItem-container {
+    @include content-holder();
+  }
+
+  .CollapsibleItem-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 20px;
+    border: none;
+    border-bottom: 1px solid $app-grey-07;
+
+    @include fontsize-m();
+    @include fontface-regular();
+    text-align: left;
+    color: $black;
+
+    background: none;
+    outline: none;
+    cursor: pointer;
+
+    transition: color 200ms ease-in-out;
+
+    &:hover {
+      color: $app-red;
+    }
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      padding: 20px 15px;
+    }
+
+    @include app-icon("arrow-down", $insert: after);
+    &::after {
+      margin-left: 15px;
+
+      color: $app-red;
+      font-size: 12px;
+
+      transform: rotate(0);
+      will-change: transform;
+      transition: transform 400ms ease-in-out;
+    }
+  }
+
+  .CollapsibleItem-contentWrapper {
+    @include content-holder();
+    // Reset the content-holder's padding, because the modules
+    // placed inside, already have a content-holder and its padding.
+    padding: 0;
+
+    overflow: hidden;
+
+    will-change: height;
+    transition: height 400ms cubic-bezier(0.65, 0.05, 0.36, 1);
+  }
+
+  .CollapsibleItem-content {
+    padding: 15px 20px 30px 20px;
+
+    opacity: 0;
+    transition: opacity 300ms linear 180ms;
+
+    @media screen and (min-width: $breakpoint-websiteSmall) {
+      padding: 30px 15px;
+    }
+
+    @media screen and (min-width: $breakpoint-medium) {
+      padding: 30px 15px 40px 15px;
+    }
+  }
+}
+
+:host(.CollapsibleItem--open) {
+  .CollapsibleItem-toggle {
+    @include fontface-bold();
+    border-bottom-color: $app-red;
+
+    &::after {
+      transform: rotate(180deg);
+    }
+  }
+
+  .CollapsibleItem-content {
+    opacity: 1;
+  }
+
+  .CollapsibleItem-separator {
+    @include content-holder();
+
+    &::after {
+      content: "";
+      display: block;
+      height: 1px;
+      background-color: $app-red;
+    }
+  }
+}

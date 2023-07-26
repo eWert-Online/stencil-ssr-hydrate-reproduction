@@ -1,0 +1,399 @@
+$local-spacing-size: 10px;
+$dropdown-height-large: 45px;
+$dropdown-height-small: 30px;
+$max-visible-dropdown-options: 3;
+$dropdown-font-size-large: 16px;
+$dropdown-font-size-small: 14px;
+$label-bottom-border-width: 2px;
+$beak-icon-size: 7px;
+
+@mixin validation-dropdown-style($primary-color, $secondary-color, $tertiary-color, $quaternary-color) {
+  .Dropdown-toggle {
+    border-style: solid;
+    border-color: $primary-color;
+    background-color: $secondary-color;
+
+    &:hover,
+    &:focus,
+    &.is-open {
+      border-color: $quaternary-color;
+
+      &.is-multiple,
+      &:not(.is-multiple) {
+        & ~ .Dropdown-label {
+          color: $quaternary-color;
+        }
+      }
+    }
+  }
+
+  .Dropdown-error {
+    color: $tertiary-color;
+  }
+
+  .Dropdown-errorIcon {
+    color: $tertiary-color;
+    pointer-events: none;
+  }
+}
+
+:host(.Dropdown) {
+  display: inline-block;
+  width: 80px;
+  outline: none;
+  background-color: inherit;
+
+  .Dropdown-input {
+    background-color: inherit;
+  }
+
+  .Dropdown-label {
+    max-width: calc(100% - #{$local-spacing-size} - #{$beak-icon-size} - 15px);
+    left: $local-spacing-size;
+  }
+
+  .Dropdown-arrow {
+    @include app-icon("arrow-down");
+    right: $local-spacing-size - 2px;
+    padding: 4px;
+    position: absolute;
+    top: 50%;
+    font-size: $beak-icon-size;
+    color: $app-red;
+    transform: translateY(-50%) translateY(2px);
+
+    &.filter {
+      @include app-icon("x");
+      cursor: pointer;
+      top: calc(50% - 2px);
+    }
+
+    &:not(.filter) {
+      pointer-events: none;
+    }
+  }
+
+  .slot-container {
+    display: none;
+  }
+
+  &:host(.size-large) {
+    .Dropdown-toggle {
+      height: $dropdown-height-large;
+      padding: 0 34px 0 $local-spacing-size;
+    }
+
+    .Dropdown-toggle,
+    .Dropdown-errorIcon {
+      @include largeInputSizingPolicy();
+    }
+  }
+
+  &:host(.size-small) {
+    .Dropdown-toggle {
+      padding: 0 34px 0 $local-spacing-size;
+      height: $dropdown-height-small;
+    }
+
+    .Dropdown-toggle,
+    .Dropdown-errorIcon {
+      @include smallInputSizingPolicy();
+    }
+  }
+
+  .Dropdown-wrapper {
+    position: relative;
+    display: block;
+    margin-top: 7px;
+    background-color: inherit;
+    max-width: inherit;
+  }
+
+  .Dropdown-label {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+
+    display: block;
+
+    font-size: 16px;
+    font-style: italic;
+    color: $app-grey-05;
+
+    transform: translateY(-50%);
+    transition: top 150ms ease-out, font-size 150ms ease-out;
+    pointer-events: none;
+    border-bottom: $label-bottom-border-width solid transparent;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: normal;
+    white-space: nowrap;
+    background-color: transparent;
+  }
+
+  .Dropdown-toggle {
+    @include font-nimbus-sans();
+    @include placeholder {
+      @include fontface-italic;
+      color: $app-grey-07;
+    }
+
+    box-sizing: border-box;
+
+    display: block;
+    width: 100%;
+    border: 1px solid $app-grey-05;
+
+    color: $black;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    border-radius: 5px;
+    border-width: 1px;
+    background-color: $white;
+    outline: none;
+
+    &.toggle-button {
+      &:not(.is-disabled) {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .Dropdown-border-gap {
+    position: absolute;
+    top: 0;
+    width: 20px;
+    left: 10px;
+    height: 1px;
+    background-color: inherit;
+    transition: width 150ms ease-out 25ms;
+  }
+
+  .Dropdown-errorIcon-container,
+  .Dropdown-infoIcon-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  .Dropdown-errorIcon {
+    @include app-icon("warning");
+    color: $app-red;
+  }
+
+  .Dropdown-infoIcon {
+    @include app-icon("i-circle");
+    color: $app-green-01;
+  }
+
+  .Dropdown-error,
+  .Dropdown-hint {
+    display: flex;
+    padding: 0 $local-spacing-size;
+    margin-top: 7px;
+    @include smallInputSizingPolicy();
+
+    & > span {
+      flex-grow: 1;
+      width: 0;
+    }
+  }
+
+  .Dropdown-hint {
+    color: $app-grey-05;
+  }
+
+  .Dropdown-error ~ .Dropdown-hint {
+    margin-top: 5px;
+  }
+}
+
+:host(.with-label) {
+  width: 160px;
+}
+
+:host(.is-disabled) {
+  .Dropdown-toggle {
+    color: $app-grey-07;
+    border-color: $app-grey-07;
+
+    cursor: not-allowed;
+
+    &:hover,
+    &:not(:hover) {
+      border-color: $app-grey-07;
+
+      & ~ .Dropdown-label {
+        color: $app-grey-07;
+        cursor: not-allowed;
+      }
+
+      & ~ .Dropdown-arrow {
+        color: $app-grey-07;
+        pointer-events: auto;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &:host(:not(.is-filled)) {
+    &:host(.size-large) {
+      .Dropdown-label {
+        @include largeInputSizingPolicy();
+      }
+    }
+    &:host(.size-small) {
+      .Dropdown-label {
+        @include smallInputSizingPolicy();
+      }
+    }
+  }
+}
+
+:host(:not(.is-disabled)) {
+  &:host(:not([class*="has-message-"])) {
+    .Dropdown-toggle {
+      &:hover,
+      &:focus,
+      &.is-open {
+        border-color: $app-grey-03;
+
+        & ~ .Dropdown-arrow {
+          color: $app-red;
+        }
+
+        &.is-multiple,
+        &:not(.is-multiple) {
+          & ~ .Dropdown-label {
+            color: $app-grey-03;
+          }
+        }
+      }
+    }
+  }
+
+  &:host(:not(.is-open)),
+  &:host(.is-multiple) {
+    &:host(:not(.is-filled)) {
+      &:host(:not(.is-filtering)) {
+        &:host(.size-large) {
+          .Dropdown-label {
+            @include largeInputSizingPolicy();
+          }
+        }
+        &:host(.size-small) {
+          .Dropdown-label {
+            @include smallInputSizingPolicy();
+          }
+        }
+      }
+    }
+  }
+}
+
+:host(.is-filled),
+:host(.is-filtering) {
+  &:host(:not(.is-disabled):not([class*="has-message-"])) {
+    .Dropdown-label {
+      @include moveInputLabelUp($app-grey-05);
+    }
+  }
+
+  &:host(.has-message-invalid) {
+    .Dropdown-label {
+      @include moveInputLabelUp($app-red);
+    }
+  }
+
+  &:host(.has-message-warning),
+  &:host(.has-message-info) {
+    .Dropdown-label {
+      @include moveInputLabelUp($app-grey-05);
+    }
+  }
+
+  &:host(.is-disabled) {
+    .Dropdown-label {
+      @include moveInputLabelUp($app-grey-07);
+    }
+  }
+
+  .Dropdown-arrow {
+    color: $app-red;
+  }
+}
+
+:host(.is-open) {
+  &:host(:not([class*="has-message-"])) {
+    &:host(:not(.is-multiple)) {
+      .Dropdown-label {
+        @include moveInputLabelUp($app-grey-03);
+      }
+    }
+  }
+
+  .Dropdown-arrow {
+    &:not(.filter) {
+      transform: translateY(-50%) rotate(-180deg);
+    }
+  }
+}
+
+:host(.has-message-invalid) {
+  @include validation-dropdown-style($app-red, $app-orange-03, $app-red, $app-red-hover-02);
+
+  &:host(.is-open) {
+    &:host(:not(.is-multiple)) {
+      .Dropdown-label {
+        @include moveInputLabelUp($app-red-hover-02);
+      }
+    }
+  }
+  &:host(:not(.is-open)) {
+    .Dropdown-label {
+      color: $app-red;
+    }
+  }
+
+  .Dropdown-toggle {
+    border-width: 2px;
+  }
+
+  .Dropdown-border-gap {
+    border-bottom: 2px solid $app-orange-03;
+  }
+}
+:host(.has-message-warning) {
+  @include validation-dropdown-style($app-yellow-01, $app-yellow-03, $app-orange-01, $app-orange-01);
+  &:host(.is-open) {
+    &:host(:not(.is-multiple)) {
+      .Dropdown-label {
+        @include moveInputLabelUp($app-orange-01);
+      }
+    }
+  }
+}
+
+:host(.has-message-info) {
+  @include validation-dropdown-style($app-green-01, $app-green-03, $app-green-01, $app-dark-green-01);
+  &:host(.is-open) {
+    &:host(:not(.is-multiple)) {
+      .Dropdown-label {
+        @include moveInputLabelUp($app-dark-green-01);
+      }
+    }
+  }
+}
+
+:host(.has-transparent-background) {
+  background-color: $white;
+}

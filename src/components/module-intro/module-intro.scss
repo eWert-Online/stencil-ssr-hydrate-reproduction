@@ -1,0 +1,24 @@
+:host(.ModuleIntro) {
+    @include grid-container($row-gap: false);
+
+    display: block;
+    margin-bottom: var(--spacing-xs);
+
+    .ModuleIntro-headline {
+        @include grid-item($span: 12);
+
+        @media screen and (min-width: $breakpoint-large) {
+            @include grid-item($span: 8);
+        }
+
+        @media screen and (min-width: $breakpoint-xlarge) {
+            @include grid-item($span: 7);
+        }
+    }
+
+    .ModuleIntro-text {
+        @include grid-item($span: 12);
+        display: block;
+        margin-top: var(--spacing-xxs);
+    }
+}

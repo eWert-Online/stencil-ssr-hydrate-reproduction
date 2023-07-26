@@ -1,0 +1,274 @@
+@mixin checkboxBorderHoverStateColor($boder-color) {
+  .Checkbox-input {
+    &:hover {
+      &:not(:focus) {
+        & ~ .Checkbox-box {
+          border-color: $boder-color;
+        }
+      }
+    }
+  }
+}
+
+@mixin checkboxBackgroundHoverStateColor($background-color) {
+  .Checkbox-input {
+    &:hover {
+      &:not(:focus) {
+        & ~ .Checkbox-box {
+          background-color: $background-color;
+        }
+      }
+    }
+  }
+}
+
+@mixin checkboxBoxShadowFocusState($box-shadow-color) {
+  .Checkbox-input {
+    &:focus {
+      &:not(:hover) {
+        & ~ .Checkbox-box {
+          box-shadow: 0 0 6px 0 $box-shadow-color;
+        }
+      }
+    }
+  }
+}
+
+@mixin checkboxBorderFocusStateColor($border-color) {
+  .Checkbox-input {
+    &:focus {
+      &:not(:hover) {
+        & ~ .Checkbox-box {
+          border-color: $border-color;
+        }
+      }
+    }
+  }
+}
+
+@mixin checkedOrIndeterminateHoverState {
+  &:host(:not(.is-disabled)) {
+    @include checkboxBorderHoverStateColor($app-red-hover-01);
+    @include checkboxBackgroundHoverStateColor($app-red-hover-01);
+  }
+
+  @include checkboxBoxShadowFocusState(rgba($app-red, 0.9));
+  @include checkboxBorderFocusStateColor($app-red-hover-01);
+}
+
+:host(.Checkbox) {
+  display: inline-block;
+  @include font-nimbus-sans();
+  @include fontsize-m;
+  @media (min-width: $breakpoint-medium) {
+    @include fontsize-s;
+  }
+
+  @include checkboxBoxShadowFocusState(rgba($app-red, 0.8));
+  @include checkboxBorderFocusStateColor($app-red);
+
+  .Checkbox-label {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    align-items: flex-start;
+
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .Checkbox-info {
+    margin-left: 10px;
+    pointer-events: auto;
+  }
+
+  .Checkbox-text {
+    color: $app-grey-01;
+  }
+
+  .Checkbox-input {
+    position: absolute;
+    overflow: hidden;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+  }
+
+  .Checkbox-box {
+    box-sizing: border-box;
+    position: relative;
+    z-index: -1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $app-grey-04;
+    border-radius: 2px;
+
+    background-color: $white;
+    pointer-events: auto;
+  }
+
+  .Checkbox-icon {
+    font-size: 62.5%;
+    color: $white;
+    @include app-icon("checkmark");
+  }
+
+  .Checkbox-error {
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    width: fit-content;
+    margin-top: 7px;
+    padding: 7px 10px;
+    border-radius: 5px;
+
+    color: $black;
+    @include smallInputSizingPolicy();
+  }
+
+  .Checkbox-hint {
+    display: flex;
+    padding: 0 10;
+    margin-top: 7px;
+    color: $app-grey-05;
+    @include smallInputSizingPolicy();
+    width: 100%;
+
+    & > span {
+      flex-grow: 1;
+    }
+  }
+
+  .Checkbox-error ~ .Checkbox-hint {
+    margin-top: 5px;
+  }
+
+  .Checkbox-errorIcon {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+}
+
+:host(.is-checked) {
+  &:host(:not(.is-indeterminate)) {
+    .Checkbox-box {
+      border-color: $app-red;
+      background-color: $app-red;
+    }
+  }
+  @include checkedOrIndeterminateHoverState;
+}
+
+:host(.is-indeterminate) {
+  .Checkbox-box {
+    border-color: $app-red;
+    background-color: $app-red;
+  }
+  .Checkbox-icon {
+    @include app-icon("indeterminate");
+  }
+  @include checkedOrIndeterminateHoverState;
+}
+
+:host(.has-message-invalid) {
+  .Checkbox-box {
+    border-color: $app-red;
+    background-color: $app-orange-03;
+    border-width: 2px;
+    & > .Checkbox-icon {
+      color: $app-orange-03;
+    }
+  }
+
+  .Checkbox-errorIcon {
+    @include app-icon("warning");
+    color: $app-red;
+  }
+
+  .Checkbox-error {
+    background: $app-orange-03;
+  }
+
+  @include checkboxBorderHoverStateColor($app-red-hover-02);
+  @include checkboxBoxShadowFocusState(rgba($app-red, 0.8));
+}
+
+:host(.has-message-warning) {
+  .Checkbox-box {
+    border-color: $app-yellow-01;
+    background-color: $app-yellow-03;
+    & > .Checkbox-icon {
+      color: $app-yellow-03;
+    }
+  }
+
+  .Checkbox-errorIcon {
+    @include app-icon("warning");
+    color: $app-orange-01;
+  }
+
+  .Checkbox-error {
+    background: $app-yellow-03;
+  }
+
+  @include checkboxBorderHoverStateColor($app-orange-01);
+  @include checkboxBoxShadowFocusState(rgba($app-red, 0.8));
+}
+
+:host(.has-message-info) {
+  .Checkbox-box {
+    border-color: $app-green-01;
+    background-color: $app-green-03;
+    & > .Checkbox-icon {
+      color: $app-green-03;
+    }
+  }
+
+  .Checkbox-errorIcon {
+    @include app-icon("i-circle");
+    color: $app-green-01;
+  }
+
+  .Checkbox-error {
+    background: $app-green-03;
+  }
+
+  @include checkboxBorderHoverStateColor($app-dark-green-01);
+  @include checkboxBoxShadowFocusState(rgba($app-red, 0.8));
+}
+
+:host(.is-disabled) {
+  cursor: not-allowed;
+
+  .Checkbox-text {
+    color: $app-grey-07;
+    cursor: not-allowed;
+  }
+
+  .Checkbox-box {
+    border-color: $app-grey-07;
+    cursor: not-allowed;
+  }
+
+  &:host(.is-checked) {
+    .Checkbox-box {
+      background-color: $app-grey-08;
+      border-color: $app-grey-08;
+    }
+  }
+}
+:host(:not(.is-disabled):not(.is-checked):not(.is-indeterminate):not([class*="has-message-"])) {
+  @include checkboxBorderHoverStateColor($app-grey-02);
+}

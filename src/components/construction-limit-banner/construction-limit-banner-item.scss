@@ -1,0 +1,67 @@
+:host(.ConstructionLimitBannerItem) {
+    @extend %spacing-definitions;
+
+    display: block;
+    padding-bottom: 25px;
+    border-bottom: 1px solid $white;
+    margin-bottom: 30px;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .ConstructionLimitBannerItem-content {
+        display: grid;
+        column-gap: var(--spacing-xs);
+        row-gap: 10px;
+
+        grid-template-columns: 50px 1fr;
+        grid-template-areas: 'icon text';
+    }
+
+    .ConstructionLimitBannerItem-icon {
+        grid-area: icon;
+
+        align-self: flex-start;
+        width: 100%;
+        height: auto;
+        margin-top: 0.25em;
+    }
+
+    .ConstructionLimitBannerItem-headline {
+        @include fontsize-m();
+        @include fontface-bold();
+
+        color: $white;
+
+        grid-area: headline;
+    }
+
+    .ConstructionLimitBannerItem-text {
+        grid-area: text;
+
+        ::slotted(p) {
+            margin: 0;
+        }
+    }
+}
+
+:host(.ConstructionLimitBannerItem--hasHeadline) {
+    .ConstructionLimitBannerItem-content {
+        grid-template-areas:
+            'icon headline'
+            'text text';
+
+        @media screen and (min-width: $breakpoint-websiteSmall) {
+            grid-template-areas:
+                'icon headline'
+                'icon text';
+        }
+    }
+}
+
+:host(.ConstructionLimitBannerItem:last-child) {
+    padding-bottom: 0;
+    border-bottom: none;
+    margin-bottom: 0;
+}

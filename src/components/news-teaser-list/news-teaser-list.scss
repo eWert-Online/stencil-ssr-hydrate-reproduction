@@ -1,0 +1,41 @@
+:host(.NewsTeaserList) {
+  @include content-holder();
+  display: block;
+
+  .NewsTeaserList-items {
+    @include grid-container();
+    row-gap: 40px;
+
+    opacity: 1;
+    transition: opacity 200ms linear;
+
+    app-news-teaser,
+    ::slotted(*) {
+      @include grid-item(12);
+
+      @media screen and (min-width: $breakpoint-websiteSmall) {
+        @include grid-item(6);
+      }
+
+      @media screen and (min-width: $breakpoint-medium) {
+        @include grid-item(4);
+      }
+    }
+  }
+
+  .NewsTeaserList-pagination {
+    margin-top: 40px;
+  }
+}
+
+:host(.NewsTeaserList--fetching) {
+  .NewsTeaserList-items {
+    opacity: 0;
+  }
+}
+
+:host(.NewsTeaserList--fetched) {
+  .NewsTeaserList-items {
+    opacity: 1;
+  }
+}

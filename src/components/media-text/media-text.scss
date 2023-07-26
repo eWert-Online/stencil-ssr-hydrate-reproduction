@@ -1,0 +1,126 @@
+:host(.MediaText) {
+    display: block;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .MediaText-intro {
+        @include content-holder();
+    }
+
+    .MediaText-container {
+        @include content-holder();
+        @include grid-container();
+    }
+
+    .MediaText-media {
+        @include grid-item(12);
+        align-self: flex-start;
+        overflow: hidden;
+
+        ::slotted(*) {
+            max-height: 600px;
+            object-fit: contain;
+        }
+    }
+
+    .MediaText-content {
+        @include grid-item(12);
+        align-self: flex-start;
+    }
+}
+
+:host(.MediaText--s) {
+    .MediaText-media {
+        @include grid-item(12);
+
+        @media screen and (min-width: $breakpoint-medium) {
+            @include grid-item(4);
+        }
+
+        @media screen and (min-width: $breakpoint-large) {
+            @include grid-item(4);
+        }
+    }
+
+    .MediaText-content {
+        @include grid-item(12);
+
+        @media screen and (min-width: $breakpoint-medium) {
+            @include grid-item(8);
+        }
+
+        @media screen and (min-width: $breakpoint-large) {
+            @include grid-item(8);
+        }
+    }
+}
+
+:host(.MediaText--m) {
+    .MediaText-media {
+        @include grid-item(12);
+
+        @media screen and (min-width: $breakpoint-medium) {
+            @include grid-item(6);
+        }
+    }
+
+    .MediaText-content {
+        @include grid-item(12);
+
+        @media screen and (min-width: $breakpoint-medium) {
+            @include grid-item(6);
+        }
+    }
+}
+
+:host(.MediaText--l) {
+    .MediaText-media {
+        @include grid-item(12);
+
+        @media screen and (min-width: $breakpoint-medium) {
+            @include grid-item(6);
+        }
+
+        @media screen and (min-width: $breakpoint-large) {
+            @include grid-item(8);
+        }
+    }
+
+    .MediaText-content {
+        @include grid-item(12);
+
+        @media screen and (min-width: $breakpoint-medium) {
+            @include grid-item(6);
+        }
+
+        @media screen and (min-width: $breakpoint-large) {
+            @include grid-item(4);
+        }
+    }
+}
+
+:host(.MediaText--left) {
+    @media screen and (min-width: $breakpoint-medium) {
+        .MediaText-media {
+            order: 0;
+        }
+
+        .MediaText-content {
+            order: 1;
+        }
+    }
+}
+
+:host(.MediaText--right) {
+    @media screen and (min-width: $breakpoint-medium) {
+        .MediaText-media {
+            order: 1;
+        }
+
+        .MediaText-content {
+            order: 0;
+        }
+    }
+}
